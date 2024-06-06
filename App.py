@@ -7,8 +7,6 @@ class App():
     
     
     def __init__(self):
-        
-        
         self.window = Tk()
         self.window.geometry("393x852")
         self.window.title("MRGSports")
@@ -16,8 +14,14 @@ class App():
         #logo frame
 
         self.logoFrame = Frame(self.window, background="Orange", width=393, height=100)
-        
+        self.logoFrame.grid_propagate(False)
         self.logoFrame.grid(row=0, column=0)
+
+        #logo text test
+        
+        self.logoText = Label(self.logoFrame, text="MRGSports")
+        self.logoText.grid(row=0, column=0)
+        #self.logoText.pack()
 
         #content frame
 
@@ -28,14 +32,14 @@ class App():
         #navigation bar
 
         self.navigationBar = Frame(self.window, bg="Orange", width=393, height=152)
-        
+        self.navigationBar.grid_propagate(False)
         self.navigationBar.grid(row=2, column=0)
 
         #placing buttons on nav bar
 
         self.exampleButton = Button(self.navigationBar, text="Example Button")
         
-        self.exampleButton.grid(row=0, column=0)
+        self.exampleButton.grid(row=0,column=0)
         
            
         self.window.mainloop()
