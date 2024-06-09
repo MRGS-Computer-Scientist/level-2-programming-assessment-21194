@@ -26,21 +26,27 @@ class App():
         #content frame
 
         self.contentFrame = Frame(self.window, background="White", width=393, height=600)
-        
+        self.contentFrame.grid_propagate(False)
         self.contentFrame.grid(row=1, column=0)
         
         #home page frame
         
-        self.homePage = Frame(self.contentFrame, background="White", width=393, height=600)
+        self.homePage = Frame(self.contentFrame, background="Blue", width=393, height=600)
+        self.homePage.grid_propagate(False)
         
         #stat page frame
         
-        self.homePage = Frame(self.contentFrame, background="White", width=393, height=600)        
-        
+        self.statPage = Frame(self.contentFrame, background="Red", width=393, height=600)        
+        self.statPage.grid_propagate(False)
+        self.statPage.grid(row=0,column=0)
         #resu page frame
         
-        self.homePage = Frame(self.contentFrame, background="White", width=393, height=600)
+        self.resuPage = Frame(self.contentFrame, background="Purple", width=393, height=600)
+        self.resuPage.grid_propagate(False)
+        #lead page frame
         
+        self.leadPage = Frame(self.contentFrame, background="Green", width=393, height=600)        
+        self.leadPage.grid_propagate(False)
         #navigation bar
 
         self.navigationBar = Frame(self.window, bg="Orange", width=393, height=152)
@@ -67,4 +73,5 @@ class App():
         self.window.mainloop()
         
     def goToHome(self):
-            
+        self.statPage.grid_forget()
+        self.homePage.grid(row=0, column=0)
