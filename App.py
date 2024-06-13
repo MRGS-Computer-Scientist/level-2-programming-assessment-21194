@@ -4,8 +4,6 @@ from os import *
 
 class App():
     
-    
-    
     def __init__(self):
         self.window = Tk()
         self.window.geometry("393x852")
@@ -13,15 +11,14 @@ class App():
 
         #logo frame
 
-        self.logoFrame = Frame(self.window, background="Orange", width=393, height=100)
+        self.logoFrame = Frame(self.window, background="#FC6736", width=393, height=100)
         self.logoFrame.grid_propagate(False)
         self.logoFrame.grid(row=0, column=0)
 
         #logo text test
         
-        self.logoText = Label(self.logoFrame, text="MRGSports")
+        self.logoText = Label(self.logoFrame, text="MRGSports", bg="#FC6736", fg="White")
         self.logoText.grid(row=0, column=0, pady=40, rowspan=1)
-        #self.logoText.pack()
 
         #content frame
 
@@ -31,9 +28,13 @@ class App():
         
         #home page frame
         
-        self.homePage = Frame(self.contentFrame, background="Blue", width=393, height=600)
+        self.homePage = Frame(self.contentFrame, background="#EFECEC", width=393, height=600)
         self.homePage.grid_propagate(False)
         self.homePage.grid(row=0,column=0)
+        
+        self.homeLabel1 = Label(self.homePage, text="UPCOMING", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
+        self.homeLabel1.grid(row=0, column=0, sticky=N)
+        
         
         #stat page frame
         
@@ -50,7 +51,7 @@ class App():
         self.leadPage.grid_propagate(False)
         #navigation bar
 
-        self.navigationBar = Frame(self.window, bg="Orange", width=393, height=152)
+        self.navigationBar = Frame(self.window, bg="#FC6736", width=393, height=152)
         self.navigationBar.grid_propagate(False)
         self.navigationBar.grid(row=2, column=0)
 
