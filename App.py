@@ -33,12 +33,13 @@ class App():
         
         self.homePage = Frame(self.contentFrame, background="Blue", width=393, height=600)
         self.homePage.grid_propagate(False)
+        self.homePage.grid(row=0,column=0)
         
         #stat page frame
         
         self.statPage = Frame(self.contentFrame, background="Red", width=393, height=600)        
         self.statPage.grid_propagate(False)
-        self.statPage.grid(row=0,column=0)
+
         #resu page frame
         
         self.resuPage = Frame(self.contentFrame, background="Purple", width=393, height=600)
@@ -61,17 +62,37 @@ class App():
         self.homeButton = Button(self.navigationBar, text="Home", bg="White", width=7, command=self.goToHome)
         self.homeButton.grid(row=0,column=0,)
 
-        self.ResuButton = Button(self.navigationBar, text="Resu", bg="White", width=7)
+        self.ResuButton = Button(self.navigationBar, text="Resu", bg="White", width=7, command=self.goToResu)
         self.ResuButton.grid(row=0, column=1,padx=19,pady=65)
 
-        self.StatButton = Button(self.navigationBar, text="Stat", bg="White", width=7)
+        self.StatButton = Button(self.navigationBar, text="Stat", bg="White", width=7, command=self.goToStat)
         self.StatButton.grid(row=0, column=2,padx=19,pady=65)
 
-        self.LeadButton = Button(self.navigationBar, text="Lead", bg="White", width=7)
+        self.LeadButton = Button(self.navigationBar, text="Lead", bg="White", width=7, command=self.goToLead)
         self.LeadButton.grid(row=0, column=3,padx=19,pady=65)
         
         self.window.mainloop()
         
     def goToHome(self):
+        self.resuPage.grid_forget()
         self.statPage.grid_forget()
+        self.leadPage.grid_forget()
         self.homePage.grid(row=0, column=0)
+        
+    def goToResu(self):
+        self.statPage.grid_forget()
+        self.leadPage.grid_forget()
+        self.homePage.grid_forget()
+        self.resuPage.grid(row=0,column=0)
+ 
+    def goToStat(self):
+        self.resuPage.grid_forget()
+        self.leadPage.grid_forget()
+        self.homePage.grid_forget()
+        self.statPage.grid(row=0,column=0)       
+        
+    def goToLead(self):
+        self.resuPage.grid_forget()
+        self.statPage.grid_forget()
+        self.homePage.grid_forget()
+        self.leadPage.grid(row=0,column=0)       
