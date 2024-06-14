@@ -30,11 +30,37 @@ class App():
         
         self.homePage = Frame(self.contentFrame, background="#EFECEC", width=393, height=600)
         self.homePage.grid_propagate(False)
-        self.homePage.grid(row=0,column=0)
+        self.homePage.grid(rowspan=TRUE, columnspan=TRUE)
         
         self.homeLabel1 = Label(self.homePage, text="UPCOMING", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
-        self.homeLabel1.grid(row=0, column=0, sticky=N)
+        self.homeLabel1.grid(row=0, columnspan=TRUE, sticky=W, padx=20, pady=5)
         
+        self.upcomingBox1 = Frame(self.homePage, bg="White", width=186, height=51, bd=3, relief=GROOVE)
+        self.upcomingBox1.grid(row=1,column=0, padx=2.5, pady=3)
+
+        self.upcomingTime1 = Frame(self.homePage, bg="White", width=95, height=51, bd=3, relief=GROOVE)
+        self.upcomingTime1.grid(row=1,column=2, padx=2.5, pady=3)        
+        
+        self.upcomingBox2 = Frame(self.homePage, bg="White", width=186, height=51, bd=3, relief=GROOVE)
+        self.upcomingBox2.grid(row=2,column=0, padx=2.5, pady=3)
+
+        self.upcomingTime2 = Frame(self.homePage, bg="White", width=95, height=51, bd=3, relief=GROOVE)
+        self.upcomingTime2.grid(row=2,column=2, padx=2.5, pady=3)
+
+        self.upcomingBox3 = Frame(self.homePage, bg="White", width=186, height=51, bd=3, relief=GROOVE)
+        self.upcomingBox3.grid(row=3,column=0, padx=2.5, pady=3)
+
+        self.upcomingTime3 = Frame(self.homePage, bg="White", width=95, height=51, bd=3, relief=GROOVE)
+        self.upcomingTime3.grid(row=3,column=2, padx=2.5, pady=3)
+
+        self.upcomingBox4 = Frame(self.homePage, bg="White", width=186, height=51, bd=3, relief=GROOVE)
+        self.upcomingBox4.grid(row=4,column=0, padx=2.5, pady=3)
+
+        self.upcomingTime4 = Frame(self.homePage, bg="White", width=95, height=51, bd=3, relief=GROOVE)
+        self.upcomingTime4.grid(row=4,column=2, padx=2.5, pady=3)
+        
+        self.homeLabel2 = Label(self.homePage, text="RESULTS THIS WEEK", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
+        self.homeLabel2.grid(row=5, columnspan=TRUE, sticky=W, padx=20, pady=6)
         
         #stat page frame
         
@@ -78,22 +104,22 @@ class App():
         self.resuPage.grid_forget()
         self.statPage.grid_forget()
         self.leadPage.grid_forget()
-        self.homePage.grid(row=0, column=0)
+        self.homePage.grid(rowspan=TRUE, columnspan=TRUE)
         
     def goToResu(self):
         self.statPage.grid_forget()
         self.leadPage.grid_forget()
         self.homePage.grid_forget()
-        self.resuPage.grid(row=0,column=0)
+        self.resuPage.grid(rowspan=TRUE, columnspan=TRUE)
  
     def goToStat(self):
         self.resuPage.grid_forget()
         self.leadPage.grid_forget()
         self.homePage.grid_forget()
-        self.statPage.grid(row=0,column=0)       
+        self.statPage.grid(rowspan=TRUE, columnspan=TRUE)       
         
     def goToLead(self):
         self.resuPage.grid_forget()
         self.statPage.grid_forget()
         self.homePage.grid_forget()
-        self.leadPage.grid(row=0,column=0)       
+        self.leadPage.grid(rowspan=TRUE, columnspan=TRUE)       
