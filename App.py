@@ -39,56 +39,96 @@ class App():
 
         #upcomings
         
-        self.upcomingMain = Frame(self.homePage, width=w_width - margin_length, height=350, bg='Blue')
+        self.upcomingMain = Frame(self.homePage, width=w_width - margin_length, height=330, bg='Blue')
         self.upcomingMain.pack_propagate(False)
         self.upcomingMain.pack()
         
         self.upcomingText = Label(self.upcomingMain, text="UPCOMING", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
         self.upcomingText.pack(padx=20, pady=5)
         
-        #box 1
+        # First upcoming display
         
-        self.upcomingBox1 = Frame(self.upcomingMain, bg="White", width=185, height=50, bd=3, relief=GROOVE)
+        self.upcomingOne = Frame(self.upcomingMain, bg="Cyan", width=w_width - margin_length, height=70)
+        self.upcomingOne.pack()
+        
+        self.upcomingBox1 = Frame(self.upcomingOne, bg="White", width=200, height=50, bd=3, relief=GROOVE)
         self.upcomingBox1.pack_propagate(False)
         self.upcomingBox1.pack(side=LEFT, padx=2.5, pady=3)
         
         self.upcomingGame1 = Label(self.upcomingBox1, text="Football Game")
         self.upcomingGame1.pack(padx=5,pady=5)
 
-        self.upcomingTime1 = Frame(self.upcomingMain, bg="White", width=95, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime1 = Frame(self.upcomingOne, bg="White", width=100, height=50, bd=3, relief=GROOVE)
         self.upcomingTime1.pack(side=RIGHT, padx=2.5, pady=3)        
+        
+        # Second upcoming display
+        
+        self.upcomingTwo = Frame(self.upcomingMain, bg="Green", width=w_width - margin_length, height=70)
+        self.upcomingTwo.pack()
+        
+        self.upcomingBox2 = Frame(self.upcomingTwo, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcomingBox2.pack_propagate(False)
+        self.upcomingBox2.pack(side=LEFT, padx=2.5, pady=3)
+        
+        self.upcomingGame2 = Label(self.upcomingBox2, text="Basketball Game")
+        self.upcomingGame2.pack(padx=5,pady=5)
 
-        #box 2
+        self.upcomingTime2 = Frame(self.upcomingTwo, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime2.pack(side=RIGHT, padx=2.5, pady=3)      
         
-#        self.upcomingBox2 = Frame(self.homePage, bg="White", width=185, height=50, bd=3, relief=GROOVE)
- #       self.upcomingBox2.grid(row=2,column=0, padx=2.5, pady=3)
-#
- #       self.upcomingTime2 = Frame(self.homePage, bg="White", width=95, height=50, bd=3, relief=GROOVE)
-  #      self.upcomingTime2.grid(row=2,column=1, padx=2.5, pady=3)
-#
- #       #box 3
-#
- #       self.upcomingBox3 = Frame(self.homePage, bg="White", width=185, height=50, bd=3, relief=GROOVE)
-  #      self.upcomingBox3.grid(row=3,column=0, padx=2.5, pady=3)
-#
- #       self.upcomingTime3 = Frame(self.homePage, bg="White", width=95, height=50, bd=3, relief=GROOVE)
-  #      self.upcomingTime3.grid(row=3,column=1, padx=2.5, pady=3)
-#
- #       #box 4
-#
- #       self.upcomingBox4 = Frame(self.homePage, bg="White", width=185, height=50, bd=3, relief=GROOVE)
-  #      self.upcomingBox4.grid(row=4,column=0, padx=2.5, pady=3)
-#
- #       self.upcomingTime4 = Frame(self.homePage, bg="White", width=95, height=50, bd=3, relief=GROOVE)
-  #      self.upcomingTime4.grid(row=4,column=1, padx=2.5, pady=3)
+        # Third upcoming display
         
-        #results this week
+        self.upcomingThree = Frame(self.upcomingMain, bg="Red", width=w_width - margin_length, height=70)
+        self.upcomingThree.pack()
         
-#        self.homeLabel2 = Label(self.homePage, text="RESULTS THIS WEEK", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
- #       self.homeLabel2.grid(row=5, columnspan=TRUE, sticky=W, padx=20, pady=6)
-  #      
-   #     self.hResuBox1 = Frame(self.homePage, bg="White", width=285, height=240, bd=3, relief=GROOVE)
-    #    self.hResuBox1.grid(row=6,column=0, padx=2.5, pady=3)        
+        self.upcomingBox3 = Frame(self.upcomingThree, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcomingBox3.pack_propagate(False)
+        self.upcomingBox3.pack(side=LEFT, padx=2.5, pady=3)
+        
+        self.upcomingGame3 = Label(self.upcomingBox3, text="Hockey Game")
+        self.upcomingGame3.pack(padx=5,pady=5)
+
+        self.upcomingTime3 = Frame(self.upcomingThree, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime3.pack(side=RIGHT, padx=2.5, pady=3)
+
+        # Fourth upcoming display
+        
+        self.upcomingFour = Frame(self.upcomingMain, bg="Brown", width=w_width - margin_length, height=70)
+        self.upcomingFour.pack()
+        
+        self.upcomingBox4 = Frame(self.upcomingFour, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcomingBox4.pack_propagate(False)
+        self.upcomingBox4.pack(side=LEFT, padx=2.5, pady=3)
+        
+        self.upcomingGame4 = Label(self.upcomingBox4, text="Hockey Game")
+        self.upcomingGame4.pack(padx=5,pady=5)
+
+        self.upcomingTime4 = Frame(self.upcomingFour, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime4.pack(side=RIGHT, padx=2.5, pady=3)
+
+        # Fifth upcoming display
+        
+        self.upcomingFive = Frame(self.upcomingMain, bg="Brown", width=w_width - margin_length, height=70)
+        self.upcomingFive.pack()
+        
+        self.upcomingBox5 = Frame(self.upcomingFive, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcomingBox5.pack_propagate(False)
+        self.upcomingBox5.pack(side=LEFT, padx=2.5, pady=3)
+        
+        self.upcomingGame5 = Label(self.upcomingBox5, text="Waterpolo Game")
+        self.upcomingGame5.pack(padx=5,pady=5)
+
+        self.upcomingTime5 = Frame(self.upcomingFive, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime5.pack(side=RIGHT, padx=2.5, pady=3)
+                            
+        # End of upcoming/Start of res-this-week
+        
+        self.homeresuMain = Frame(self.homePage, width=w_width - margin_length, height=270, bg='Pink')
+        self.homeresuMain.pack_propagate(False)
+        self.homeresuMain.pack()
+        
+        self.homeresuText = Label(self.homeresuMain, text="RESULTS THIS WEEK", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
+        self.homeresuText.pack(padx=20, pady=5)
         
         #stat page frame
         
@@ -110,9 +150,6 @@ class App():
         self.navigationBar.grid(row=2, column=0)
 
         #placing buttons on nav bar
-
-        #self.exampleButton = Button(self.navigationBar, text="Example Button")
-        #self.exampleButton.grid(row=0,column=0)
         
         self.homeButton = Button(self.navigationBar, text="Home", bg="White", width=7, command=self.goToHome)
         self.homeButton.grid(row=0,column=0,)
