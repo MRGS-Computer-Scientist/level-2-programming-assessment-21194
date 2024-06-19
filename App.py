@@ -130,6 +130,12 @@ class App():
         self.homeresuText = Label(self.homeresuMain, text="RESULTS THIS WEEK", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
         self.homeresuText.pack(padx=20, pady=5)
         
+        self.homeresuBox = Frame(self.homeresuMain, bg="White", width=305, height=190, bd=3, relief=GROOVE)
+        self.homeresuBox.pack_propagate(False)
+        self.homeresuBox.pack(padx=5, pady=3)        
+        
+        
+        
         #stat page frame
         
         self.statPage = Frame(self.contentFrame, background="Red", width=w_width, height=600)        
