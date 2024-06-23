@@ -134,7 +134,25 @@ class App():
         self.homeresuBox.pack_propagate(False)
         self.homeresuBox.pack(padx=5, pady=3)        
         
+        self.homeresuB1 = Frame(self.homeresuBox, width=305, height=26, bg="Blue")
+        self.homeresuB1.pack_propagate(False)
+        self.homeresuB1.pack()
         
+        self.homeresuB2 = Frame(self.homeresuBox, width=305, height=46, bg="Green")
+        self.homeresuB2.pack_propagate(False)
+        self.homeresuB2.pack()
+        
+        self.homeresuB3 = Frame(self.homeresuBox, width=305, height=46, bg="Yellow")
+        self.homeresuB3.pack_propagate(False)
+        self.homeresuB3.pack()
+        
+        self.homeresuB4 = Frame(self.homeresuBox, width=305, height=46, bg="Red")
+        self.homeresuB4.pack_propagate(False)
+        self.homeresuB4.pack()
+        
+        self.homeresuB5 = Frame(self.homeresuBox, width=305, height=26, bg="Orange")
+        self.homeresuB5.pack_propagate(False)
+        self.homeresuB5.pack()
         
         #stat page frame
         
