@@ -59,6 +59,7 @@ class App():
         self.upcomingGame1.pack(padx=5,pady=5)
 
         self.upcomingTime1 = Frame(self.upcomingOne, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime1.pack_propagate(False)
         self.upcomingTime1.pack(side=RIGHT, padx=2.5, pady=3)        
         
         # Second upcoming display
@@ -74,6 +75,7 @@ class App():
         self.upcomingGame2.pack(padx=5,pady=5)
 
         self.upcomingTime2 = Frame(self.upcomingTwo, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime2.pack_propagate(False)
         self.upcomingTime2.pack(side=RIGHT, padx=2.5, pady=3)      
         
         # Third upcoming display
@@ -89,6 +91,7 @@ class App():
         self.upcomingGame3.pack(padx=5,pady=5)
 
         self.upcomingTime3 = Frame(self.upcomingThree, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime3.pack_propagate(False)
         self.upcomingTime3.pack(side=RIGHT, padx=2.5, pady=3)
 
         # Fourth upcoming display
@@ -104,6 +107,7 @@ class App():
         self.upcomingGame4.pack(padx=5,pady=5)
 
         self.upcomingTime4 = Frame(self.upcomingFour, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime4.pack_propagate(False)
         self.upcomingTime4.pack(side=RIGHT, padx=2.5, pady=3)
 
         # Fifth upcoming display
@@ -119,6 +123,7 @@ class App():
         self.upcomingGame5.pack(padx=5,pady=5)
 
         self.upcomingTime5 = Frame(self.upcomingFive, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcomingTime5.pack_propagate(False)
         self.upcomingTime5.pack(side=RIGHT, padx=2.5, pady=3)
                             
         # End of upcoming/Start of res-this-week
@@ -134,25 +139,61 @@ class App():
         self.homeresuBox.pack_propagate(False)
         self.homeresuBox.pack(padx=5, pady=3)        
         
-        self.homeresuB1 = Frame(self.homeresuBox, width=305, height=26, bg="Blue")
+        # First page (no L/R button press)
+        # Top
+        
+        self.homeresuL1 = Frame(self.homeresuBox, width=305, height=29, bg="Blue")
+        self.homeresuL1.pack_propagate(False)
+        self.homeresuL1.grid_propagate(False)
+        self.homeresuL1.grid(row=0,column=0)
+        
+        self.homeresuLL = Frame(self.homeresuL1, width=152.5, height=29, bg="Grey")
+        self.homeresuLL.pack_propagate(False)        
+        self.homeresuLL.pack(side=LEFT)
+        
+        self.homeresuTEST = Label(self.homeresuLL, text="Basketball Page one")
+        self.homeresuTEST.pack()
+        
+        self.homeresuLR = Frame(self.homeresuL1, width=152.5, height=29, bg="Black")
+        self.homeresuLR.pack_propagate(False)        
+        self.homeresuLR.pack(side=RIGHT)
+        
+        self.CHANGETHENAMEOFTHISPLEASE = Label(self.homeresuLR, text="Pages")
+        self.CHANGETHENAMEOFTHISPLEASE.pack()
+        
+        # Middle
+        
+        self.homeresuB1 = Frame(self.homeresuBox, bg="Cyan", width=305, height=135)
         self.homeresuB1.pack_propagate(False)
-        self.homeresuB1.pack()
+        self.homeresuB1.grid_propagate(False)
+        self.homeresuB1.grid(row=1,columnspan=TRUE)
         
-        self.homeresuB2 = Frame(self.homeresuBox, width=305, height=46, bg="Green")
+        self.homeresuB1L2 = Frame(self.homeresuB1, width=305, height=45, bg="Green")
+        self.homeresuB1L2.pack_propagate(False)
+        self.homeresuB1L2.pack()
+        
+        self.homeresuB1L3 = Frame(self.homeresuB1, width=305, height=45, bg="Yellow")
+        self.homeresuB1L3.pack_propagate(False)
+        self.homeresuB1L3.pack()
+        
+        self.homeresuB1L4 = Frame(self.homeresuB1, width=305, height=45, bg="Red")
+        self.homeresuB1L4.pack_propagate(False)
+        self.homeresuB1L4.pack()
+        
+        # Second page (1st R button press)
+        
+        self.homeresuB2 = Frame(self.homeresuBox, bg="Cyan", width=305, height=135)
         self.homeresuB2.pack_propagate(False)
-        self.homeresuB2.pack()
+        self.homeresuB2.grid_propagate(False)
+        # This needs to be said on the button press somehow == self.homeresuB2.grid(row=0,columnspan=TRUE)
+
+
+        # Home resu page indicator
         
-        self.homeresuB3 = Frame(self.homeresuBox, width=305, height=46, bg="Yellow")
-        self.homeresuB3.pack_propagate(False)
-        self.homeresuB3.pack()
-        
-        self.homeresuB4 = Frame(self.homeresuBox, width=305, height=46, bg="Red")
-        self.homeresuB4.pack_propagate(False)
-        self.homeresuB4.pack()
-        
-        self.homeresuB5 = Frame(self.homeresuBox, width=305, height=26, bg="Orange")
-        self.homeresuB5.pack_propagate(False)
-        self.homeresuB5.pack()
+        self.homeresuL5 = Frame(self.homeresuBox, width=305, height=26, bg="Orange")  
+        self.homeresuL5.pack_propagate(False)
+        self.homeresuL5.grid_propagate(False)
+        self.homeresuL5.grid(row=2,columnspan=TRUE)
         
         #stat page frame
         
