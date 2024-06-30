@@ -5,6 +5,9 @@ from os import *
 w_width = 400
 w_height = 850 
 margin_length = 30
+page_number = 1
+
+leftarrow = PhotoImage(file = "C:\Users\21194\Downloads\683398_arrows_512x512.png")
 
 class App():
     
@@ -151,15 +154,21 @@ class App():
         self.homeresuLL.pack_propagate(False)        
         self.homeresuLL.pack(side=LEFT)
         
-        self.homeresuTEST = Label(self.homeresuLL, text="Basketball Page one")
+        self.homeresuTEST = Label(self.homeresuLL, text="Basketball")
         self.homeresuTEST.pack()
+        
+        # code for which page is shown on the top right, 
         
         self.homeresuLR = Frame(self.homeresuL1, width=152.5, height=29, bg="Black")
         self.homeresuLR.pack_propagate(False)        
         self.homeresuLR.pack(side=RIGHT)
         
-        self.CHANGETHENAMEOFTHISPLEASE = Label(self.homeresuLR, text="Pages")
-        self.CHANGETHENAMEOFTHISPLEASE.pack()
+        self.leftarrowbutton = Button(self.homeresuLR, image = leftarrow)
+        self.leftarrowbutton.pack()
+        
+        
+        
+
         
         # Middle
         
@@ -172,13 +181,53 @@ class App():
         self.homeresuB1L2.pack_propagate(False)
         self.homeresuB1L2.pack()
         
+        # sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
+        
+        self.resuTeam1 = Label(self.homeresuB1L2, text="First XI")
+        self.resuTeam1.pack(side=LEFT, padx=25)
+        
+        self.resuScore1 = Label(self.homeresuB1L2, text="160")
+        self.resuScore1.pack(side=LEFT, padx=5)
+        
+        self.resuTeam2 = Label(self.homeresuB1L2, text="First XI")
+        self.resuTeam2.pack(side=RIGHT, padx=25)
+        
+        self.resuScore2 = Label(self.homeresuB1L2, text="70")
+        self.resuScore2.pack(side=RIGHT, padx=5)
+    
+    
         self.homeresuB1L3 = Frame(self.homeresuB1, width=305, height=45, bg="Yellow")
         self.homeresuB1L3.pack_propagate(False)
         self.homeresuB1L3.pack()
         
+        self.resuTeam3 = Label(self.homeresuB1L3, text="Second XI")
+        self.resuTeam3.pack(side=LEFT, padx=25)
+        
+        self.resuScore3 = Label(self.homeresuB1L3, text="160")
+        self.resuScore3.pack(side=LEFT, padx=5)
+        
+        self.resuTeam4 = Label(self.homeresuB1L3, text="Second XI")
+        self.resuTeam4.pack(side=RIGHT, padx=25)
+        
+        self.resuScore4 = Label(self.homeresuB1L3, text="70")
+        self.resuScore4.pack(side=RIGHT, padx=5)
+        
+        
         self.homeresuB1L4 = Frame(self.homeresuB1, width=305, height=45, bg="Red")
         self.homeresuB1L4.pack_propagate(False)
         self.homeresuB1L4.pack()
+        
+        self.resuTeam5 = Label(self.homeresuB1L4, text="Junior")
+        self.resuTeam5.pack(side=LEFT, padx=25)
+        
+        self.resuScore5 = Label(self.homeresuB1L4, text="160")
+        self.resuScore5.pack(side=LEFT, padx=5)
+        
+        self.resuTeam6 = Label(self.homeresuB1L4, text="Junior")
+        self.resuTeam6.pack(side=RIGHT, padx=25)
+        
+        self.resuScore6 = Label(self.homeresuB1L4, text="70")
+        self.resuScore6.pack(side=RIGHT, padx=5)
         
         # Second page (1st R button press)
         
