@@ -163,10 +163,14 @@ class App():
         self.homeresuLR.pack_propagate(False)        
         self.homeresuLR.pack(side=RIGHT)
         
-        self.leftarrowbutton = Button(self.homeresuLR, image = leftarrow)
+        self.leftarrowbutton = Button(self.homeresuLR, image = leftarrow, command = gopage_left())
         self.leftarrowbutton.pack()
         
-        
+        def gopage_left():
+            page_number + 1
+            print page_number
+            
+            
         
 
         
