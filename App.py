@@ -5,11 +5,13 @@ from os import *
 w_width = 400
 w_height = 850 
 margin_length = 30
+
 page_number = 1
 
-leftarrow = PhotoImage(file = "C:\Users\21194\Downloads\683398_arrows_512x512.png")
+#leftarrow = PhotoImage(file = "C:\Users\21194\Downloads\683398_arrows_512x512.png")
 
 class App():
+    
     
     def __init__(self):
         self.window = Tk()
@@ -163,14 +165,15 @@ class App():
         self.homeresuLR.pack_propagate(False)        
         self.homeresuLR.pack(side=RIGHT)
         
-        self.leftarrowbutton = Button(self.homeresuLR, image = leftarrow, command = gopage_left())
-        self.leftarrowbutton.pack()
+        self.leftarrowbutton = Button(self.homeresuLR, text="Left", command=self.gopageleft)
+        self.leftarrowbutton.pack(side=LEFT)
         
-        def gopage_left():
-            page_number + 1
-            print page_number
-            
-            
+        self.rightarrowbutton = Button(self.homeresuLR, text="Right", command=self.gopageright)
+        self.rightarrowbutton.pack(side=LEFT)
+        
+        self.pagenumber = Label(self.homeresuLR, text=page_number)
+        self.pagenumber.pack(side=RIGHT)
+
         
 
         
@@ -178,9 +181,10 @@ class App():
         
         self.homeresuB1 = Frame(self.homeresuBox, bg="Cyan", width=305, height=135)
         self.homeresuB1.pack_propagate(False)
-        self.homeresuB1.grid_propagate(False)
-        self.homeresuB1.grid(row=1,columnspan=TRUE)
+        self.homeresuB1.grid_propagate(False)        
         
+
+                                
         self.homeresuB1L2 = Frame(self.homeresuB1, width=305, height=45, bg="Green")
         self.homeresuB1L2.pack_propagate(False)
         self.homeresuB1L2.pack()
@@ -238,8 +242,15 @@ class App():
         self.homeresuB2 = Frame(self.homeresuBox, bg="Cyan", width=305, height=135)
         self.homeresuB2.pack_propagate(False)
         self.homeresuB2.grid_propagate(False)
-        # This needs to be said on the button press somehow == self.homeresuB2.grid(row=0,columnspan=TRUE)
+        # This needs to be said on the button press somehow == self.homeresuB2.grid(row=1,columnspan=TRUE)
+        
+        self.homeresuB3 = Frame(self.homeresuBox, bg="Blue", width=305, height=135)
+        self.homeresuB3.pack_propagate(False)
+        self.homeresuB3.grid_propagate(False)
 
+        self.homeresuB4 = Frame(self.homeresuBox, bg="Red", width=305, height=135)
+        self.homeresuB4.pack_propagate(False)
+        self.homeresuB4.grid_propagate(False)
 
         # Home resu page indicator
         
@@ -280,29 +291,64 @@ class App():
 
         self.LeadButton = Button(self.navigationBar, text="Lead", bg="White", width=7, command=self.goToLead)
         self.LeadButton.grid(row=0, column=3,padx=19,pady=65)
+
         
         self.window.mainloop()
         
     def goToHome(self):
-        self.resuPage.grid_forget()
-        self.statPage.grid_forget()
-        self.leadPage.grid_forget()
+        self.resuPage.grid_remove()
+        self.statPage.grid_remove()
+        self.leadPage.grid_remove()
         self.homePage.grid(rowspan=TRUE, columnspan=TRUE)
         
     def goToResu(self):
-        self.statPage.grid_forget()
-        self.leadPage.grid_forget()
-        self.homePage.grid_forget()
+        self.statPage.grid_remove()
+        self.leadPage.grid_remove()
+        self.homePage.grid_remove()
         self.resuPage.grid(rowspan=TRUE, columnspan=TRUE)
  
     def goToStat(self):
-        self.resuPage.grid_forget()
-        self.leadPage.grid_forget()
-        self.homePage.grid_forget()
+        self.resuPage.grid_remove()
+        self.leadPage.grid_remove()
+        self.homePage.grid_remove()
         self.statPage.grid(rowspan=TRUE, columnspan=TRUE)       
         
     def goToLead(self):
-        self.resuPage.grid_forget()
-        self.statPage.grid_forget()
-        self.homePage.grid_forget()
-        self.leadPage.grid(rowspan=TRUE, columnspan=TRUE)       
+        self.resuPage.grid_remove()
+        self.statPage.grid_remove()
+        self.homePage.grid_remove()
+        self.leadPage.grid(rowspan=TRUE, columnspan=TRUE)
+        
+              
+    def gopageleft(self):
+        global page_number
+        page_number -= 1
+        self.update_page()
+
+    def gopageright(self):
+        global page_number
+        page_number += 1
+        self.update_page()        
+           
+    def update_page(self):
+        global page_number
+
+        # Wrap page number to stay within the range
+        if page_number < 1:
+            page_number = 4
+        elif page_number > 4:
+            page_number = 1
+
+        # Update visibility of each page
+        self.homeresuB2.grid_remove()
+        self.homeresuB3.grid_remove()
+        self.homeresuB4.grid_remove()
+
+        if page_number == 1:
+            self.homeresuB2.grid()
+        elif page_number == 2:
+            self.homeresuB3.grid()
+        elif page_number == 3:
+            self.homeresuB4.grid()
+        else:
+            self.homeresuB4.grid()
