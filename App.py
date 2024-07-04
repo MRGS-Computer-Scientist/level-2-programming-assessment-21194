@@ -6,17 +6,21 @@ w_width = 400
 w_height = 850 
 margin_length = 30
 
-page_number = 1
+
 
 #leftarrow = PhotoImage(file = "C:\Users\21194\Downloads\683398_arrows_512x512.png")
 
 class App():
     
     
+    
     def __init__(self):
         self.window = Tk()
         self.window.geometry((str(w_width)) + "x" + (str(w_height)))
         self.window.title("MRGSports")
+        
+        self.page_number = 1
+        self.max_page_numbers = 4
 
         #logo frame
 
@@ -165,13 +169,13 @@ class App():
         self.homeresuLR.pack_propagate(False)        
         self.homeresuLR.pack(side=RIGHT)
         
-        self.leftarrowbutton = Button(self.homeresuLR, text="Left", command=self.gopageleft)
+        self.leftarrowbutton = Button(self.homeresuLR, text="Left", command=lambda: self.go_to_next_page("left"))
         self.leftarrowbutton.pack(side=LEFT)
         
-        self.rightarrowbutton = Button(self.homeresuLR, text="Right", command=self.gopageright)
+        self.rightarrowbutton = Button(self.homeresuLR, text="Right", command=lambda: self.go_to_next_page("right"))
         self.rightarrowbutton.pack(side=LEFT)
         
-        self.pagenumber = Label(self.homeresuLR, text=page_number)
+        self.pagenumber = Label(self.homeresuLR, text=self.page_number)
         self.pagenumber.pack(side=RIGHT)
 
         
@@ -182,7 +186,7 @@ class App():
         self.homeresuB1 = Frame(self.homeresuBox, bg="Cyan", width=305, height=135)
         self.homeresuB1.pack_propagate(False)
         self.homeresuB1.grid_propagate(False)        
-        
+        self.homeresuB1.grid(row=1, columnspan=TRUE)
 
                                 
         self.homeresuB1L2 = Frame(self.homeresuB1, width=305, height=45, bg="Green")
@@ -294,6 +298,23 @@ class App():
 
         
         self.window.mainloop()
+     
+     
+    def go_to_next_page(self, direction):
+        if direction == "left":
+            if self.page_number > 1:
+                 self.page_number -= 1
+            elif self.page_number <= 1:
+                self.page_number = self.max_page_numbers
+        elif direction == "right":
+            if self.page_number < self.max_page_numbers:
+                 self.page_number += 1
+            elif self.page_number >= self.max_page_numbers:
+                self.page_number = 1
+                
+        self.pagenumber.config(text=self.page_number)
+        
+        self.change_resu_page()
         
     def goToHome(self):
         self.resuPage.grid_remove()
@@ -318,37 +339,19 @@ class App():
         self.statPage.grid_remove()
         self.homePage.grid_remove()
         self.leadPage.grid(rowspan=TRUE, columnspan=TRUE)
-        
-              
-    def gopageleft(self):
-        global page_number
-        page_number -= 1
-        self.update_page()
-
-    def gopageright(self):
-        global page_number
-        page_number += 1
-        self.update_page()        
            
-    def update_page(self):
-        global page_number
-
-        # Wrap page number to stay within the range
-        if page_number < 1:
-            page_number = 4
-        elif page_number > 4:
-            page_number = 1
-
+    def change_resu_page(self):
         # Update visibility of each page
+        self.homeresuB1.grid_remove()
         self.homeresuB2.grid_remove()
         self.homeresuB3.grid_remove()
         self.homeresuB4.grid_remove()
 
-        if page_number == 1:
-            self.homeresuB2.grid()
-        elif page_number == 2:
-            self.homeresuB3.grid()
-        elif page_number == 3:
-            self.homeresuB4.grid()
-        else:
-            self.homeresuB4.grid()
+        if self.page_number == 1:
+            self.homeresuB1.grid(row=1, columnspan=TRUE)
+        elif self.page_number == 2:
+            self.homeresuB2.grid(row=1, columnspan=TRUE)
+        elif self.page_number == 3:
+            self.homeresuB3.grid(row=1, columnspan=TRUE)
+        elif self.page_number == 4:
+            self.homeresuB4.grid(row=1, columnspan=TRUE)
