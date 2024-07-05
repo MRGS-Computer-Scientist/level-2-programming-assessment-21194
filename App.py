@@ -148,7 +148,7 @@ class App():
         self.homeresuBox.pack_propagate(False)
         self.homeresuBox.pack(padx=5, pady=3)        
         
-        # First page (no L/R button press)
+        # First resu page (no L/R button press)
         # Top
         
         self.homeresuL1 = Frame(self.homeresuBox, width=305, height=29, bg="Blue")
@@ -163,7 +163,7 @@ class App():
         self.homeresuTEST = Label(self.homeresuLL, text="Basketball")
         self.homeresuTEST.pack()
         
-        # code for which page is shown on the top right, 
+        # which page is shown on the top right, to be replaced by a different indicator like 4 circles total, and the greyed out circle is the current page
         
         self.homeresuLR = Frame(self.homeresuL1, width=152.5, height=29, bg="Black")
         self.homeresuLR.pack_propagate(False)        
