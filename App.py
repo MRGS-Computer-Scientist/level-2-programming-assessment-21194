@@ -335,14 +335,13 @@ class App():
         self.homeresu_pageTwo = Frame(self.homeresu_box, bg="Cyan", width=305, height=135)
         self.homeresu_pageTwo.pack_propagate(False)
         self.homeresu_pageTwo.grid_propagate(False)
+        
         # Divide the pages into 3 lines with each match
                                 
         self.homeresu_pageTwo_L1 = Frame(self.homeresu_pageTwo, width=305, height=45, bg="Green")
         self.homeresu_pageTwo_L1.pack_propagate(False)
         self.homeresu_pageTwo_L1.pack()
-        
-        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
-        
+
         # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
         
         self.homeresu_pageTwo_L1S1 = Frame(self.homeresu_pageTwo_L1, width=100, height=45, bg="Yellow")
@@ -454,20 +453,18 @@ class App():
         self.homeresu_pageTwo_L3Score2 = Label(self.homeresu_pageTwo_L3S3, text="17")
         self.homeresu_pageTwo_L3Score2.pack(pady=12)
         
-        
         # Third resu page (page_number = 3)
         
         self.homeresu_pageThree = Frame(self.homeresu_box, bg="Blue", width=305, height=135)
         self.homeresu_pageThree.pack_propagate(False)
         self.homeresu_pageThree.grid_propagate(False)
+        
         # Divide the pages into 3 lines with each match
                                 
         self.homeresu_pageThree_L1 = Frame(self.homeresu_pageThree, width=305, height=45, bg="Green")
         self.homeresu_pageThree_L1.pack_propagate(False)
         self.homeresu_pageThree_L1.pack()
-        
-        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
-        
+
         # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
         
         self.homeresu_pageThree_L1S1 = Frame(self.homeresu_pageThree_L1, width=100, height=45, bg="Yellow")
@@ -584,14 +581,13 @@ class App():
         self.homeresu_pageFour = Frame(self.homeresu_box, bg="Red", width=305, height=135)
         self.homeresu_pageFour.pack_propagate(False)
         self.homeresu_pageFour.grid_propagate(False)
+        
         # Divide the pages into 3 lines with each match
                                 
         self.homeresu_pageFour_L1 = Frame(self.homeresu_pageFour, width=305, height=45, bg="Green")
         self.homeresu_pageFour_L1.pack_propagate(False)
         self.homeresu_pageFour_L1.pack()
-        
-        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
-        
+
         # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
         
         self.homeresu_pageFour_L1S1 = Frame(self.homeresu_pageFour_L1, width=100, height=45, bg="Yellow")
