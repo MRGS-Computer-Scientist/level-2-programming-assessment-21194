@@ -203,17 +203,17 @@ class App():
         self.upcoming_box_game.pack_propagate(False)
         self.upcoming_box_game.pack(side=LEFT, padx=4.5, pady=3)
         
-        self.upcoming_game_one = Label(self.upcoming_box_game, text="Football Game", bg="White")
+        self.upcoming_game_one = Label(self.upcoming_box_game, text="", bg="White")
         self.upcoming_game_one.pack(padx=5,pady=5)
 
         self.upcoming_box_time = Frame(self.upcoming_row_one, bg="White", width=100, height=50, bd=3, relief=RIDGE)
         self.upcoming_box_time.pack_propagate(False)
         self.upcoming_box_time.pack(side=RIGHT, padx=4.5, pady=3)        
         
-        self.upcoming_day_one = Label(self.upcoming_box_time, text="Wednesday", bg="White")
+        self.upcoming_day_one = Label(self.upcoming_box_time, text="", bg="White")
         self.upcoming_day_one.pack()
         
-        self.upcoming_time_one = Label(self.upcoming_box_time, text="15:30", bg="White")
+        self.upcoming_time_one = Label(self.upcoming_box_time, text="", bg="White")
         self.upcoming_time_one.pack()
         
         # Second upcoming display
@@ -927,9 +927,17 @@ class App():
     def enter_upcoming_game(self):
         sportname = self.upcoming_sport_entry.get()
         teamname = self.upcoming_team_entry.get()
-        dayofweek = self.upcoming_weekday.get()
-        timeofday = self.upcoming_time.get()
-        print("There is a", str(sportname), str(teamname), "game on", str(dayofweek), "at", str(timeofday))
+        dayofweek = self.upcoming_weekday_entry.get()
+        timeofday = self.upcoming_time_entry.get()
+
+        # Store entry in a file
+        with open('upcoming_games.txt', 'a') as f:
+            f.write(f"{sportname}, {teamname}, {dayofweek}, {timeofday}\n")
+
+        # Update labels with recent entry details
+        self.upcoming_game_one.config(text=sportname)
+        self.upcoming_day_one.config(text=dayofweek)
+        self.upcoming_time_one.config(text=timeofday)   
      
     def go_to_next_page(self, direction):
         if direction == "left":
