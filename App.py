@@ -45,8 +45,38 @@ class App():
         self.login_student_button = Button(self.login_buttons, text="Student", font=("Helvetica", 15), width=12, height=5, command=self.student_login)
         self.login_student_button.pack(side=LEFT, padx=15)
 
-        self.login_teacher_button = Button(self.login_buttons, text="Teacher", font=("Helvetica", 15), width=12, height=5)
+        self.login_teacher_button = Button(self.login_buttons, text="Teacher", font=("Helvetica", 15), width=12, height=5, command=self.teacher_login)
         self.login_teacher_button.pack(side=RIGHT, padx=15)
+        
+        # Teacher page
+        
+        self.teacher_login_page = Frame(self.window, background="#EFECEC", width=w_width, height=w_height)
+        self.teacher_login_page.pack_propagate(False)
+        
+        # Top section of the login page, the entry is here
+        
+        self.tlogin_top = Frame(self.teacher_login_page, background="#EFECEC", width=w_width, height=300)
+        self.tlogin_top.pack_propagate(False)
+        self.tlogin_top.pack()
+        
+        self.tinput_box = Frame(self.tlogin_top, background="White", width=300, height=140, bd=3, relief=GROOVE)
+        self.tinput_box.pack_propagate(False)
+        self.tinput_box.pack(pady=80)
+        
+        
+        
+        
+        self.tlogin_bottom = Frame(self.teacher_login_page, background="#FC6736", width=w_width, height=550)
+        self.tlogin_bottom.pack_propagate(False)
+        self.tlogin_bottom.pack()
+        
+        self.create_upcoming_button = Button(self.tlogin_bottom, text="Schedule an upcoming match", background="White", width=300, height=100, command=self.show_upcoming_creator)
+        self.create_upcoming_button.pack(pady=50)
+        
+        self.create_result_button = Button(self.tlogin_bottom, text="Enter a match result", background="White", width=300, height=100, command=self.show_result_creator)
+        self.create_result_button.pack(pady=50)
+        
+        # ---------------------- STUDENT PAGES BELOW ----------------------
         
         # Logo frame
 
@@ -782,6 +812,12 @@ class App():
         self.logo_frame.grid(row=0, column=0)
         self.content_frame.grid(row=1, column=0)
         self.navigation_bar.grid(row=2, column=0)
+     
+    def teacher_login(self):
+        self.login_page.pack_forget()
+        self.teacher_login_page.pack()
+     
+    def show_upcoming_creator
      
     def go_to_next_page(self, direction):
         if direction == "left":
