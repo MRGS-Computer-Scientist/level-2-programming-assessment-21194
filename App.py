@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from app_settings import *
 from os import *
 
@@ -21,7 +22,9 @@ class App():
         
         self.page_number = 1
         self.max_page_numbers = 4
-
+        self.teacher_code = "KMR"
+        self.teacher_input = StringVar()
+        
         # Login page
 
         self.login_page = Frame(self.window, background="#FC6736", width=w_width, height=w_height)
@@ -53,28 +56,69 @@ class App():
         self.teacher_login_page = Frame(self.window, background="#EFECEC", width=w_width, height=w_height)
         self.teacher_login_page.pack_propagate(False)
         
-        # Top section of the login page, the entry is here
+        # Top section of the login page, the entry for the teacher code is here
         
         self.tlogin_top = Frame(self.teacher_login_page, background="#EFECEC", width=w_width, height=300)
         self.tlogin_top.pack_propagate(False)
         self.tlogin_top.pack()
         
-        self.tinput_box = Frame(self.tlogin_top, background="White", width=300, height=140, bd=3, relief=GROOVE)
-        self.tinput_box.pack_propagate(False)
-        self.tinput_box.pack(pady=80)
+        self.tcode_input_box = Frame(self.tlogin_top, background="White", width=320, height=140, bd=3, relief=GROOVE)
+        self.tcode_input_box.pack_propagate(False)
+        self.tcode_input_box.pack(pady=80)
         
+        self.tcode_input_label = Label(self.tcode_input_box, text="Please enter your teacher code, e.g. 'MCS'", font=("Helvetica", 12))
+        self.tcode_input_label.pack(pady=5)
         
+        self.tcode_input_entry = Entry(self.tcode_input_box, textvariable = self.teacher_input, font=("Helvetica", 14))
+        self.tcode_input_entry.pack(pady=5)
         
+        self.tcode_input_confirm = Button(self.tcode_input_box, text="Confirm", font=("Helvetica", 14), command = self.tcode_confirm)
+        self.tcode_input_confirm.pack(pady=5)
+               
         
         self.tlogin_bottom = Frame(self.teacher_login_page, background="#FC6736", width=w_width, height=550)
         self.tlogin_bottom.pack_propagate(False)
         self.tlogin_bottom.pack()
         
-        self.create_upcoming_button = Button(self.tlogin_bottom, text="Schedule an upcoming match", background="White", width=300, height=100, command=self.show_upcoming_creator)
-        self.create_upcoming_button.pack(pady=50)
+        self.create_upcoming_button = Button(self.tlogin_bottom, text="Schedule an upcoming match", font=("Helvetica", 14), background="White", width=30, height=3, command=self.show_upcoming_creator)
+
+        self.create_result_button = Button(self.tlogin_bottom, text="Enter a match result", font=("Helvetica", 14), background="White", width=30, height=3, command=self.show_result_creator)
+
         
-        self.create_result_button = Button(self.tlogin_bottom, text="Enter a match result", background="White", width=300, height=100, command=self.show_result_creator)
-        self.create_result_button.pack(pady=50)
+        # Upcoming match scheduling page
+        
+        self.upcoming_sched_page = Frame(self.window, background="#EFECEC", width=w_width, height=w_height)
+        self.upcoming_sched_page.pack_propagate(False)
+        
+        self.upcoming_sched_top = Frame(self.upcoming_sched_page, background="#EFECEC", width=w_width, height=550)
+        self.upcoming_sched_top.pack_propagate(False)
+        self.upcoming_sched_top.pack()
+  
+        self.upcoming_sched_test = Label(self.upcoming_sched_top, text="Hi this is upcoming broski")
+        self.upcoming_sched_test.pack()
+        
+        self.upcoming_sched_bottom = Frame(self.upcoming_sched_page, background="#FC6736", width=w_width, height=300)
+        self.upcoming_sched_bottom.pack_propagate(False)
+        self.upcoming_sched_bottom.pack()
+        
+        # Result entering page
+        
+        self.result_enter_page = Frame(self.window, background="#EFECEC", width=w_width, height=w_height)
+        self.result_enter_page.pack_propagate(False)
+        
+        self.result_enter_top = Frame(self.result_enter_page, background="#EFECEC", width=w_width, height=550)
+        self.result_enter_top.pack_propagate(False)
+        self.result_enter_top.pack()
+        
+        self.result_enter_test = Label(self.result_enter_top, text="Hello this is results cuzzie")
+        self.result_enter_test.pack()
+        
+        self.result_enter_bottom = Frame(self.result_enter_page, background="#FC6736", width=w_width, height=300)
+        self.result_enter_bottom.pack_propagate(False)
+        self.result_enter_bottom.pack()
+        
+        
+        
         
         # ---------------------- STUDENT PAGES BELOW ----------------------
         
@@ -816,8 +860,29 @@ class App():
     def teacher_login(self):
         self.login_page.pack_forget()
         self.teacher_login_page.pack()
-     
-    def show_upcoming_creator
+        
+    def tcode_confirm(self):
+        entered_code = self.teacher_input.get() # Retrieve the entered code from the entry box
+        if entered_code == self.teacher_code: # Compare the two
+            self.create_upcoming_button.pack(pady=50)
+            self.create_result_button.pack()
+        elif entered_code == "":
+            messagebox.showerror("Box left empty ", "No code entered, please enter your teacher code.") # If the box is left empty, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
+            self.create_upcoming_button.pack_forget()
+            self.create_result_button.pack_forget()
+        else:
+            messagebox.showerror("Invalid Code", "Invalid teacher code. Please try again.") # If they enter the wrong code or something random, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
+            self.create_upcoming_button.pack_forget()
+            self.create_result_button.pack_forget()
+            
+                 
+    def show_upcoming_creator(self):
+        self.teacher_login_page.pack_forget()
+        self.upcoming_sched_page.pack()
+        
+    def show_result_creator(self):
+        self.teacher_login_page.pack_forget()
+        self.result_enter_page.pack()
      
     def go_to_next_page(self, direction):
         if direction == "left":
