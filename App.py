@@ -1,7 +1,8 @@
 from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 from app_settings import *
 from os import *
+
 
 w_width = 400
 w_height = 850 
@@ -22,8 +23,13 @@ class App():
         
         self.page_number = 1
         self.max_page_numbers = 4
-        self.teacher_code = "KMR"
+        self.teacher_code = 'KMR'
         self.teacher_input = StringVar()
+        self.upcoming_weekday = StringVar()
+        self.upcoming_time = StringVar()
+        self.sports = ['Football', 'Basketball', 'Hockey', 'Cricket']
+        self.teams = ['First XI', 'Second XI', 'Junior']
+        
         
         # Login page
 
@@ -84,6 +90,8 @@ class App():
 
         self.create_result_button = Button(self.tlogin_bottom, text="Enter a match result", font=("Helvetica", 14), background="White", width=30, height=3, command=self.show_result_creator)
 
+        self.tlogin_logo = Label(self.tlogin_bottom, text="MRGSports", bg="#FC6736", fg="White", font=("Courier", 45, "bold"))
+        
         
         # Upcoming match scheduling page
         
@@ -94,12 +102,41 @@ class App():
         self.upcoming_sched_top.pack_propagate(False)
         self.upcoming_sched_top.pack()
   
-        self.upcoming_sched_test = Label(self.upcoming_sched_top, text="Hi this is upcoming broski")
+        self.upcoming_sched_test = Label(self.upcoming_sched_top, text="Schedule a match for next week", font=("Helvetica", 18))
         self.upcoming_sched_test.pack()
+        
+        self.upcoming_sport_label = Label(self.upcoming_sched_top, text="Sport")
+        self.upcoming_sport_label.pack()
+        
+        self.upcoming_sport_entry = ttk.Combobox(self.upcoming_sched_top, values=self.sports)
+        self.upcoming_sport_entry.pack()
+        
+        self.upcoming_team_label = Label(self.upcoming_sched_top, text="Team")
+        self.upcoming_team_label.pack()
+        
+        self.upcoming_team_entry = ttk.Combobox(self.upcoming_sched_top, values=self.teams)
+        self.upcoming_team_entry.pack()    
+        
+        self.upcoming_weekday_label = Label(self.upcoming_sched_top, text="What day next week will the game be? (e.g. Monday)")
+        self.upcoming_weekday_label.pack()
+        
+        self.upcoming_weekday_entry = Entry(self.upcoming_sched_top, textvariable=self.upcoming_weekday)
+        self.upcoming_weekday_entry.pack()
+        
+        self.upcoming_time_label = Label(self.upcoming_sched_top, text="What time on this day will the game be? (e.g. 15:30)")
+        self.upcoming_time_label.pack()
+        
+        self.upcoming_time_entry = Entry(self.upcoming_sched_top, textvariable=self.upcoming_time)
+        self.upcoming_time_entry.pack()
+        
+
         
         self.upcoming_sched_bottom = Frame(self.upcoming_sched_page, background="#FC6736", width=w_width, height=300)
         self.upcoming_sched_bottom.pack_propagate(False)
         self.upcoming_sched_bottom.pack()
+        
+        self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", bg="White", font=("Helvetica", 14), command=self.enter_upcoming_game)
+        self.upcoming_data_confirm.pack(side=RIGHT, padx=5)
         
         # Result entering page
         
@@ -112,6 +149,8 @@ class App():
         
         self.result_enter_test = Label(self.result_enter_top, text="Hello this is results cuzzie")
         self.result_enter_test.pack()
+    
+    
         
         self.result_enter_bottom = Frame(self.result_enter_page, background="#FC6736", width=w_width, height=300)
         self.result_enter_bottom.pack_propagate(False)
@@ -848,7 +887,6 @@ class App():
 
 
 
-        
         self.window.mainloop()
         
     def student_login(self):
@@ -866,15 +904,17 @@ class App():
         if entered_code == self.teacher_code: # Compare the two
             self.create_upcoming_button.pack(pady=50)
             self.create_result_button.pack()
+            self.tlogin_logo.pack(pady=70)
         elif entered_code == "":
             messagebox.showerror("Box left empty ", "No code entered, please enter your teacher code.") # If the box is left empty, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
             self.create_upcoming_button.pack_forget()
             self.create_result_button.pack_forget()
+            self.tlogin_logo.pack_forget()
         else:
             messagebox.showerror("Invalid Code", "Invalid teacher code. Please try again.") # If they enter the wrong code or something random, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
             self.create_upcoming_button.pack_forget()
             self.create_result_button.pack_forget()
-            
+            self.tlogin_logo.pack_forget()        
                  
     def show_upcoming_creator(self):
         self.teacher_login_page.pack_forget()
@@ -883,6 +923,13 @@ class App():
     def show_result_creator(self):
         self.teacher_login_page.pack_forget()
         self.result_enter_page.pack()
+        
+    def enter_upcoming_game(self):
+        sportname = self.upcoming_sport_entry.get()
+        teamname = self.upcoming_team_entry.get()
+        dayofweek = self.upcoming_weekday.get()
+        timeofday = self.upcoming_time.get()
+        print("There is a", str(sportname), str(teamname), "game on", str(dayofweek), "at", str(timeofday))
      
     def go_to_next_page(self, direction):
         if direction == "left":
