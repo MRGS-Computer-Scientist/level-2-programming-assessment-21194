@@ -24,277 +24,731 @@ class App():
 
         #logo frame
 
-        self.logoFrame = Frame(self.window, background="#FC6736", width=w_width, height=100)
-        self.logoFrame.pack_propagate(False)
-        self.logoFrame.grid(row=0, column=0)
+        self.logo_frame = Frame(self.window, background="#FC6736", width=w_width, height=100)
+        self.logo_frame.pack_propagate(False)
+        self.logo_frame.grid(row=0, column=0)
 
         #logo text test
         
-        self.logoText = Label(self.logoFrame, text="MRGSports", bg="#FC6736", fg="White")
-        self.logoText.pack(pady=40)
+        self.logo_text = Label(self.logo_frame, text="MRGSports", bg="#FC6736", fg="White")
+        self.logo_text.pack(pady=40)
 
         #content frame
 
-        self.contentFrame = Frame(self.window, background="Black", width=w_width, height=600)
-        self.contentFrame.grid_propagate(False)
-        self.contentFrame.grid(row=1, column=0)
+        self.content_frame = Frame(self.window, background="Black", width=w_width, height=600)
+        self.content_frame.grid_propagate(False)
+        self.content_frame.grid(row=1, column=0)
         
         #home page frame
         
-        self.homePage = Frame(self.contentFrame, background="#EFECEC", width=w_width, height=600)
-        self.homePage.pack_propagate(False)
-        self.homePage.grid_propagate(False)
-        self.homePage.grid(rowspan=TRUE, columnspan=TRUE)
+        self.home_page = Frame(self.content_frame, background="#EFECEC", width=w_width, height=600)
+        self.home_page.pack_propagate(False)
+        self.home_page.grid_propagate(False)
+        self.home_page.grid(rowspan=TRUE, columnspan=TRUE)
 
         #upcomings
         
-        self.upcomingMain = Frame(self.homePage, width=w_width - margin_length, height=330, bg='Blue')
-        self.upcomingMain.pack_propagate(False)
-        self.upcomingMain.pack()
+        self.upcoming_main = Frame(self.home_page, width=w_width - margin_length, height=330, bg='Blue')
+        self.upcoming_main.pack_propagate(False)
+        self.upcoming_main.pack()
         
-        self.upcomingText = Label(self.upcomingMain, text="UPCOMING", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
-        self.upcomingText.pack(padx=20, pady=5)
+        self.home_header_one = Label(self.upcoming_main, text="UPCOMING", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
+        self.home_header_one.pack(padx=20, pady=5)
         
-        # First upcoming display
+        # First upcoming display, it is split up into 5 rows called one, two, three, four, and five which show the most relevant and most imminent sport match for the school (the dictionary created for upcoming matches will be here and separate to results)
         
-        self.upcomingOne = Frame(self.upcomingMain, bg="Cyan", width=w_width - margin_length, height=70)
-        self.upcomingOne.pack()
+        self.upcoming_row_one = Frame(self.upcoming_main, bg="Cyan", width=w_width - margin_length, height=70)
+        self.upcoming_row_one.pack()
         
-        self.upcomingBox1 = Frame(self.upcomingOne, bg="White", width=200, height=50, bd=3, relief=GROOVE)
-        self.upcomingBox1.pack_propagate(False)
-        self.upcomingBox1.pack(side=LEFT, padx=2.5, pady=3)
+        self.upcoming_box_game = Frame(self.upcoming_row_one, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_game.pack_propagate(False)
+        self.upcoming_box_game.pack(side=LEFT, padx=2.5, pady=3)
         
-        self.upcomingGame1 = Label(self.upcomingBox1, text="Football Game")
-        self.upcomingGame1.pack(padx=5,pady=5)
+        self.upcoming_game_one = Label(self.upcoming_box_game, text="Football Game")
+        self.upcoming_game_one.pack(padx=5,pady=5)
 
-        self.upcomingTime1 = Frame(self.upcomingOne, bg="White", width=100, height=50, bd=3, relief=GROOVE)
-        self.upcomingTime1.pack_propagate(False)
-        self.upcomingTime1.pack(side=RIGHT, padx=2.5, pady=3)        
+        self.upcoming_box_time = Frame(self.upcoming_row_one, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_time.pack_propagate(False)
+        self.upcoming_box_time.pack(side=RIGHT, padx=2.5, pady=3)        
+        
+        self.upcoming_day_one = Label(self.upcoming_box_time, text="Wednesday")
+        self.upcoming_day_one.pack()
+        
+        self.upcoming_time_one = Label(self.upcoming_box_time, text="15:30")
+        self.upcoming_time_one.pack()
         
         # Second upcoming display
         
-        self.upcomingTwo = Frame(self.upcomingMain, bg="Green", width=w_width - margin_length, height=70)
-        self.upcomingTwo.pack()
+        self.upcoming_row_two = Frame(self.upcoming_main, bg="Green", width=w_width - margin_length, height=70)
+        self.upcoming_row_two.pack()
         
-        self.upcomingBox2 = Frame(self.upcomingTwo, bg="White", width=200, height=50, bd=3, relief=GROOVE)
-        self.upcomingBox2.pack_propagate(False)
-        self.upcomingBox2.pack(side=LEFT, padx=2.5, pady=3)
+        self.upcoming_box_game2 = Frame(self.upcoming_row_two, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_game2.pack_propagate(False)
+        self.upcoming_box_game2.pack(side=LEFT, padx=2.5, pady=3)
         
-        self.upcomingGame2 = Label(self.upcomingBox2, text="Basketball Game")
-        self.upcomingGame2.pack(padx=5,pady=5)
+        self.upcoming_game_two = Label(self.upcoming_box_game2, text="Basketball Game")
+        self.upcoming_game_two.pack(padx=5,pady=5)
 
-        self.upcomingTime2 = Frame(self.upcomingTwo, bg="White", width=100, height=50, bd=3, relief=GROOVE)
-        self.upcomingTime2.pack_propagate(False)
-        self.upcomingTime2.pack(side=RIGHT, padx=2.5, pady=3)      
+        self.upcoming_box_time2 = Frame(self.upcoming_row_two, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_time2.pack_propagate(False)
+        self.upcoming_box_time2.pack(side=RIGHT, padx=2.5, pady=3)      
+
+        self.upcoming_day_two = Label(self.upcoming_box_time2, text="Tuesday")
+        self.upcoming_day_two.pack()
         
+        self.upcoming_time_two = Label(self.upcoming_box_time2, text="11:56")
+        self.upcoming_time_two.pack()
+                
         # Third upcoming display
         
-        self.upcomingThree = Frame(self.upcomingMain, bg="Red", width=w_width - margin_length, height=70)
-        self.upcomingThree.pack()
+        self.upcoming_row_three = Frame(self.upcoming_main, bg="Red", width=w_width - margin_length, height=70)
+        self.upcoming_row_three.pack()
         
-        self.upcomingBox3 = Frame(self.upcomingThree, bg="White", width=200, height=50, bd=3, relief=GROOVE)
-        self.upcomingBox3.pack_propagate(False)
-        self.upcomingBox3.pack(side=LEFT, padx=2.5, pady=3)
+        self.upcoming_box_game3 = Frame(self.upcoming_row_three, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_game3.pack_propagate(False)
+        self.upcoming_box_game3.pack(side=LEFT, padx=2.5, pady=3)
         
-        self.upcomingGame3 = Label(self.upcomingBox3, text="Hockey Game")
-        self.upcomingGame3.pack(padx=5,pady=5)
+        self.upcoming_game_three = Label(self.upcoming_box_game3, text="Volleyball Game")
+        self.upcoming_game_three.pack(padx=5,pady=5)
 
-        self.upcomingTime3 = Frame(self.upcomingThree, bg="White", width=100, height=50, bd=3, relief=GROOVE)
-        self.upcomingTime3.pack_propagate(False)
-        self.upcomingTime3.pack(side=RIGHT, padx=2.5, pady=3)
+        self.upcoming_box_time3 = Frame(self.upcoming_row_three, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_time3.pack_propagate(False)
+        self.upcoming_box_time3.pack(side=RIGHT, padx=2.5, pady=3)
 
+        self.upcoming_day_three = Label(self.upcoming_box_time3, text="Monday")
+        self.upcoming_day_three.pack()
+        
+        self.upcoming_time_three = Label(self.upcoming_box_time3, text="8:17")
+        self.upcoming_time_three.pack()
+                
         # Fourth upcoming display
         
-        self.upcomingFour = Frame(self.upcomingMain, bg="Brown", width=w_width - margin_length, height=70)
-        self.upcomingFour.pack()
+        self.upcoming_row_four = Frame(self.upcoming_main, bg="Brown", width=w_width - margin_length, height=70)
+        self.upcoming_row_four.pack()
         
-        self.upcomingBox4 = Frame(self.upcomingFour, bg="White", width=200, height=50, bd=3, relief=GROOVE)
-        self.upcomingBox4.pack_propagate(False)
-        self.upcomingBox4.pack(side=LEFT, padx=2.5, pady=3)
+        self.upcoming_box_game4 = Frame(self.upcoming_row_four, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_game4.pack_propagate(False)
+        self.upcoming_box_game4.pack(side=LEFT, padx=2.5, pady=3)
         
-        self.upcomingGame4 = Label(self.upcomingBox4, text="Hockey Game")
-        self.upcomingGame4.pack(padx=5,pady=5)
+        self.upcoming_game_four = Label(self.upcoming_box_game4, text="Hockey Game")
+        self.upcoming_game_four.pack(padx=5,pady=5)
 
-        self.upcomingTime4 = Frame(self.upcomingFour, bg="White", width=100, height=50, bd=3, relief=GROOVE)
-        self.upcomingTime4.pack_propagate(False)
-        self.upcomingTime4.pack(side=RIGHT, padx=2.5, pady=3)
+        self.upcoming_box_time4 = Frame(self.upcoming_row_four, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_time4.pack_propagate(False)
+        self.upcoming_box_time4.pack(side=RIGHT, padx=2.5, pady=3)
 
+        self.upcoming_day_four = Label(self.upcoming_box_time4, text="Friday")
+        self.upcoming_day_four.pack()
+        
+        self.upcoming_time_four = Label(self.upcoming_box_time4, text="19:20")
+        self.upcoming_time_four.pack()
+                
         # Fifth upcoming display
         
-        self.upcomingFive = Frame(self.upcomingMain, bg="Brown", width=w_width - margin_length, height=70)
-        self.upcomingFive.pack()
+        self.upcoming_row_five = Frame(self.upcoming_main, bg="Brown", width=w_width - margin_length, height=70)
+        self.upcoming_row_five.pack()
         
-        self.upcomingBox5 = Frame(self.upcomingFive, bg="White", width=200, height=50, bd=3, relief=GROOVE)
-        self.upcomingBox5.pack_propagate(False)
-        self.upcomingBox5.pack(side=LEFT, padx=2.5, pady=3)
+        self.upcoming_box_game5 = Frame(self.upcoming_row_five, bg="White", width=200, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_game5.pack_propagate(False)
+        self.upcoming_box_game5.pack(side=LEFT, padx=2.5, pady=3)
         
-        self.upcomingGame5 = Label(self.upcomingBox5, text="Waterpolo Game")
-        self.upcomingGame5.pack(padx=5,pady=5)
+        self.upcoming_game_five = Label(self.upcoming_box_game5, text="Waterpolo Game")
+        self.upcoming_game_five.pack(padx=5,pady=5)
 
-        self.upcomingTime5 = Frame(self.upcomingFive, bg="White", width=100, height=50, bd=3, relief=GROOVE)
-        self.upcomingTime5.pack_propagate(False)
-        self.upcomingTime5.pack(side=RIGHT, padx=2.5, pady=3)
-                            
+        self.upcoming_box_time5 = Frame(self.upcoming_row_five, bg="White", width=100, height=50, bd=3, relief=GROOVE)
+        self.upcoming_box_time5.pack_propagate(False)
+        self.upcoming_box_time5.pack(side=RIGHT, padx=2.5, pady=3)
+
+        self.upcoming_day_five = Label(self.upcoming_box_time5, text="Thursday")
+        self.upcoming_day_five.pack()
+        
+        self.upcoming_time_five = Label(self.upcoming_box_time5, text="14:15")
+        self.upcoming_time_five.pack()
+                                            
         # End of upcoming/Start of res-this-week
         
-        self.homeresuMain = Frame(self.homePage, width=w_width - margin_length, height=270, bg='Pink')
-        self.homeresuMain.pack_propagate(False)
-        self.homeresuMain.pack()
+        self.homeresu_main = Frame(self.home_page, width=w_width - margin_length, height=270, bg='Pink')
+        self.homeresu_main.pack_propagate(False)
+        self.homeresu_main.pack()
         
-        self.homeresuText = Label(self.homeresuMain, text="RESULTS THIS WEEK", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
-        self.homeresuText.pack(padx=20, pady=5)
+        self.home_header_two = Label(self.homeresu_main, text="LATEST RESULTS", bg="#EFECEC", fg="#0C2D57", font=("Cairo", 16, "bold"))
+        self.home_header_two.pack(padx=20, pady=5)
         
-        self.homeresuBox = Frame(self.homeresuMain, bg="White", width=305, height=190, bd=3, relief=GROOVE)
-        self.homeresuBox.pack_propagate(False)
-        self.homeresuBox.pack(padx=5, pady=3)        
+        self.homeresu_box = Frame(self.homeresu_main, bg="White", width=305, height=190, bd=3, relief=GROOVE)
+        self.homeresu_box.pack_propagate(False)
+        self.homeresu_box.pack(padx=5, pady=3)        
         
         # First resu page (no L/R button press)
-        # Top
+        # Top is split into two parts "Left top" and "Right top"
         
-        self.homeresuL1 = Frame(self.homeresuBox, width=305, height=29, bg="Blue")
-        self.homeresuL1.pack_propagate(False)
-        self.homeresuL1.grid_propagate(False)
-        self.homeresuL1.grid(row=0,column=0)
+        self.homeresu_top = Frame(self.homeresu_box, width=305, height=29, bg="Blue")
+        self.homeresu_top.pack_propagate(False)
+        self.homeresu_top.grid_propagate(False)
+        self.homeresu_top.grid(row=0,column=0)
         
-        self.homeresuLL = Frame(self.homeresuL1, width=152.5, height=29, bg="Grey")
-        self.homeresuLL.pack_propagate(False)        
-        self.homeresuLL.pack(side=LEFT)
+        self.homeresu_topLeft = Frame(self.homeresu_top, width=152.5, height=29, bg="Grey")
+        self.homeresu_topLeft.pack_propagate(False)        
+        self.homeresu_topLeft.pack(side=LEFT)
         
-        self.homeresuTEST = Label(self.homeresuLL, text="Basketball")
-        self.homeresuTEST.pack()
+        self.homeresu_sportname = Label(self.homeresu_topLeft, text="Football")
+        self.homeresu_sportname.pack(side=LEFT, padx=10, pady=5)
         
-        # which page is shown on the top right, to be replaced by a different indicator like 4 circles total, and the greyed out circle is the current page
+        self.homeresu_topRight = Frame(self.homeresu_top, width=152.5, height=29, bg="Black")
+        self.homeresu_topRight.pack_propagate(False)        
+        self.homeresu_topRight.pack(side=RIGHT)
+         
+        self.home_right_button = Button(self.homeresu_topRight, text="Right", command=lambda: self.go_to_next_page("right"))
+        self.home_right_button.pack(side=RIGHT, padx=1, pady=1)
+       
+        self.home_left_button = Button(self.homeresu_topRight, text="Left", command=lambda: self.go_to_next_page("left"))
+        self.home_left_button.pack(side=RIGHT, padx=1, pady=1)
         
-        self.homeresuLR = Frame(self.homeresuL1, width=152.5, height=29, bg="Black")
-        self.homeresuLR.pack_propagate(False)        
-        self.homeresuLR.pack(side=RIGHT)
+        # Middle of homeresu, this is what changes on the button press containing the actual results
+        # Home results page one
         
-        self.leftarrowbutton = Button(self.homeresuLR, text="Left", command=lambda: self.go_to_next_page("left"))
-        self.leftarrowbutton.pack(side=LEFT)
-        
-        self.rightarrowbutton = Button(self.homeresuLR, text="Right", command=lambda: self.go_to_next_page("right"))
-        self.rightarrowbutton.pack(side=LEFT)
-        
-        self.pagenumber = Label(self.homeresuLR, text=self.page_number)
-        self.pagenumber.pack(side=RIGHT)
+        self.homeresu_pageOne = Frame(self.homeresu_box, bg="Cyan", width=305, height=135)
+        self.homeresu_pageOne.pack_propagate(False)
+        self.homeresu_pageOne.grid_propagate(False)        
+        self.homeresu_pageOne.grid(row=1, columnspan=TRUE)
 
-        
-
-        
-        # Middle
-        
-        self.homeresuB1 = Frame(self.homeresuBox, bg="Cyan", width=305, height=135)
-        self.homeresuB1.pack_propagate(False)
-        self.homeresuB1.grid_propagate(False)        
-        self.homeresuB1.grid(row=1, columnspan=TRUE)
-
+        # Divide the pages into 3 lines with each match
                                 
-        self.homeresuB1L2 = Frame(self.homeresuB1, width=305, height=45, bg="Green")
-        self.homeresuB1L2.pack_propagate(False)
-        self.homeresuB1L2.pack()
+        self.homeresu_pageOne_L1 = Frame(self.homeresu_pageOne, width=305, height=45, bg="Green")
+        self.homeresu_pageOne_L1.pack_propagate(False)
+        self.homeresu_pageOne_L1.pack()
         
-        # sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
+        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
         
-        self.resuTeam1 = Label(self.homeresuB1L2, text="First XI")
-        self.resuTeam1.pack(side=LEFT, padx=25)
+        # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
         
-        self.resuScore1 = Label(self.homeresuB1L2, text="160")
-        self.resuScore1.pack(side=LEFT, padx=5)
+        self.homeresu_pageOne_L1S1 = Frame(self.homeresu_pageOne_L1, width=100, height=45, bg="Yellow")
+        self.homeresu_pageOne_L1S1.pack_propagate(False)
+        self.homeresu_pageOne_L1S1.pack(side=LEFT)
         
-        self.resuTeam2 = Label(self.homeresuB1L2, text="First XI")
-        self.resuTeam2.pack(side=RIGHT, padx=25)
+        self.homeresu_pageOne_L1Team1 = Label(self.homeresu_pageOne_L1S1, text="First XI")
+        self.homeresu_pageOne_L1Team1.pack(pady=12)
         
-        self.resuScore2 = Label(self.homeresuB1L2, text="70")
-        self.resuScore2.pack(side=RIGHT, padx=5)
+        
+        self.homeresu_pageOne_L1S2 = Frame(self.homeresu_pageOne_L1, width=52.5, height=45, bg="Green")
+        self.homeresu_pageOne_L1S2.pack_propagate(False)
+        self.homeresu_pageOne_L1S2.pack(side=LEFT)
+        
+        self.homeresu_pageOne_L1Score1 = Label(self.homeresu_pageOne_L1S2, text="160")
+        self.homeresu_pageOne_L1Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L1S4 = Frame(self.homeresu_pageOne_L1, width=100, height=45, bg="Blue")
+        self.homeresu_pageOne_L1S4.pack_propagate(False)
+        self.homeresu_pageOne_L1S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageOne_L1Team2 = Label(self.homeresu_pageOne_L1S4, text="First XI")
+        self.homeresu_pageOne_L1Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L1S3 = Frame(self.homeresu_pageOne_L1, width=52.5, height=45, bg="Red")
+        self.homeresu_pageOne_L1S3.pack_propagate(False)
+        self.homeresu_pageOne_L1S3.pack(side=RIGHT)
+        
+        self.homeresu_pageOne_L1Score2 = Label(self.homeresu_pageOne_L1S3, text="70")
+        self.homeresu_pageOne_L1Score2.pack(pady=12)
     
+        # Line 2 of the latest results
     
-        self.homeresuB1L3 = Frame(self.homeresuB1, width=305, height=45, bg="Yellow")
-        self.homeresuB1L3.pack_propagate(False)
-        self.homeresuB1L3.pack()
-        
-        self.resuTeam3 = Label(self.homeresuB1L3, text="Second XI")
-        self.resuTeam3.pack(side=LEFT, padx=25)
-        
-        self.resuScore3 = Label(self.homeresuB1L3, text="160")
-        self.resuScore3.pack(side=LEFT, padx=5)
-        
-        self.resuTeam4 = Label(self.homeresuB1L3, text="Second XI")
-        self.resuTeam4.pack(side=RIGHT, padx=25)
-        
-        self.resuScore4 = Label(self.homeresuB1L3, text="70")
-        self.resuScore4.pack(side=RIGHT, padx=5)
-        
-        
-        self.homeresuB1L4 = Frame(self.homeresuB1, width=305, height=45, bg="Red")
-        self.homeresuB1L4.pack_propagate(False)
-        self.homeresuB1L4.pack()
-        
-        self.resuTeam5 = Label(self.homeresuB1L4, text="Junior")
-        self.resuTeam5.pack(side=LEFT, padx=25)
-        
-        self.resuScore5 = Label(self.homeresuB1L4, text="160")
-        self.resuScore5.pack(side=LEFT, padx=5)
-        
-        self.resuTeam6 = Label(self.homeresuB1L4, text="Junior")
-        self.resuTeam6.pack(side=RIGHT, padx=25)
-        
-        self.resuScore6 = Label(self.homeresuB1L4, text="70")
-        self.resuScore6.pack(side=RIGHT, padx=5)
-        
-        # Second page (1st R button press)
-        
-        self.homeresuB2 = Frame(self.homeresuBox, bg="Cyan", width=305, height=135)
-        self.homeresuB2.pack_propagate(False)
-        self.homeresuB2.grid_propagate(False)
-        # This needs to be said on the button press somehow == self.homeresuB2.grid(row=1,columnspan=TRUE)
-        
-        self.homeresuB3 = Frame(self.homeresuBox, bg="Blue", width=305, height=135)
-        self.homeresuB3.pack_propagate(False)
-        self.homeresuB3.grid_propagate(False)
+        self.homeresu_pageOne_L2 = Frame(self.homeresu_pageOne, width=305, height=45, bg="Yellow")
+        self.homeresu_pageOne_L2.pack_propagate(False)
+        self.homeresu_pageOne_L2.pack()
 
-        self.homeresuB4 = Frame(self.homeresuBox, bg="Red", width=305, height=135)
-        self.homeresuB4.pack_propagate(False)
-        self.homeresuB4.grid_propagate(False)
+        # Line subdivisions
+        
+        self.homeresu_pageOne_L2S1 = Frame(self.homeresu_pageOne_L2, width=100, height=45, bg="Yellow")
+        self.homeresu_pageOne_L2S1.pack_propagate(False)
+        self.homeresu_pageOne_L2S1.pack(side=LEFT)
+        
+        self.homeresu_pageOne_L2Team1 = Label(self.homeresu_pageOne_L2S1, text="Second XI")
+        self.homeresu_pageOne_L2Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L2S2 = Frame(self.homeresu_pageOne_L2, width=52.5, height=45, bg="Green")
+        self.homeresu_pageOne_L2S2.pack_propagate(False)
+        self.homeresu_pageOne_L2S2.pack(side=LEFT)
+        
+        self.homeresu_pageOne_L2Score1 = Label(self.homeresu_pageOne_L2S2, text="40")
+        self.homeresu_pageOne_L2Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L2S4 = Frame(self.homeresu_pageOne_L2, width=100, height=45, bg="Blue")
+        self.homeresu_pageOne_L2S4.pack_propagate(False)
+        self.homeresu_pageOne_L2S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageOne_L2Team2 = Label(self.homeresu_pageOne_L2S4, text="Second XI")
+        self.homeresu_pageOne_L2Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L2S3 = Frame(self.homeresu_pageOne_L2, width=52.5, height=45, bg="Red")
+        self.homeresu_pageOne_L2S3.pack_propagate(False)
+        self.homeresu_pageOne_L2S3.pack(side=RIGHT)
+        
+        self.homeresu_pageOne_L2Score2 = Label(self.homeresu_pageOne_L2S3, text="2")
+        self.homeresu_pageOne_L2Score2.pack(pady=12)
+        
+        # Line 3 of the latest results
+        
+        self.homeresu_pageOne_L3 = Frame(self.homeresu_pageOne, width=305, height=45, bg="Red")
+        self.homeresu_pageOne_L3.pack_propagate(False)
+        self.homeresu_pageOne_L3.pack()
+        
+        # Line subdivisions
+        
+        self.homeresu_pageOne_L3S1 = Frame(self.homeresu_pageOne_L3, width=100, height=45, bg="Yellow")
+        self.homeresu_pageOne_L3S1.pack_propagate(False)
+        self.homeresu_pageOne_L3S1.pack(side=LEFT)
+        
+        self.homeresu_pageOne_L3Team1 = Label(self.homeresu_pageOne_L3S1, text="Junior")
+        self.homeresu_pageOne_L3Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L3S2 = Frame(self.homeresu_pageOne_L3, width=52.5, height=45, bg="Green")
+        self.homeresu_pageOne_L3S2.pack_propagate(False)
+        self.homeresu_pageOne_L3S2.pack(side=LEFT)
+        
+        self.homeresu_pageOne_L3Score1 = Label(self.homeresu_pageOne_L3S2, text="23")
+        self.homeresu_pageOne_L3Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L3S4 = Frame(self.homeresu_pageOne_L3, width=100, height=45, bg="Blue")
+        self.homeresu_pageOne_L3S4.pack_propagate(False)
+        self.homeresu_pageOne_L3S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageOne_L3Team2 = Label(self.homeresu_pageOne_L3S4, text="Junior")
+        self.homeresu_pageOne_L3Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageOne_L3S3 = Frame(self.homeresu_pageOne_L3, width=52.5, height=45, bg="Red")
+        self.homeresu_pageOne_L3S3.pack_propagate(False)
+        self.homeresu_pageOne_L3S3.pack(side=RIGHT)
+        
+        self.homeresu_pageOne_L3Score2 = Label(self.homeresu_pageOne_L3S3, text="203")
+        self.homeresu_pageOne_L3Score2.pack(pady=12)
+        
+        # Second resu page (page_number = 2), exactly the same as the first page but the numbers must change
+        
+        self.homeresu_pageTwo = Frame(self.homeresu_box, bg="Cyan", width=305, height=135)
+        self.homeresu_pageTwo.pack_propagate(False)
+        self.homeresu_pageTwo.grid_propagate(False)
+        # Divide the pages into 3 lines with each match
+                                
+        self.homeresu_pageTwo_L1 = Frame(self.homeresu_pageTwo, width=305, height=45, bg="Green")
+        self.homeresu_pageTwo_L1.pack_propagate(False)
+        self.homeresu_pageTwo_L1.pack()
+        
+        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
+        
+        # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
+        
+        self.homeresu_pageTwo_L1S1 = Frame(self.homeresu_pageTwo_L1, width=100, height=45, bg="Yellow")
+        self.homeresu_pageTwo_L1S1.pack_propagate(False)
+        self.homeresu_pageTwo_L1S1.pack(side=LEFT)
+        
+        self.homeresu_pageTwo_L1Team1 = Label(self.homeresu_pageTwo_L1S1, text="First XI")
+        self.homeresu_pageTwo_L1Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L1S2 = Frame(self.homeresu_pageTwo_L1, width=52.5, height=45, bg="Green")
+        self.homeresu_pageTwo_L1S2.pack_propagate(False)
+        self.homeresu_pageTwo_L1S2.pack(side=LEFT)
+        
+        self.homeresu_pageTwo_L1Score1 = Label(self.homeresu_pageTwo_L1S2, text="472")
+        self.homeresu_pageTwo_L1Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L1S4 = Frame(self.homeresu_pageTwo_L1, width=100, height=45, bg="Blue")
+        self.homeresu_pageTwo_L1S4.pack_propagate(False)
+        self.homeresu_pageTwo_L1S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageTwo_L1Team2 = Label(self.homeresu_pageTwo_L1S4, text="First XI")
+        self.homeresu_pageTwo_L1Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L1S3 = Frame(self.homeresu_pageTwo_L1, width=52.5, height=45, bg="Red")
+        self.homeresu_pageTwo_L1S3.pack_propagate(False)
+        self.homeresu_pageTwo_L1S3.pack(side=RIGHT)
+        
+        self.homeresu_pageTwo_L1Score2 = Label(self.homeresu_pageTwo_L1S3, text="143")
+        self.homeresu_pageTwo_L1Score2.pack(pady=12)
+    
+        # Line 2 of the latest results
+    
+        self.homeresu_pageTwo_L2 = Frame(self.homeresu_pageTwo, width=305, height=45, bg="Yellow")
+        self.homeresu_pageTwo_L2.pack_propagate(False)
+        self.homeresu_pageTwo_L2.pack()
 
+        # Line subdivisions
+        
+        self.homeresu_pageTwo_L2S1 = Frame(self.homeresu_pageTwo_L2, width=100, height=45, bg="Yellow")
+        self.homeresu_pageTwo_L2S1.pack_propagate(False)
+        self.homeresu_pageTwo_L2S1.pack(side=LEFT)
+        
+        self.homeresu_pageTwo_L2Team1 = Label(self.homeresu_pageTwo_L2S1, text="Second XI")
+        self.homeresu_pageTwo_L2Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L2S2 = Frame(self.homeresu_pageTwo_L2, width=52.5, height=45, bg="Green")
+        self.homeresu_pageTwo_L2S2.pack_propagate(False)
+        self.homeresu_pageTwo_L2S2.pack(side=LEFT)
+        
+        self.homeresu_pageTwo_L2Score1 = Label(self.homeresu_pageTwo_L2S2, text="52")
+        self.homeresu_pageTwo_L2Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L2S4 = Frame(self.homeresu_pageTwo_L2, width=100, height=45, bg="Blue")
+        self.homeresu_pageTwo_L2S4.pack_propagate(False)
+        self.homeresu_pageTwo_L2S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageTwo_L2Team2 = Label(self.homeresu_pageTwo_L2S4, text="Second XI")
+        self.homeresu_pageTwo_L2Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L2S3 = Frame(self.homeresu_pageTwo_L2, width=52.5, height=45, bg="Red")
+        self.homeresu_pageTwo_L2S3.pack_propagate(False)
+        self.homeresu_pageTwo_L2S3.pack(side=RIGHT)
+        
+        self.homeresu_pageTwo_L2Score2 = Label(self.homeresu_pageTwo_L2S3, text="214")
+        self.homeresu_pageTwo_L2Score2.pack(pady=12)
+        
+        # Line 3 of the latest results
+        
+        self.homeresu_pageTwo_L3 = Frame(self.homeresu_pageTwo, width=305, height=45, bg="Red")
+        self.homeresu_pageTwo_L3.pack_propagate(False)
+        self.homeresu_pageTwo_L3.pack()
+        
+        # Line subdivisions
+        
+        self.homeresu_pageTwo_L3S1 = Frame(self.homeresu_pageTwo_L3, width=100, height=45, bg="Yellow")
+        self.homeresu_pageTwo_L3S1.pack_propagate(False)
+        self.homeresu_pageTwo_L3S1.pack(side=LEFT)
+        
+        self.homeresu_pageTwo_L3Team1 = Label(self.homeresu_pageTwo_L3S1, text="Junior")
+        self.homeresu_pageTwo_L3Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L3S2 = Frame(self.homeresu_pageTwo_L3, width=52.5, height=45, bg="Green")
+        self.homeresu_pageTwo_L3S2.pack_propagate(False)
+        self.homeresu_pageTwo_L3S2.pack(side=LEFT)
+        
+        self.homeresu_pageTwo_L3Score1 = Label(self.homeresu_pageTwo_L3S2, text="35")
+        self.homeresu_pageTwo_L3Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L3S4 = Frame(self.homeresu_pageTwo_L3, width=100, height=45, bg="Blue")
+        self.homeresu_pageTwo_L3S4.pack_propagate(False)
+        self.homeresu_pageTwo_L3S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageTwo_L3Team2 = Label(self.homeresu_pageTwo_L3S4, text="Junior")
+        self.homeresu_pageTwo_L3Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageTwo_L3S3 = Frame(self.homeresu_pageTwo_L3, width=52.5, height=45, bg="Red")
+        self.homeresu_pageTwo_L3S3.pack_propagate(False)
+        self.homeresu_pageTwo_L3S3.pack(side=RIGHT)
+        
+        self.homeresu_pageTwo_L3Score2 = Label(self.homeresu_pageTwo_L3S3, text="17")
+        self.homeresu_pageTwo_L3Score2.pack(pady=12)
+        
+        
+        # Third resu page (page_number = 3)
+        
+        self.homeresu_pageThree = Frame(self.homeresu_box, bg="Blue", width=305, height=135)
+        self.homeresu_pageThree.pack_propagate(False)
+        self.homeresu_pageThree.grid_propagate(False)
+        # Divide the pages into 3 lines with each match
+                                
+        self.homeresu_pageThree_L1 = Frame(self.homeresu_pageThree, width=305, height=45, bg="Green")
+        self.homeresu_pageThree_L1.pack_propagate(False)
+        self.homeresu_pageThree_L1.pack()
+        
+        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
+        
+        # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
+        
+        self.homeresu_pageThree_L1S1 = Frame(self.homeresu_pageThree_L1, width=100, height=45, bg="Yellow")
+        self.homeresu_pageThree_L1S1.pack_propagate(False)
+        self.homeresu_pageThree_L1S1.pack(side=LEFT)
+        
+        self.homeresu_pageThree_L1Team1 = Label(self.homeresu_pageThree_L1S1, text="First XI")
+        self.homeresu_pageThree_L1Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L1S2 = Frame(self.homeresu_pageThree_L1, width=52.5, height=45, bg="Green")
+        self.homeresu_pageThree_L1S2.pack_propagate(False)
+        self.homeresu_pageThree_L1S2.pack(side=LEFT)
+        
+        self.homeresu_pageThree_L1Score1 = Label(self.homeresu_pageThree_L1S2, text="12")
+        self.homeresu_pageThree_L1Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L1S4 = Frame(self.homeresu_pageThree_L1, width=100, height=45, bg="Blue")
+        self.homeresu_pageThree_L1S4.pack_propagate(False)
+        self.homeresu_pageThree_L1S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageThree_L1Team2 = Label(self.homeresu_pageThree_L1S4, text="First XI")
+        self.homeresu_pageThree_L1Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L1S3 = Frame(self.homeresu_pageThree_L1, width=52.5, height=45, bg="Red")
+        self.homeresu_pageThree_L1S3.pack_propagate(False)
+        self.homeresu_pageThree_L1S3.pack(side=RIGHT)
+        
+        self.homeresu_pageThree_L1Score2 = Label(self.homeresu_pageThree_L1S3, text="63")
+        self.homeresu_pageThree_L1Score2.pack(pady=12)
+    
+        # Line 2 of the latest results
+    
+        self.homeresu_pageThree_L2 = Frame(self.homeresu_pageThree, width=305, height=45, bg="Yellow")
+        self.homeresu_pageThree_L2.pack_propagate(False)
+        self.homeresu_pageThree_L2.pack()
+
+        # Line subdivisions
+        
+        self.homeresu_pageThree_L2S1 = Frame(self.homeresu_pageThree_L2, width=100, height=45, bg="Yellow")
+        self.homeresu_pageThree_L2S1.pack_propagate(False)
+        self.homeresu_pageThree_L2S1.pack(side=LEFT)
+        
+        self.homeresu_pageThree_L2Team1 = Label(self.homeresu_pageThree_L2S1, text="Second XI")
+        self.homeresu_pageThree_L2Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L2S2 = Frame(self.homeresu_pageThree_L2, width=52.5, height=45, bg="Green")
+        self.homeresu_pageThree_L2S2.pack_propagate(False)
+        self.homeresu_pageThree_L2S2.pack(side=LEFT)
+        
+        self.homeresu_pageThree_L2Score1 = Label(self.homeresu_pageThree_L2S2, text="2645")
+        self.homeresu_pageThree_L2Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L2S4 = Frame(self.homeresu_pageThree_L2, width=100, height=45, bg="Blue")
+        self.homeresu_pageThree_L2S4.pack_propagate(False)
+        self.homeresu_pageThree_L2S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageThree_L2Team2 = Label(self.homeresu_pageThree_L2S4, text="Second XI")
+        self.homeresu_pageThree_L2Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L2S3 = Frame(self.homeresu_pageThree_L2, width=52.5, height=45, bg="Red")
+        self.homeresu_pageThree_L2S3.pack_propagate(False)
+        self.homeresu_pageThree_L2S3.pack(side=RIGHT)
+        
+        self.homeresu_pageThree_L2Score2 = Label(self.homeresu_pageThree_L2S3, text="1")
+        self.homeresu_pageThree_L2Score2.pack(pady=12)
+        
+        # Line 3 of the latest results
+        
+        self.homeresu_pageThree_L3 = Frame(self.homeresu_pageThree, width=305, height=45, bg="Red")
+        self.homeresu_pageThree_L3.pack_propagate(False)
+        self.homeresu_pageThree_L3.pack()
+        
+        # Line subdivisions
+        
+        self.homeresu_pageThree_L3S1 = Frame(self.homeresu_pageThree_L3, width=100, height=45, bg="Yellow")
+        self.homeresu_pageThree_L3S1.pack_propagate(False)
+        self.homeresu_pageThree_L3S1.pack(side=LEFT)
+        
+        self.homeresu_pageThree_L3Team1 = Label(self.homeresu_pageThree_L3S1, text="Junior")
+        self.homeresu_pageThree_L3Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L3S2 = Frame(self.homeresu_pageThree_L3, width=52.5, height=45, bg="Green")
+        self.homeresu_pageThree_L3S2.pack_propagate(False)
+        self.homeresu_pageThree_L3S2.pack(side=LEFT)
+        
+        self.homeresu_pageThree_L3Score1 = Label(self.homeresu_pageThree_L3S2, text="753")
+        self.homeresu_pageThree_L3Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L3S4 = Frame(self.homeresu_pageThree_L3, width=100, height=45, bg="Blue")
+        self.homeresu_pageThree_L3S4.pack_propagate(False)
+        self.homeresu_pageThree_L3S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageThree_L3Team2 = Label(self.homeresu_pageThree_L3S4, text="Junior")
+        self.homeresu_pageThree_L3Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageThree_L3S3 = Frame(self.homeresu_pageThree_L3, width=52.5, height=45, bg="Red")
+        self.homeresu_pageThree_L3S3.pack_propagate(False)
+        self.homeresu_pageThree_L3S3.pack(side=RIGHT)
+        
+        self.homeresu_pageThree_L3Score2 = Label(self.homeresu_pageThree_L3S3, text="4")
+        self.homeresu_pageThree_L3Score2.pack(pady=12)
+        
+        # Fourth resu page (page_number = 4)
+
+        self.homeresu_pageFour = Frame(self.homeresu_box, bg="Red", width=305, height=135)
+        self.homeresu_pageFour.pack_propagate(False)
+        self.homeresu_pageFour.grid_propagate(False)
+        # Divide the pages into 3 lines with each match
+                                
+        self.homeresu_pageFour_L1 = Frame(self.homeresu_pageFour, width=305, height=45, bg="Green")
+        self.homeresu_pageFour_L1.pack_propagate(False)
+        self.homeresu_pageFour_L1.pack()
+        
+        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
+        
+        # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
+        
+        self.homeresu_pageFour_L1S1 = Frame(self.homeresu_pageFour_L1, width=100, height=45, bg="Yellow")
+        self.homeresu_pageFour_L1S1.pack_propagate(False)
+        self.homeresu_pageFour_L1S1.pack(side=LEFT)
+        
+        self.homeresu_pageFour_L1Team1 = Label(self.homeresu_pageFour_L1S1, text="First XI")
+        self.homeresu_pageFour_L1Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L1S2 = Frame(self.homeresu_pageFour_L1, width=52.5, height=45, bg="Green")
+        self.homeresu_pageFour_L1S2.pack_propagate(False)
+        self.homeresu_pageFour_L1S2.pack(side=LEFT)
+        
+        self.homeresu_pageFour_L1Score1 = Label(self.homeresu_pageFour_L1S2, text="3")
+        self.homeresu_pageFour_L1Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L1S4 = Frame(self.homeresu_pageFour_L1, width=100, height=45, bg="Blue")
+        self.homeresu_pageFour_L1S4.pack_propagate(False)
+        self.homeresu_pageFour_L1S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageFour_L1Team2 = Label(self.homeresu_pageFour_L1S4, text="First XI")
+        self.homeresu_pageFour_L1Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L1S3 = Frame(self.homeresu_pageFour_L1, width=52.5, height=45, bg="Red")
+        self.homeresu_pageFour_L1S3.pack_propagate(False)
+        self.homeresu_pageFour_L1S3.pack(side=RIGHT)
+        
+        self.homeresu_pageFour_L1Score2 = Label(self.homeresu_pageFour_L1S3, text="5")
+        self.homeresu_pageFour_L1Score2.pack(pady=12)
+    
+        # Line 2 of the latest results
+    
+        self.homeresu_pageFour_L2 = Frame(self.homeresu_pageFour, width=305, height=45, bg="Yellow")
+        self.homeresu_pageFour_L2.pack_propagate(False)
+        self.homeresu_pageFour_L2.pack()
+
+        # Line subdivisions
+        
+        self.homeresu_pageFour_L2S1 = Frame(self.homeresu_pageFour_L2, width=100, height=45, bg="Yellow")
+        self.homeresu_pageFour_L2S1.pack_propagate(False)
+        self.homeresu_pageFour_L2S1.pack(side=LEFT)
+        
+        self.homeresu_pageFour_L2Team1 = Label(self.homeresu_pageFour_L2S1, text="Second XI")
+        self.homeresu_pageFour_L2Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L2S2 = Frame(self.homeresu_pageFour_L2, width=52.5, height=45, bg="Green")
+        self.homeresu_pageFour_L2S2.pack_propagate(False)
+        self.homeresu_pageFour_L2S2.pack(side=LEFT)
+        
+        self.homeresu_pageFour_L2Score1 = Label(self.homeresu_pageFour_L2S2, text="193")
+        self.homeresu_pageFour_L2Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L2S4 = Frame(self.homeresu_pageFour_L2, width=100, height=45, bg="Blue")
+        self.homeresu_pageFour_L2S4.pack_propagate(False)
+        self.homeresu_pageFour_L2S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageFour_L2Team2 = Label(self.homeresu_pageFour_L2S4, text="Second XI")
+        self.homeresu_pageFour_L2Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L2S3 = Frame(self.homeresu_pageFour_L2, width=52.5, height=45, bg="Red")
+        self.homeresu_pageFour_L2S3.pack_propagate(False)
+        self.homeresu_pageFour_L2S3.pack(side=RIGHT)
+        
+        self.homeresu_pageFour_L2Score2 = Label(self.homeresu_pageFour_L2S3, text="645")
+        self.homeresu_pageFour_L2Score2.pack(pady=12)
+        
+        # Line 3 of the latest results
+        
+        self.homeresu_pageFour_L3 = Frame(self.homeresu_pageFour, width=305, height=45, bg="Red")
+        self.homeresu_pageFour_L3.pack_propagate(False)
+        self.homeresu_pageFour_L3.pack()
+        
+        # Line subdivisions
+        
+        self.homeresu_pageFour_L3S1 = Frame(self.homeresu_pageFour_L3, width=100, height=45, bg="Yellow")
+        self.homeresu_pageFour_L3S1.pack_propagate(False)
+        self.homeresu_pageFour_L3S1.pack(side=LEFT)
+        
+        self.homeresu_pageFour_L3Team1 = Label(self.homeresu_pageFour_L3S1, text="Junior")
+        self.homeresu_pageFour_L3Team1.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L3S2 = Frame(self.homeresu_pageFour_L3, width=52.5, height=45, bg="Green")
+        self.homeresu_pageFour_L3S2.pack_propagate(False)
+        self.homeresu_pageFour_L3S2.pack(side=LEFT)
+        
+        self.homeresu_pageFour_L3Score1 = Label(self.homeresu_pageFour_L3S2, text="2")
+        self.homeresu_pageFour_L3Score1.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L3S4 = Frame(self.homeresu_pageFour_L3, width=100, height=45, bg="Blue")
+        self.homeresu_pageFour_L3S4.pack_propagate(False)
+        self.homeresu_pageFour_L3S4.pack(side=RIGHT)        
+        
+        self.homeresu_pageFour_L3Team2 = Label(self.homeresu_pageFour_L3S4, text="Junior")
+        self.homeresu_pageFour_L3Team2.pack(pady=12)
+        
+        
+        self.homeresu_pageFour_L3S3 = Frame(self.homeresu_pageFour_L3, width=52.5, height=45, bg="Red")
+        self.homeresu_pageFour_L3S3.pack_propagate(False)
+        self.homeresu_pageFour_L3S3.pack(side=RIGHT)
+        
+        self.homeresu_pageFour_L3Score2 = Label(self.homeresu_pageFour_L3S3, text="26")
+        self.homeresu_pageFour_L3Score2.pack(pady=12)
+        
         # Home resu page indicator
+            # which page is shown, to be replaced by a different indicator like 4 circles total, and the greyed out circle is the current page
         
-        self.homeresuL5 = Frame(self.homeresuBox, width=305, height=26, bg="Orange")  
-        self.homeresuL5.pack_propagate(False)
-        self.homeresuL5.grid_propagate(False)
-        self.homeresuL5.grid(row=2,columnspan=TRUE)
+        self.homeresu_bottom = Frame(self.homeresu_box, width=305, height=26, bg="Orange")  
+        self.homeresu_bottom.pack_propagate(False)
+        self.homeresu_bottom.grid(row=2,columnspan=TRUE)
         
-        #stat page frame
+        self.page_indicator = Label(self.homeresu_bottom, text=self.page_number)
+        self.page_indicator.pack(pady=5)
+
+        # School-sport info page frame
         
-        self.statPage = Frame(self.contentFrame, background="Red", width=w_width, height=600)        
-        self.statPage.grid_propagate(False)
-
-        #resu page frame
+        self.info_page = Frame(self.content_frame, background="Purple", width=w_width, height=600)
+        self.info_page.grid_propagate(False)
         
-        self.resuPage = Frame(self.contentFrame, background="Purple", width=w_width, height=600)
-        self.resuPage.grid_propagate(False)
-        #lead page frame
+        # Stat page frame or statistics is the sports analytics screen
         
-        self.leadPage = Frame(self.contentFrame, background="Green", width=w_width, height=600)        
-        self.leadPage.grid_propagate(False)
-        #navigation bar
-
-        self.navigationBar = Frame(self.window, bg="#FC6736", width=w_width, height=150)
-        self.navigationBar.grid_propagate(False)
-        self.navigationBar.grid(row=2, column=0)
-
-        #placing buttons on nav bar
+        self.stat_page = Frame(self.content_frame, background="Red", width=w_width, height=600)        
+        self.stat_page.grid_propagate(False)
         
-        self.homeButton = Button(self.navigationBar, text="Home", bg="White", width=7, command=self.goToHome)
-        self.homeButton.grid(row=0,column=0,)
+        # Leaderboard page frame
+        
+        self.lead_page = Frame(self.content_frame, background="Green", width=w_width, height=600)        
+        self.lead_page.grid_propagate(False)
+        
+        # Navigation bar frame
 
-        self.ResuButton = Button(self.navigationBar, text="Resu", bg="White", width=7, command=self.goToResu)
-        self.ResuButton.grid(row=0, column=1,padx=19,pady=65)
+        self.navigation_bar = Frame(self.window, bg="#FC6736", width=w_width, height=150)
+        self.navigation_bar.pack_propagate(False)
+        self.navigation_bar.grid(row=2, column=0)
 
-        self.StatButton = Button(self.navigationBar, text="Stat", bg="White", width=7, command=self.goToStat)
-        self.StatButton.grid(row=0, column=2,padx=19,pady=65)
+        # Placing buttons on nav bar
+        
+        self.home_button = Button(self.navigation_bar, text="Home", bg="White", width=7, height=10, command=self.go_to_home)
+        self.home_button.pack(side=LEFT, padx=20, pady=60)
 
-        self.LeadButton = Button(self.navigationBar, text="Lead", bg="White", width=7, command=self.goToLead)
-        self.LeadButton.grid(row=0, column=3,padx=19,pady=65)
+        self.info_button = Button(self.navigation_bar, text="Info", bg="White", width=7, height=10, command=self.go_to_info)
+        self.info_button.pack(side=LEFT, padx=20, pady=60)
+
+        self.lead_button = Button(self.navigation_bar, text="Lead", bg="White", width=7, height=10, command=self.go_to_lead)
+        self.lead_button.pack(side=RIGHT, padx=20, pady=60)
+
+        self.stat_button = Button(self.navigation_bar, text="Stat", bg="White", width=7, height=10, command=self.go_to_stat)
+        self.stat_button.pack(side=RIGHT, padx=20, pady=60)
+
+
 
         
         self.window.mainloop()
@@ -312,46 +766,50 @@ class App():
             elif self.page_number >= self.max_page_numbers:
                 self.page_number = 1
                 
-        self.pagenumber.config(text=self.page_number)
+        self.page_indicator.config(text=self.page_number)
         
         self.change_resu_page()
         
-    def goToHome(self):
-        self.resuPage.grid_remove()
-        self.statPage.grid_remove()
-        self.leadPage.grid_remove()
-        self.homePage.grid(rowspan=TRUE, columnspan=TRUE)
+    def go_to_home(self):
+        self.info_page.grid_remove()
+        self.stat_page.grid_remove()
+        self.lead_page.grid_remove()
+        self.home_page.grid(rowspan=TRUE, columnspan=TRUE)
         
-    def goToResu(self):
-        self.statPage.grid_remove()
-        self.leadPage.grid_remove()
-        self.homePage.grid_remove()
-        self.resuPage.grid(rowspan=TRUE, columnspan=TRUE)
+    def go_to_info(self):
+        self.stat_page.grid_remove()
+        self.lead_page.grid_remove()
+        self.home_page.grid_remove()
+        self.info_page.grid(rowspan=TRUE, columnspan=TRUE)
  
-    def goToStat(self):
-        self.resuPage.grid_remove()
-        self.leadPage.grid_remove()
-        self.homePage.grid_remove()
-        self.statPage.grid(rowspan=TRUE, columnspan=TRUE)       
+    def go_to_stat(self):
+        self.info_page.grid_remove()
+        self.lead_page.grid_remove()
+        self.home_page.grid_remove()
+        self.stat_page.grid(rowspan=TRUE, columnspan=TRUE)       
         
-    def goToLead(self):
-        self.resuPage.grid_remove()
-        self.statPage.grid_remove()
-        self.homePage.grid_remove()
-        self.leadPage.grid(rowspan=TRUE, columnspan=TRUE)
+    def go_to_lead(self):
+        self.info_page.grid_remove()
+        self.stat_page.grid_remove()
+        self.home_page.grid_remove()
+        self.lead_page.grid(rowspan=TRUE, columnspan=TRUE)
            
     def change_resu_page(self):
         # Update visibility of each page
-        self.homeresuB1.grid_remove()
-        self.homeresuB2.grid_remove()
-        self.homeresuB3.grid_remove()
-        self.homeresuB4.grid_remove()
+        self.homeresu_pageOne.grid_remove()
+        self.homeresu_pageTwo.grid_remove()
+        self.homeresu_pageThree.grid_remove()
+        self.homeresu_pageFour.grid_remove()
 
         if self.page_number == 1:
-            self.homeresuB1.grid(row=1, columnspan=TRUE)
+            self.homeresu_pageOne.grid(row=1, columnspan=TRUE)
+            self.homeresu_sportname.config(text="Football")
         elif self.page_number == 2:
-            self.homeresuB2.grid(row=1, columnspan=TRUE)
+            self.homeresu_pageTwo.grid(row=1, columnspan=TRUE)
+            self.homeresu_sportname.config(text="Basketball")
         elif self.page_number == 3:
-            self.homeresuB3.grid(row=1, columnspan=TRUE)
+            self.homeresu_pageThree.grid(row=1, columnspan=TRUE)
+            self.homeresu_sportname.config(text="Hockey")
         elif self.page_number == 4:
-            self.homeresuB4.grid(row=1, columnspan=TRUE)
+            self.homeresu_pageFour.grid(row=1, columnspan=TRUE)
+            self.homeresu_sportname.config(text="Cricket")
