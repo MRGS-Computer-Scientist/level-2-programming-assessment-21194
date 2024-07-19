@@ -2,7 +2,8 @@ from tkinter import *
 from tkinter import messagebox, ttk
 from app_settings import *
 from os import *
-
+import uuid
+import json
 
 w_width = 400
 w_height = 850 
@@ -21,14 +22,21 @@ class App():
         self.window.geometry((str(w_width)) + "x" + (str(w_height)))
         self.window.title("MRGSports")
         
+        #self.title_font and other fonts to replace unnecessary code
+        
         self.page_number = 1
         self.max_page_numbers = 4
+        
         self.teacher_code = 'KMR'
         self.teacher_input = StringVar()
+        
         self.upcoming_weekday = StringVar()
         self.upcoming_time = StringVar()
         self.sports = ['Football', 'Basketball', 'Hockey', 'Cricket']
         self.teams = ['First XI', 'Second XI', 'Junior']
+        
+
+        
         
         
         # Login page
@@ -81,6 +89,7 @@ class App():
         self.tcode_input_confirm = Button(self.tcode_input_box, text="Confirm", font=("Helvetica", 14), command = self.tcode_confirm)
         self.tcode_input_confirm.pack(pady=5)
                
+        # The buttons and logo appear only after the teacher code has been entered and will also be removed if the incorrect code is entered afterwards
         
         self.tlogin_bottom = Frame(self.teacher_login_page, background="#FC6736", width=w_width, height=550)
         self.tlogin_bottom.pack_propagate(False)
@@ -98,7 +107,7 @@ class App():
         self.upcoming_sched_page = Frame(self.window, background="#EFECEC", width=w_width, height=w_height)
         self.upcoming_sched_page.pack_propagate(False)
         
-        self.upcoming_sched_top = Frame(self.upcoming_sched_page, background="#EFECEC", width=w_width, height=550)
+        self.upcoming_sched_top = Frame(self.upcoming_sched_page, background="#EFECEC", width=w_width, height=650)
         self.upcoming_sched_top.pack_propagate(False)
         self.upcoming_sched_top.pack()
   
@@ -129,14 +138,42 @@ class App():
         self.upcoming_time_entry = Entry(self.upcoming_sched_top, textvariable=self.upcoming_time)
         self.upcoming_time_entry.pack()
         
+        
+        self.trv = ttk.Treeview(self.upcoming_sched_top, columns=(1,2,3,4), show="headings", height="16")
+        self.trv.pack()
+        
+
+        self.trv.heading(1, text="Sport")
+        self.trv.heading(2, text="Team")
+        self.trv.heading(3, text="Day")
+        self.trv.heading(4, text="Time")
+        
+        self.trv.column("1",width=60,stretch=FALSE)
+        self.trv.column("2",width=60,stretch=FALSE)
+        self.trv.column("3",width=60,stretch=FALSE)
+        self.trv.column("4",width=60,stretch=FALSE)
+                        
+        self.sport_label = Label(self.upcoming_sched_top, text="", font=("Helvetica", 14), bg="#FC6736")
+        self.sport_label.pack(side=LEFT, padx=5)
+        
+        self.day_label = Label(self.upcoming_sched_top, text="", font=("Helvetica", 14), bg="#FC6736")
+        self.day_label.pack(side=LEFT, padx=5)
+        
+        self.time_label = Label(self.upcoming_sched_top, text="", font=("Helvetica", 14), bg="#FC6736")
+        self.time_label.pack(side=LEFT, padx=5)
+        
 
         
-        self.upcoming_sched_bottom = Frame(self.upcoming_sched_page, background="#FC6736", width=w_width, height=300)
+        # Display the entries
+        
+        self.upcoming_sched_bottom = Frame(self.upcoming_sched_page, background="#FC6736", width=w_width, height=200)
         self.upcoming_sched_bottom.pack_propagate(False)
         self.upcoming_sched_bottom.pack()
         
         self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", bg="White", font=("Helvetica", 14), command=self.enter_upcoming_game)
         self.upcoming_data_confirm.pack(side=RIGHT, padx=5)
+        
+
         
         # Result entering page
         
@@ -925,19 +962,64 @@ class App():
         self.result_enter_page.pack()
         
     def enter_upcoming_game(self):
-        sportname = self.upcoming_sport_entry.get()
-        teamname = self.upcoming_team_entry.get()
-        dayofweek = self.upcoming_weekday_entry.get()
-        timeofday = self.upcoming_time_entry.get()
+        sport = self.upcoming_sport_entry.get()
+        team = self.upcoming_team_entry.get()
+        day = self.upcoming_weekday.get()
+        time = self.upcoming_time.get()
+        
+        if sport and team and day and time:
+            new_game = {
+                "sport": sport,
+                "team": team,
+                "day": day,
+                "time": time
+            }
+            
+            # Load existing data
+            try:
+                with open("schedule.json", "r") as file:
+                    schedule_data = json.load(file)
+            except FileNotFoundError:
+                schedule_data = []
+            
+            # Add new data
+            schedule_data.append(new_game)
+            
+            # Save updated data
+            with open("schedule.json", "w") as file:
+                json.dump(schedule_data, file, indent=4)
+            
+            self.update_treeview(schedule_data)
+            self.update_labels(new_game)
 
-        # Store entry in a file
-        with open('upcoming_games.txt', 'a') as f:
-            f.write(f"{sportname}, {teamname}, {dayofweek}, {timeofday}\n")
-
-        # Update labels with recent entry details
-        self.upcoming_game_one.config(text=sportname)
-        self.upcoming_day_one.config(text=dayofweek)
-        self.upcoming_time_one.config(text=timeofday)   
+    def load_schedule_data(self):
+        try:
+            with open("schedule.json", "r") as file:
+                schedule_data = json.load(file)
+                self.update_treeview(schedule_data)
+        except FileNotFoundError:
+            pass
+        
+    def update_treeview(self, schedule_data):
+        for row in self.trv.get_children():
+            self.trv.delete(row)
+        
+        for game in schedule_data:
+            self.trv.insert("", "end", values=(game["sport"], game["team"], game["day"], game["time"]))
+            
+    def update_labels(self, latest_game):
+        # Assuming you have labels to display the latest entry data
+        self.latest_sport_label = Label(self.upcoming_sched_bottom, text=f"Sport: {latest_game['sport']}")
+        self.latest_sport_label.pack()
+        
+        self.latest_team_label = Label(self.upcoming_sched_bottom, text=f"Team: {latest_game['team']}")
+        self.latest_team_label.pack()
+        
+        self.latest_day_label = Label(self.upcoming_sched_bottom, text=f"Day: {latest_game['day']}")
+        self.latest_day_label.pack()
+        
+        self.latest_time_label = Label(self.upcoming_sched_bottom, text=f"Time: {latest_game['time']}")
+        self.latest_time_label.pack()  
      
     def go_to_next_page(self, direction):
         if direction == "left":
