@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, font
 from app_settings import *
 from os import *
 import uuid
@@ -23,6 +23,8 @@ class App():
         self.window.title("MRGSports")
         
         #self.title_font and other fonts to replace unnecessary code
+        self.header_font = font.Font(family="Cairo", size=16, weight="bold")
+        self.button_font = font.Font(family="Helvetica", size=14)
         
         self.page_number = 1
         self.max_page_numbers = 4
@@ -52,17 +54,17 @@ class App():
         self.login_question.pack_propagate(False)
         self.login_question.pack(pady=5)
         
-        self.login_text = Label(self.login_question, text="Are you a...", width=w_width, height=2, fg="Black", font=("Helvetica", 20))
+        self.login_text = Label(self.login_question, text="Are you a...", bg="#FC6736", width=w_width, height=2, fg="White", font=("Helvetica", 20))
         self.login_text.pack(pady=40)
         
-        self.login_buttons = Frame(self.login_question, width=w_width, height=200, bg="White")
+        self.login_buttons = Frame(self.login_question, width=w_width, height=200, bg="#FC6736")
         self.login_buttons.pack_propagate(False)
         self.login_buttons.pack()
         
-        self.login_student_button = Button(self.login_buttons, text="Student", font=("Helvetica", 15), width=12, height=5, command=self.student_login)
+        self.login_student_button = Button(self.login_buttons, text="Student", font=self.button_font, bg="White", fg="#FC6736", width=15, height=5, command=self.student_login)
         self.login_student_button.pack(side=LEFT, padx=15)
 
-        self.login_teacher_button = Button(self.login_buttons, text="Teacher", font=("Helvetica", 15), width=12, height=5, command=self.teacher_login)
+        self.login_teacher_button = Button(self.login_buttons, text="Teacher", font=self.button_font, bg="White", fg="#FC6736", width=15, height=5, command=self.teacher_login)
         self.login_teacher_button.pack(side=RIGHT, padx=15)
         
         # Teacher page
@@ -76,18 +78,27 @@ class App():
         self.tlogin_top.pack_propagate(False)
         self.tlogin_top.pack()
         
+        self.tcode_space_box = Frame(self.tlogin_top, background="#EFECEC", width=w_width, height=80)
+        self.tcode_space_box.pack_propagate(False)
+        self.tcode_space_box.pack()
+        
+        self.tcode_input_cancel = Button(self.tcode_space_box, text="Close", bg="White", font=self.button_font, command = self.back_to_login)
+        self.tcode_input_cancel.pack(pady=25)
+        
         self.tcode_input_box = Frame(self.tlogin_top, background="White", width=320, height=140, bd=3, relief=GROOVE)
         self.tcode_input_box.pack_propagate(False)
-        self.tcode_input_box.pack(pady=80)
+        self.tcode_input_box.pack()
         
-        self.tcode_input_label = Label(self.tcode_input_box, text="Please enter your teacher code, e.g. 'MCS'", font=("Helvetica", 12))
+        self.tcode_input_label = Label(self.tcode_input_box, text="Please enter your teacher code, e.g. 'MCS'", bg="White", font=("Helvetica", 12))
         self.tcode_input_label.pack(pady=5)
         
         self.tcode_input_entry = Entry(self.tcode_input_box, textvariable = self.teacher_input, font=("Helvetica", 14))
         self.tcode_input_entry.pack(pady=5)
         
-        self.tcode_input_confirm = Button(self.tcode_input_box, text="Confirm", font=("Helvetica", 14), command = self.tcode_confirm)
+        self.tcode_input_confirm = Button(self.tcode_input_box, text="Confirm", bg="White", font=self.button_font, command = self.tcode_confirm)
         self.tcode_input_confirm.pack(pady=5)
+        
+
                
         # The buttons and logo appear only after the teacher code has been entered and will also be removed if the incorrect code is entered afterwards
         
@@ -95,9 +106,9 @@ class App():
         self.tlogin_bottom.pack_propagate(False)
         self.tlogin_bottom.pack()
         
-        self.create_upcoming_button = Button(self.tlogin_bottom, text="Schedule an upcoming match", font=("Helvetica", 14), background="White", width=30, height=3, command=self.show_upcoming_creator)
+        self.create_upcoming_button = Button(self.tlogin_bottom, text="Schedule an upcoming match", font=self.button_font, background="White", width=30, height=3, command=self.show_upcoming_creator)
 
-        self.create_result_button = Button(self.tlogin_bottom, text="Enter a match result", font=("Helvetica", 14), background="White", width=30, height=3, command=self.show_result_creator)
+        self.create_result_button = Button(self.tlogin_bottom, text="Enter a match result", font=self.button_font, background="White", width=30, height=3, command=self.show_result_creator)
 
         self.tlogin_logo = Label(self.tlogin_bottom, text="MRGSports", bg="#FC6736", fg="White", font=("Courier", 45, "bold"))
         
@@ -115,32 +126,32 @@ class App():
         self.upcoming_sched_test.pack()
         
         self.upcoming_sport_label = Label(self.upcoming_sched_top, text="Sport")
-        self.upcoming_sport_label.pack()
+        self.upcoming_sport_label.pack(pady=5)
         
         self.upcoming_sport_entry = ttk.Combobox(self.upcoming_sched_top, values=self.sports)
         self.upcoming_sport_entry.pack()
         
         self.upcoming_team_label = Label(self.upcoming_sched_top, text="Team")
-        self.upcoming_team_label.pack()
+        self.upcoming_team_label.pack(pady=5)
         
         self.upcoming_team_entry = ttk.Combobox(self.upcoming_sched_top, values=self.teams)
         self.upcoming_team_entry.pack()    
         
         self.upcoming_weekday_label = Label(self.upcoming_sched_top, text="What day next week will the game be? (e.g. Monday)")
-        self.upcoming_weekday_label.pack()
+        self.upcoming_weekday_label.pack(pady=5)
         
         self.upcoming_weekday_entry = Entry(self.upcoming_sched_top, textvariable=self.upcoming_weekday)
         self.upcoming_weekday_entry.pack()
         
         self.upcoming_time_label = Label(self.upcoming_sched_top, text="What time on this day will the game be? (e.g. 15:30)")
-        self.upcoming_time_label.pack()
+        self.upcoming_time_label.pack(pady=5)
         
         self.upcoming_time_entry = Entry(self.upcoming_sched_top, textvariable=self.upcoming_time)
         self.upcoming_time_entry.pack()
         
         
         self.trv = ttk.Treeview(self.upcoming_sched_top, columns=(1,2,3,4), show="headings", height="16")
-        self.trv.pack()
+        self.trv.pack(pady=15)
         
 
         self.trv.heading(1, text="Sport")
@@ -170,17 +181,18 @@ class App():
         self.upcoming_sched_bottom.pack_propagate(False)
         self.upcoming_sched_bottom.pack()
         
-        self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", bg="White", font=("Helvetica", 14), command=self.enter_upcoming_game)
+        self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", bg="White", font=self.button_font, command=self.enter_upcoming_game)
         self.upcoming_data_confirm.pack(side=RIGHT, padx=5)
         
-
+        self.upcoming_data_cancel = Button(self.upcoming_sched_bottom, text="Cancel", bg="White", font=self.button_font, command=self.cancel_sched)
+        self.upcoming_data_cancel.pack(side=LEFT, padx=5)
         
         # Result entering page
         
         self.result_enter_page = Frame(self.window, background="#EFECEC", width=w_width, height=w_height)
         self.result_enter_page.pack_propagate(False)
         
-        self.result_enter_top = Frame(self.result_enter_page, background="#EFECEC", width=w_width, height=550)
+        self.result_enter_top = Frame(self.result_enter_page, background="#EFECEC", width=w_width, height=650)
         self.result_enter_top.pack_propagate(False)
         self.result_enter_top.pack()
         
@@ -189,11 +201,12 @@ class App():
     
     
         
-        self.result_enter_bottom = Frame(self.result_enter_page, background="#FC6736", width=w_width, height=300)
+        self.result_enter_bottom = Frame(self.result_enter_page, background="#FC6736", width=w_width, height=200)
         self.result_enter_bottom.pack_propagate(False)
         self.result_enter_bottom.pack()
         
-        
+        self.result_data_cancel = Button(self.result_enter_bottom, text="Cancel", bg="White", font=self.button_font, command=self.cancel_sched)
+        self.result_data_cancel.pack(side=LEFT, padx=5)
         
         
         # ---------------------- STUDENT PAGES BELOW ----------------------
@@ -202,17 +215,18 @@ class App():
 
         self.logo_frame = Frame(self.window, background="#FC6736", width=w_width, height=100)
         self.logo_frame.pack_propagate(False)
-        
 
-        # Logo text test (to be replaced by image)
+        self.logo_text = Label(self.logo_frame, text="MRGSports", bg="#FC6736", fg="White", font=("Courier", 28, "bold"))
+        self.logo_text.pack(pady=8)
+                
+        self.student_back = Button(self.logo_frame, text="Close", bg="White", font=("Helvetica", 10), command = self.back_to_login)
+        self.student_back.pack(pady=5)
         
-        self.logo_text = Label(self.logo_frame, text="MRGSports", bg="#FC6736", fg="White", font=("Courier", 30, "bold"))
-        self.logo_text.pack(pady=20)
-
         # Content frame containing the main student pages that are shown
 
         self.content_frame = Frame(self.window, background="Black", width=w_width, height=600)
         self.content_frame.grid_propagate(False)
+        self.content_frame.pack_propagate(False)
         
         
         # Home page frame
@@ -228,7 +242,7 @@ class App():
         self.upcoming_main.pack_propagate(False)
         self.upcoming_main.pack()
         
-        self.home_header_one = Label(self.upcoming_main, text="UPCOMING", bg="#EFECEC", font=("Cairo", 16, "bold"))
+        self.home_header_one = Label(self.upcoming_main, text="UPCOMING", bg="#EFECEC", font=self.header_font)
         self.home_header_one.pack(padx=20, pady=5)
         
         # First upcoming display, it is split up into 5 rows called one, two, three, four, and five which show the most relevant and most imminent sport matches for the school (the dictionary created for upcoming matches will be here and separate to results used below this)
@@ -347,7 +361,7 @@ class App():
         self.homeresu_main.pack_propagate(False)
         self.homeresu_main.pack()
         
-        self.home_header_two = Label(self.homeresu_main, text="LATEST RESULTS", bg="#EFECEC", font=("Cairo", 16, "bold"))
+        self.home_header_two = Label(self.homeresu_main, text="LATEST RESULTS", bg="#EFECEC", font=self.header_font)
         self.home_header_two.pack(padx=20, pady=5)
         
         self.homeresu_box = Frame(self.homeresu_main, bg="White", width=305, height=190, bd=3, relief=RIDGE)
@@ -887,22 +901,72 @@ class App():
 
         #If MRGS Score is greater than other score then config it to green font colour and the other to red font colour
 
-        # School-sport info page frame
+        # School-sport info page frame ---------------------------
         
-        self.info_page = Frame(self.content_frame, background="Purple", width=w_width, height=600)
+        self.info_page = Frame(self.content_frame, background="#EFECEC", width=w_width, height=600)
         self.info_page.grid_propagate(False)
+        self.info_page.pack_propagate(False)
         
-        # Stat page frame or statistics is the sports analytics screen
+        self.info_page_hub = Frame(self.info_page, background="#EFECEC", width=w_width, height=600)
+        self.info_page_hub.pack_propagate(False)
+        self.info_page_hub.pack()
         
-        self.stat_page = Frame(self.content_frame, background="Red", width=w_width, height=600)        
+        self.sports_info_label = Label(self.info_page_hub, bg="#EFECEC", text="School sports info", font=self.header_font)
+        self.sports_info_label.pack(pady=5)
+        
+        # Sport buttons that expand respective windows for info on the sport
+        
+        self.football_info_button = Button(self.info_page_hub, bg="White", text="Football", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3, command=self.expand_football_info)
+        self.football_info_button.pack(pady=3)
+        
+        self.basketball_info_button = Button(self.info_page_hub, bg="White", text="Basketball", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
+        self.basketball_info_button.pack(pady=3)
+        
+        self.hockey_info_button = Button(self.info_page_hub, bg="White", text="Hockey", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
+        self.hockey_info_button.pack(pady=3)
+        
+        self.cricket_info_button = Button(self.info_page_hub, bg="White", text="Cricket", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
+        self.cricket_info_button.pack(pady=3)
+        
+        self.football_info_button = Button(self.info_page_hub, bg="White", text="Rugby", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
+        self.football_info_button.pack(pady=3)
+        
+        self.basketball_info_button = Button(self.info_page_hub, bg="White", text="Waterpolo", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
+        self.basketball_info_button.pack(pady=3)
+        
+        self.hockey_info_button = Button(self.info_page_hub, bg="White", text="Fencing", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
+        self.hockey_info_button.pack(pady=3)
+        
+        self.cricket_info_button = Button(self.info_page_hub, bg="White", text="Debating", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
+        self.cricket_info_button.pack(pady=3)
+        
+        # Information pages for each sport, the same layout on each one
+        
+        self.football_info_page = Frame(self.info_page, bg="#EFECEC", width=w_width, height=600)
+        self.football_info_page.pack_propagate(False)
+        
+        self.back_to_info_football = Button(self.football_info_page, bg="White", text="Back", font=self.button_font, command=self.return_to_info)
+        self.back_to_info_football.pack(pady=5)
+        
+        # Stat page frame / statistics is the sports analytics screen ---------------------------
+        
+        self.stat_page = Frame(self.content_frame, background="#EFECEC", width=w_width, height=600)        
         self.stat_page.grid_propagate(False)
+        self.stat_page.pack_propagate(False)
         
-        # Leaderboard page frame
+        self.sports_stat_label = Label(self.stat_page, bg="#EFECEC", text="Sport analytics", font=self.header_font)
+        self.sports_stat_label.pack(pady=5)
         
-        self.lead_page = Frame(self.content_frame, background="Green", width=w_width, height=600)        
+        # Leaderboard page frame ---------------------------
+        
+        self.lead_page = Frame(self.content_frame, background="#EFECEC", width=w_width, height=600)        
         self.lead_page.grid_propagate(False)
+        self.lead_page.pack_propagate(False)
+
+        self.lead_main_label = Label(self.lead_page, bg="#EFECEC", text="Our top MRGS team", font=self.header_font)
+        self.lead_main_label.pack(pady=5)
         
-        # Navigation bar frame
+        # Navigation bar frame ---------------------------
 
         self.navigation_bar = Frame(self.window, bg="#FC6736", width=w_width, height=150)
         self.navigation_bar.pack_propagate(False)
@@ -921,8 +985,8 @@ class App():
 
         self.stat_button = Button(self.navigation_bar, text="Stat", bg="White", width=7, height=10, command=self.go_to_stat)
         self.stat_button.pack(side=RIGHT, padx=20, pady=60)
-
-
+        
+        
 
         self.window.mainloop()
         
@@ -953,6 +1017,14 @@ class App():
             self.create_result_button.pack_forget()
             self.tlogin_logo.pack_forget()        
                  
+    def back_to_login(self):
+        
+        self.teacher_login_page.pack_forget()
+        self.logo_frame.grid_remove()
+        self.content_frame.grid_remove()
+        self.navigation_bar.grid_remove()
+        self.login_page.pack()
+    
     def show_upcoming_creator(self):
         self.teacher_login_page.pack_forget()
         self.upcoming_sched_page.pack()
@@ -960,6 +1032,11 @@ class App():
     def show_result_creator(self):
         self.teacher_login_page.pack_forget()
         self.result_enter_page.pack()
+        
+    def cancel_sched(self):
+        self.upcoming_sched_page.pack_forget()
+        self.result_enter_page.pack_forget()
+        self.teacher_login_page.pack()
         
     def enter_upcoming_game(self):
         sport = self.upcoming_sport_entry.get()
@@ -1036,6 +1113,14 @@ class App():
         self.page_indicator.config(text=self.page_number)
         
         self.change_resu_page()
+        
+    def expand_football_info(self):
+        self.info_page_hub.pack_forget()
+        self.football_info_page.pack()
+        
+    def return_to_info(self):
+        self.football_info_page.pack_forget()
+        self.info_page_hub.pack()
         
     def go_to_home(self):
         self.info_page.grid_remove()
