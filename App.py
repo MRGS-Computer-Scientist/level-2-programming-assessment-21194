@@ -24,6 +24,7 @@ class App():
         
         #self.title_font and other fonts to replace unnecessary code
         self.header_font = font.Font(family="Cairo", size=16, weight="bold")
+        self.subheader_font = font.Font(family="Helvetica", size=12, weight="bold")
         self.button_font = font.Font(family="Helvetica", size=14)
         
         self.page_number = 1
@@ -34,8 +35,8 @@ class App():
         
         self.upcoming_weekday = StringVar()
         self.upcoming_time = StringVar()
-        self.sports = ['Football', 'Basketball', 'Hockey', 'Cricket']
-        self.teams = ['First XI', 'Second XI', 'Junior']
+        self.sports = ['Football', 'Basketball', 'Hockey', 'Cricket', 'Rugby']
+        self.teams = ['First XI', 'Second XI / U17', 'Junior']
         
 
         
@@ -298,7 +299,7 @@ class App():
         self.upcoming_box_game3.pack_propagate(False)
         self.upcoming_box_game3.pack(side=LEFT, padx=4.5, pady=3)
         
-        self.upcoming_game_three = Label(self.upcoming_box_game3, text="Volleyball Game", bg="White")
+        self.upcoming_game_three = Label(self.upcoming_box_game3, text="Hockey Game", bg="White")
         self.upcoming_game_three.pack(padx=5,pady=5)
 
         self.upcoming_box_time3 = Frame(self.upcoming_row_three, bg="White", width=100, height=50, bd=3, relief=RIDGE)
@@ -320,7 +321,7 @@ class App():
         self.upcoming_box_game4.pack_propagate(False)
         self.upcoming_box_game4.pack(side=LEFT, padx=4.5, pady=3)
         
-        self.upcoming_game_four = Label(self.upcoming_box_game4, text="Hockey Game", bg="White")
+        self.upcoming_game_four = Label(self.upcoming_box_game4, text="Cricket Game", bg="White")
         self.upcoming_game_four.pack(padx=5,pady=5)
 
         self.upcoming_box_time4 = Frame(self.upcoming_row_four, bg="White", width=100, height=50, bd=3, relief=RIDGE)
@@ -342,7 +343,7 @@ class App():
         self.upcoming_box_game5.pack_propagate(False)
         self.upcoming_box_game5.pack(side=LEFT, padx=4.5, pady=3)
         
-        self.upcoming_game_five = Label(self.upcoming_box_game5, text="Waterpolo Game", bg="White")
+        self.upcoming_game_five = Label(self.upcoming_box_game5, text="Rugby Game", bg="White")
         self.upcoming_game_five.pack(padx=5,pady=5)
 
         self.upcoming_box_time5 = Frame(self.upcoming_row_five, bg="White", width=100, height=50, bd=3, relief=RIDGE)
@@ -914,39 +915,580 @@ class App():
         self.sports_info_label = Label(self.info_page_hub, bg="#EFECEC", text="School sports info", font=self.header_font)
         self.sports_info_label.pack(pady=5)
         
+        self.sports_info_label_two = Label(self.info_page_hub, text="Click to expand trainings / organiser info", font=self.subheader_font)
+        self.sports_info_label_two.pack(pady=50)
+        
         # Sport buttons that expand respective windows for info on the sport
         
         self.football_info_button = Button(self.info_page_hub, bg="White", text="Football", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3, command=self.expand_football_info)
-        self.football_info_button.pack(pady=3)
+        self.football_info_button.pack(pady=10)
         
-        self.basketball_info_button = Button(self.info_page_hub, bg="White", text="Basketball", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
-        self.basketball_info_button.pack(pady=3)
+        self.basketball_info_button = Button(self.info_page_hub, bg="White", text="Basketball", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3, command=self.expand_basketball_info)
+        self.basketball_info_button.pack(pady=8)
         
-        self.hockey_info_button = Button(self.info_page_hub, bg="White", text="Hockey", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
-        self.hockey_info_button.pack(pady=3)
+        self.hockey_info_button = Button(self.info_page_hub, bg="White", text="Hockey", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3, command=self.expand_hockey_info)
+        self.hockey_info_button.pack(pady=8)
         
-        self.cricket_info_button = Button(self.info_page_hub, bg="White", text="Cricket", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
-        self.cricket_info_button.pack(pady=3)
+        self.cricket_info_button = Button(self.info_page_hub, bg="White", text="Cricket", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3, command=self.expand_cricket_info)
+        self.cricket_info_button.pack(pady=8)
         
-        self.football_info_button = Button(self.info_page_hub, bg="White", text="Rugby", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
-        self.football_info_button.pack(pady=3)
-        
-        self.basketball_info_button = Button(self.info_page_hub, bg="White", text="Waterpolo", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
-        self.basketball_info_button.pack(pady=3)
-        
-        self.hockey_info_button = Button(self.info_page_hub, bg="White", text="Fencing", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
-        self.hockey_info_button.pack(pady=3)
-        
-        self.cricket_info_button = Button(self.info_page_hub, bg="White", text="Debating", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3)
-        self.cricket_info_button.pack(pady=3)
+        self.rugby_info_button = Button(self.info_page_hub, bg="White", text="Rugby", font=self.button_font, width=27, height=2, relief=RIDGE, bd=3, command=self.expand_rugby_info)
+        self.rugby_info_button.pack(pady=8)
         
         # Information pages for each sport, the same layout on each one
         
-        self.football_info_page = Frame(self.info_page, bg="#EFECEC", width=w_width, height=600)
+        self.football_info_page = Frame(self.info_page, bg="White", width=w_width, height=600)
         self.football_info_page.pack_propagate(False)
         
-        self.back_to_info_football = Button(self.football_info_page, bg="White", text="Back", font=self.button_font, command=self.return_to_info)
-        self.back_to_info_football.pack(pady=5)
+        self.football_top_gap = Frame(self.football_info_page, bg="White", width=w_width, height=25)
+        self.football_top_gap.pack()
+        
+        self.football_info_top = Frame(self.football_info_page, bg="White", width=w_width - margin_length, height=70, relief=RIDGE, bd=3)
+        self.football_info_top.pack_propagate(False)
+        self.football_info_top.pack(pady=3)
+        
+        self.back_to_info_football = Button(self.football_info_top, bg="White", text="Back", font=self.button_font, command=self.return_to_info)
+        self.back_to_info_football.pack(side=RIGHT, padx=5)
+        
+        self.football_info_label = Label(self.football_info_top, bg="White", text="Football", font=self.header_font)
+        self.football_info_label.pack(side=LEFT, padx=5)
+        
+        self.football_info_label_two = Label(self.football_info_top,bg="White", text="Winter sport", font=("Helvetica", 12))
+        self.football_info_label_two.pack(side=LEFT)
+        
+        # First XI box
+        
+        self.football_info_firstXI = Frame(self.football_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.football_info_firstXI.pack_propagate(False)
+        self.football_info_firstXI.pack(pady=3)
+        
+        self.football_firstXI_top = Frame(self.football_info_firstXI, bg="White", width=w_width - margin_length, height=30)
+        self.football_firstXI_top.pack_propagate(False)
+        self.football_firstXI_top.pack(pady=3)
+        
+        self.football_firstXI_label = Label(self.football_firstXI_top, text="First XI", bg="White", font=self.subheader_font)
+        self.football_firstXI_label.pack(side=LEFT, padx=5)
+        
+        self.football_firstXI_organiser = Label(self.football_firstXI_top, text="Teacher in charge: Mr Chellew, Ms Thomas", bg="White", font=("Helvetica", 10))
+        self.football_firstXI_organiser.pack(side=LEFT)
+        
+        self.football_firstXI_textbox = Frame(self.football_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.football_firstXI_textbox.pack_propagate(False)
+        self.football_firstXI_textbox.pack()
+        
+        self.football_firstXI_trainingLabel = Label(self.football_firstXI_textbox, text="Boys trainings on Monday / Wednesday morning", bg="White", font=("Helvetica", 11))
+        self.football_firstXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.football_firstXI_textbox_two = Frame(self.football_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.football_firstXI_textbox_two.pack_propagate(False)
+        self.football_firstXI_textbox_two.pack()
+        
+        self.football_firstXI_trainingLabel_two = Label(self.football_firstXI_textbox_two, text="Girls trainings on Monday / Tuesday after school", bg="White", font=("Helvetica", 11))
+        self.football_firstXI_trainingLabel_two.pack(side=LEFT, padx=5)           
+                
+        # Second XI box
+        
+        self.football_info_secondXI = Frame(self.football_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.football_info_secondXI.pack_propagate(False)
+        self.football_info_secondXI.pack(pady=3)
+        
+        self.football_secondXI_top = Frame(self.football_info_secondXI, bg="White", width=w_width - margin_length, height=30)
+        self.football_secondXI_top.pack_propagate(False)
+        self.football_secondXI_top.pack(pady=3)
+        
+        self.football_secondXI_label = Label(self.football_secondXI_top, text="Second XI", bg="White", font=self.subheader_font)
+        self.football_secondXI_label.pack(side=LEFT, padx=5)
+        
+        self.football_secondXI_organiser = Label(self.football_secondXI_top, text="Teacher in charge: Mr Carter", bg="White", font=("Helvetica", 10))
+        self.football_secondXI_organiser.pack(side=LEFT)
+        
+        self.football_secondXI_textbox = Frame(self.football_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.football_secondXI_textbox.pack_propagate(False)
+        self.football_secondXI_textbox.pack()
+        
+        self.football_secondXI_trainingLabel = Label(self.football_secondXI_textbox, text="Boys trainings on Monday / Wednesday after school", bg="White", font=("Helvetica", 11))
+        self.football_secondXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.football_secondXI_textbox_two = Frame(self.football_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.football_secondXI_textbox_two.pack_propagate(False)
+        self.football_secondXI_textbox_two.pack()
+        
+        self.football_secondXI_trainingLabel_two = Label(self.football_secondXI_textbox_two, text="Girls trainings on Monday / Tuesday morning", bg="White", font=("Helvetica", 11))
+        self.football_secondXI_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Junior box
+        
+        self.football_info_Junior = Frame(self.football_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.football_info_Junior.pack_propagate(False)
+        self.football_info_Junior.pack(pady=3)
+        
+        self.football_Junior_top = Frame(self.football_info_Junior, bg="White", width=w_width - margin_length, height=30)
+        self.football_Junior_top.pack_propagate(False)
+        self.football_Junior_top.pack(pady=3)
+        
+        self.football_Junior_label = Label(self.football_Junior_top, text="Junior", bg="White", font=self.subheader_font)
+        self.football_Junior_label.pack(side=LEFT, padx=5)
+        
+        self.football_Junior_organiser = Label(self.football_Junior_top, text="Teacher in charge: Ms Winterton", bg="White", font=("Helvetica", 10))
+        self.football_Junior_organiser.pack(side=LEFT)
+        
+        self.football_Junior_textbox = Frame(self.football_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.football_Junior_textbox.pack_propagate(False)
+        self.football_Junior_textbox.pack()
+        
+        self.football_Junior_trainingLabel = Label(self.football_Junior_textbox, text="Boys trainings on Monday morning", bg="White", font=("Helvetica", 11))
+        self.football_Junior_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.football_Junior_textbox_two = Frame(self.football_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.football_Junior_textbox_two.pack_propagate(False)
+        self.football_Junior_textbox_two.pack()
+        
+        self.football_Junior_trainingLabel_two = Label(self.football_Junior_textbox_two, text="Girls trainings on Friday after school", bg="White", font=("Helvetica", 11))
+        self.football_Junior_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Basketball info page
+        
+        self.basketball_info_page = Frame(self.info_page, bg="White", width=w_width, height=600)
+        self.basketball_info_page.pack_propagate(False)
+        
+        self.basketball_top_gap = Frame(self.basketball_info_page, bg="White", width=w_width, height=25)
+        self.basketball_top_gap.pack()
+        
+        self.basketball_info_top = Frame(self.basketball_info_page, bg="White", width=w_width - margin_length, height=70, relief=RIDGE, bd=3)
+        self.basketball_info_top.pack_propagate(False)
+        self.basketball_info_top.pack(pady=3)
+        
+        self.back_to_info_basketball = Button(self.basketball_info_top, bg="White", text="Back", font=self.button_font, command=self.return_to_info)
+        self.back_to_info_basketball.pack(side=RIGHT, padx=5)
+        
+        self.basketball_info_label = Label(self.basketball_info_top, bg="White", text="Basketball", font=self.header_font)
+        self.basketball_info_label.pack(side=LEFT, padx=5)
+        
+        self.basketball_info_label_two = Label(self.basketball_info_top,bg="White", text="Winter sport", font=("Helvetica", 12))
+        self.basketball_info_label_two.pack(side=LEFT)
+        
+        # First XI box
+        
+        self.basketball_info_firstXI = Frame(self.basketball_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.basketball_info_firstXI.pack_propagate(False)
+        self.basketball_info_firstXI.pack(pady=3)
+        
+        self.basketball_firstXI_top = Frame(self.basketball_info_firstXI, bg="White", width=w_width - margin_length, height=30)
+        self.basketball_firstXI_top.pack_propagate(False)
+        self.basketball_firstXI_top.pack(pady=3)
+        
+        self.basketball_firstXI_label = Label(self.basketball_firstXI_top, text="Senior", bg="White", font=self.subheader_font)
+        self.basketball_firstXI_label.pack(side=LEFT, padx=5)
+        
+        self.basketball_firstXI_organiser = Label(self.basketball_firstXI_top, text="Teacher in charge: Mr Windsor", bg="White", font=("Helvetica", 10))
+        self.basketball_firstXI_organiser.pack(side=LEFT)
+        
+        self.basketball_firstXI_textbox = Frame(self.basketball_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.basketball_firstXI_textbox.pack_propagate(False)
+        self.basketball_firstXI_textbox.pack()
+        
+        self.basketball_firstXI_trainingLabel = Label(self.basketball_firstXI_textbox, text="Boys trainings on Tuesday / Thursday after school", bg="White", font=("Helvetica", 11))
+        self.basketball_firstXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.basketball_firstXI_textbox_two = Frame(self.basketball_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.basketball_firstXI_textbox_two.pack_propagate(False)
+        self.basketball_firstXI_textbox_two.pack()
+        
+        self.basketball_firstXI_trainingLabel_two = Label(self.basketball_firstXI_textbox_two, text="Girls trainings on Monday / Wednesday after school", bg="White", font=("Helvetica", 11))
+        self.basketball_firstXI_trainingLabel_two.pack(side=LEFT, padx=5)           
+                
+        # Second XI box
+        
+        self.basketball_info_secondXI = Frame(self.basketball_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.basketball_info_secondXI.pack_propagate(False)
+        self.basketball_info_secondXI.pack(pady=3)
+        
+        self.basketball_secondXI_top = Frame(self.basketball_info_secondXI, bg="White", width=w_width - margin_length, height=30)
+        self.basketball_secondXI_top.pack_propagate(False)
+        self.basketball_secondXI_top.pack(pady=3)
+        
+        self.basketball_secondXI_label = Label(self.basketball_secondXI_top, text="U17", bg="White", font=self.subheader_font)
+        self.basketball_secondXI_label.pack(side=LEFT, padx=5)
+        
+        self.basketball_secondXI_organiser = Label(self.basketball_secondXI_top, text="Teacher in charge: Mr Windsor", bg="White", font=("Helvetica", 10))
+        self.basketball_secondXI_organiser.pack(side=LEFT)
+        
+        self.basketball_secondXI_textbox = Frame(self.basketball_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.basketball_secondXI_textbox.pack_propagate(False)
+        self.basketball_secondXI_textbox.pack()
+        
+        self.basketball_secondXI_trainingLabel = Label(self.basketball_secondXI_textbox, text="Boys trainings on Thursday after school", bg="White", font=("Helvetica", 11))
+        self.basketball_secondXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.basketball_secondXI_textbox_two = Frame(self.basketball_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.basketball_secondXI_textbox_two.pack_propagate(False)
+        self.basketball_secondXI_textbox_two.pack()
+        
+        self.basketball_secondXI_trainingLabel_two = Label(self.basketball_secondXI_textbox_two, text="Girls trainings on Tuesday after school", bg="White", font=("Helvetica", 11))
+        self.basketball_secondXI_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Junior box
+        
+        self.basketball_info_Junior = Frame(self.basketball_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.basketball_info_Junior.pack_propagate(False)
+        self.basketball_info_Junior.pack(pady=3)
+        
+        self.basketball_Junior_top = Frame(self.basketball_info_Junior, bg="White", width=w_width - margin_length, height=30)
+        self.basketball_Junior_top.pack_propagate(False)
+        self.basketball_Junior_top.pack(pady=3)
+        
+        self.basketball_Junior_label = Label(self.basketball_Junior_top, text="Junior", bg="White", font=self.subheader_font)
+        self.basketball_Junior_label.pack(side=LEFT, padx=5)
+        
+        self.basketball_Junior_organiser = Label(self.basketball_Junior_top, text="Teacher in charge: Mr Singh", bg="White", font=("Helvetica", 10))
+        self.basketball_Junior_organiser.pack(side=LEFT)
+        
+        self.basketball_Junior_textbox = Frame(self.basketball_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.basketball_Junior_textbox.pack_propagate(False)
+        self.basketball_Junior_textbox.pack()
+        
+        self.basketball_Junior_trainingLabel = Label(self.basketball_Junior_textbox, text="Boys trainings on Wednesday after school", bg="White", font=("Helvetica", 11))
+        self.basketball_Junior_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.basketball_Junior_textbox_two = Frame(self.basketball_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.basketball_Junior_textbox_two.pack_propagate(False)
+        self.basketball_Junior_textbox_two.pack()
+        
+        self.basketball_Junior_trainingLabel_two = Label(self.basketball_Junior_textbox_two, text="Girls trainings on Tuesday after school", bg="White", font=("Helvetica", 11))
+        self.basketball_Junior_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Hockey info page
+        
+        self.hockey_info_page = Frame(self.info_page, bg="White", width=w_width, height=600)
+        self.hockey_info_page.pack_propagate(False)
+        
+        self.hockey_top_gap = Frame(self.hockey_info_page, bg="White", width=w_width, height=25)
+        self.hockey_top_gap.pack()
+        
+        self.hockey_info_top = Frame(self.hockey_info_page, bg="White", width=w_width - margin_length, height=70, relief=RIDGE, bd=3)
+        self.hockey_info_top.pack_propagate(False)
+        self.hockey_info_top.pack(pady=3)
+        
+        self.back_to_info_hockey = Button(self.hockey_info_top, bg="White", text="Back", font=self.button_font, command=self.return_to_info)
+        self.back_to_info_hockey.pack(side=RIGHT, padx=5)
+        
+        self.hockey_info_label = Label(self.hockey_info_top, bg="White", text="Hockey", font=self.header_font)
+        self.hockey_info_label.pack(side=LEFT, padx=5)
+        
+        self.hockey_info_label_two = Label(self.hockey_info_top,bg="White", text="Winter sport", font=("Helvetica", 12))
+        self.hockey_info_label_two.pack(side=LEFT)
+        
+        # First XI box
+        
+        self.hockey_info_firstXI = Frame(self.hockey_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.hockey_info_firstXI.pack_propagate(False)
+        self.hockey_info_firstXI.pack(pady=3)
+        
+        self.hockey_firstXI_top = Frame(self.hockey_info_firstXI, bg="White", width=w_width - margin_length, height=30)
+        self.hockey_firstXI_top.pack_propagate(False)
+        self.hockey_firstXI_top.pack(pady=3)
+        
+        self.hockey_firstXI_label = Label(self.hockey_firstXI_top, text="First XI", bg="White", font=self.subheader_font)
+        self.hockey_firstXI_label.pack(side=LEFT, padx=5)
+        
+        self.hockey_firstXI_organiser = Label(self.hockey_firstXI_top, text="Teacher in charge: Mr Bitchener", bg="White", font=("Helvetica", 10))
+        self.hockey_firstXI_organiser.pack(side=LEFT)
+        
+        self.hockey_firstXI_textbox = Frame(self.hockey_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.hockey_firstXI_textbox.pack_propagate(False)
+        self.hockey_firstXI_textbox.pack()
+        
+        self.hockey_firstXI_trainingLabel = Label(self.hockey_firstXI_textbox, text="Boys trainings on Monday / Friday morning", bg="White", font=("Helvetica", 11))
+        self.hockey_firstXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.hockey_firstXI_textbox_two = Frame(self.hockey_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.hockey_firstXI_textbox_two.pack_propagate(False)
+        self.hockey_firstXI_textbox_two.pack()
+        
+        self.hockey_firstXI_trainingLabel_two = Label(self.hockey_firstXI_textbox_two, text="Girls trainings on Tuesday / Friday after school", bg="White", font=("Helvetica", 11))
+        self.hockey_firstXI_trainingLabel_two.pack(side=LEFT, padx=5)           
+                
+        # Second XI box
+        
+        self.hockey_info_secondXI = Frame(self.hockey_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.hockey_info_secondXI.pack_propagate(False)
+        self.hockey_info_secondXI.pack(pady=3)
+        
+        self.hockey_secondXI_top = Frame(self.hockey_info_secondXI, bg="White", width=w_width - margin_length, height=30)
+        self.hockey_secondXI_top.pack_propagate(False)
+        self.hockey_secondXI_top.pack(pady=3)
+        
+        self.hockey_secondXI_label = Label(self.hockey_secondXI_top, text="Second XI", bg="White", font=self.subheader_font)
+        self.hockey_secondXI_label.pack(side=LEFT, padx=5)
+        
+        self.hockey_secondXI_organiser = Label(self.hockey_secondXI_top, text="Teacher in charge: Mr Bogle", bg="White", font=("Helvetica", 10))
+        self.hockey_secondXI_organiser.pack(side=LEFT)
+        
+        self.hockey_secondXI_textbox = Frame(self.hockey_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.hockey_secondXI_textbox.pack_propagate(False)
+        self.hockey_secondXI_textbox.pack()
+        
+        self.hockey_secondXI_trainingLabel = Label(self.hockey_secondXI_textbox, text="Boys trainings on Tuesday / Thursday after school", bg="White", font=("Helvetica", 11))
+        self.hockey_secondXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.hockey_secondXI_textbox_two = Frame(self.hockey_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.hockey_secondXI_textbox_two.pack_propagate(False)
+        self.hockey_secondXI_textbox_two.pack()
+        
+        self.hockey_secondXI_trainingLabel_two = Label(self.hockey_secondXI_textbox_two, text="Girls trainings on Monday / Wednesday after school", bg="White", font=("Helvetica", 11))
+        self.hockey_secondXI_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Junior box
+        
+        self.hockey_info_Junior = Frame(self.hockey_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.hockey_info_Junior.pack_propagate(False)
+        self.hockey_info_Junior.pack(pady=3)
+        
+        self.hockey_Junior_top = Frame(self.hockey_info_Junior, bg="White", width=w_width - margin_length, height=30)
+        self.hockey_Junior_top.pack_propagate(False)
+        self.hockey_Junior_top.pack(pady=3)
+        
+        self.hockey_Junior_label = Label(self.hockey_Junior_top, text="Junior", bg="White", font=self.subheader_font)
+        self.hockey_Junior_label.pack(side=LEFT, padx=5)
+        
+        self.hockey_Junior_organiser = Label(self.hockey_Junior_top, text="Teacher in charge: Ms Kelly", bg="White", font=("Helvetica", 10))
+        self.hockey_Junior_organiser.pack(side=LEFT)
+        
+        self.hockey_Junior_textbox = Frame(self.hockey_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.hockey_Junior_textbox.pack_propagate(False)
+        self.hockey_Junior_textbox.pack()
+        
+        self.hockey_Junior_trainingLabel = Label(self.hockey_Junior_textbox, text="Boys trainings on Thursday morning", bg="White", font=("Helvetica", 11))
+        self.hockey_Junior_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.hockey_Junior_textbox_two = Frame(self.hockey_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.hockey_Junior_textbox_two.pack_propagate(False)
+        self.hockey_Junior_textbox_two.pack()
+        
+        self.hockey_Junior_trainingLabel_two = Label(self.hockey_Junior_textbox_two, text="Girls trainings on Tuesday after school", bg="White", font=("Helvetica", 11))
+        self.hockey_Junior_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Cricket info page
+        
+        self.cricket_info_page = Frame(self.info_page, bg="White", width=w_width, height=600)
+        self.cricket_info_page.pack_propagate(False)
+        
+        self.cricket_top_gap = Frame(self.cricket_info_page, bg="White", width=w_width, height=25)
+        self.cricket_top_gap.pack()
+        
+        self.cricket_info_top = Frame(self.cricket_info_page, bg="White", width=w_width - margin_length, height=70, relief=RIDGE, bd=3)
+        self.cricket_info_top.pack_propagate(False)
+        self.cricket_info_top.pack(pady=3)
+        
+        self.back_to_info_cricket = Button(self.cricket_info_top, bg="White", text="Back", font=self.button_font, command=self.return_to_info)
+        self.back_to_info_cricket.pack(side=RIGHT, padx=5)
+        
+        self.cricket_info_label = Label(self.cricket_info_top, bg="White", text="Cricket", font=self.header_font)
+        self.cricket_info_label.pack(side=LEFT, padx=5)
+        
+        self.cricket_info_label_two = Label(self.cricket_info_top,bg="White", text="Summer sport", font=("Helvetica", 12))
+        self.cricket_info_label_two.pack(side=LEFT)
+        
+        # First XI box
+        
+        self.cricket_info_firstXI = Frame(self.cricket_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.cricket_info_firstXI.pack_propagate(False)
+        self.cricket_info_firstXI.pack(pady=3)
+        
+        self.cricket_firstXI_top = Frame(self.cricket_info_firstXI, bg="White", width=w_width - margin_length, height=30)
+        self.cricket_firstXI_top.pack_propagate(False)
+        self.cricket_firstXI_top.pack(pady=3)
+        
+        self.cricket_firstXI_label = Label(self.cricket_firstXI_top, text="First XI", bg="White", font=self.subheader_font)
+        self.cricket_firstXI_label.pack(side=LEFT, padx=5)
+        
+        self.cricket_firstXI_organiser = Label(self.cricket_firstXI_top, text="Teacher in charge: Mr Chopra", bg="White", font=("Helvetica", 10))
+        self.cricket_firstXI_organiser.pack(side=LEFT)
+        
+        self.cricket_firstXI_textbox = Frame(self.cricket_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.cricket_firstXI_textbox.pack_propagate(False)
+        self.cricket_firstXI_textbox.pack()
+        
+        self.cricket_firstXI_trainingLabel = Label(self.cricket_firstXI_textbox, text="Boys trainings on Wednesday / Friday after school", bg="White", font=("Helvetica", 11))
+        self.cricket_firstXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.cricket_firstXI_textbox_two = Frame(self.cricket_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.cricket_firstXI_textbox_two.pack_propagate(False)
+        self.cricket_firstXI_textbox_two.pack()
+        
+        self.cricket_firstXI_trainingLabel_two = Label(self.cricket_firstXI_textbox_two, text="Girls trainings on Monday / Tuesday after school", bg="White", font=("Helvetica", 11))
+        self.cricket_firstXI_trainingLabel_two.pack(side=LEFT, padx=5)           
+                
+        # Second XI box
+        
+        self.cricket_info_secondXI = Frame(self.cricket_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.cricket_info_secondXI.pack_propagate(False)
+        self.cricket_info_secondXI.pack(pady=3)
+        
+        self.cricket_secondXI_top = Frame(self.cricket_info_secondXI, bg="White", width=w_width - margin_length, height=30)
+        self.cricket_secondXI_top.pack_propagate(False)
+        self.cricket_secondXI_top.pack(pady=3)
+        
+        self.cricket_secondXI_label = Label(self.cricket_secondXI_top, text="Second XI", bg="White", font=self.subheader_font)
+        self.cricket_secondXI_label.pack(side=LEFT, padx=5)
+        
+        self.cricket_secondXI_organiser = Label(self.cricket_secondXI_top, text="Teacher in charge: Mr Kerins", bg="White", font=("Helvetica", 10))
+        self.cricket_secondXI_organiser.pack(side=LEFT)
+        
+        self.cricket_secondXI_textbox = Frame(self.cricket_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.cricket_secondXI_textbox.pack_propagate(False)
+        self.cricket_secondXI_textbox.pack()
+        
+        self.cricket_secondXI_trainingLabel = Label(self.cricket_secondXI_textbox, text="Boys trainings on Monday / Wednesday after school", bg="White", font=("Helvetica", 11))
+        self.cricket_secondXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.cricket_secondXI_textbox_two = Frame(self.cricket_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.cricket_secondXI_textbox_two.pack_propagate(False)
+        self.cricket_secondXI_textbox_two.pack()
+        
+        self.cricket_secondXI_trainingLabel_two = Label(self.cricket_secondXI_textbox_two, text="Girls trainings on Tuesday / Thursday after school", bg="White", font=("Helvetica", 11))
+        self.cricket_secondXI_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Junior box
+        
+        self.cricket_info_Junior = Frame(self.cricket_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.cricket_info_Junior.pack_propagate(False)
+        self.cricket_info_Junior.pack(pady=3)
+        
+        self.cricket_Junior_top = Frame(self.cricket_info_Junior, bg="White", width=w_width - margin_length, height=30)
+        self.cricket_Junior_top.pack_propagate(False)
+        self.cricket_Junior_top.pack(pady=3)
+        
+        self.cricket_Junior_label = Label(self.cricket_Junior_top, text="Junior", bg="White", font=self.subheader_font)
+        self.cricket_Junior_label.pack(side=LEFT, padx=5)
+        
+        self.cricket_Junior_organiser = Label(self.cricket_Junior_top, text="Teacher in charge: Mr Singh", bg="White", font=("Helvetica", 10))
+        self.cricket_Junior_organiser.pack(side=LEFT)
+        
+        self.cricket_Junior_textbox = Frame(self.cricket_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.cricket_Junior_textbox.pack_propagate(False)
+        self.cricket_Junior_textbox.pack()
+        
+        self.cricket_Junior_trainingLabel = Label(self.cricket_Junior_textbox, text="Boys trainings on Tuesday after school", bg="White", font=("Helvetica", 11))
+        self.cricket_Junior_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.cricket_Junior_textbox_two = Frame(self.cricket_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.cricket_Junior_textbox_two.pack_propagate(False)
+        self.cricket_Junior_textbox_two.pack()
+        
+        self.cricket_Junior_trainingLabel_two = Label(self.cricket_Junior_textbox_two, text="Girls trainings on Wednesday after school", bg="White", font=("Helvetica", 11))
+        self.cricket_Junior_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Rugby info page
+        
+        self.rugby_info_page = Frame(self.info_page, bg="White", width=w_width, height=600)
+        self.rugby_info_page.pack_propagate(False)
+        
+        self.rugby_top_gap = Frame(self.rugby_info_page, bg="White", width=w_width, height=25)
+        self.rugby_top_gap.pack()
+        
+        self.rugby_info_top = Frame(self.rugby_info_page, bg="White", width=w_width - margin_length, height=70, relief=RIDGE, bd=3)
+        self.rugby_info_top.pack_propagate(False)
+        self.rugby_info_top.pack(pady=3)
+        
+        self.back_to_info_rugby = Button(self.rugby_info_top, bg="White", text="Back", font=self.button_font, command=self.return_to_info)
+        self.back_to_info_rugby.pack(side=RIGHT, padx=5)
+        
+        self.rugby_info_label = Label(self.rugby_info_top, bg="White", text="Rugby", font=self.header_font)
+        self.rugby_info_label.pack(side=LEFT, padx=5)
+        
+        self.rugby_info_label_two = Label(self.rugby_info_top,bg="White", text="Winter sport", font=("Helvetica", 12))
+        self.rugby_info_label_two.pack(side=LEFT)
+        
+        # First XI box
+        
+        self.rugby_info_firstXI = Frame(self.rugby_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.rugby_info_firstXI.pack_propagate(False)
+        self.rugby_info_firstXI.pack(pady=3)
+        
+        self.rugby_firstXI_top = Frame(self.rugby_info_firstXI, bg="White", width=w_width - margin_length, height=30)
+        self.rugby_firstXI_top.pack_propagate(False)
+        self.rugby_firstXI_top.pack(pady=3)
+        
+        self.rugby_firstXI_label = Label(self.rugby_firstXI_top, text="First XI", bg="White", font=self.subheader_font)
+        self.rugby_firstXI_label.pack(side=LEFT, padx=5)
+        
+        self.rugby_firstXI_organiser = Label(self.rugby_firstXI_top, text="Teacher in charge: Mr Tuiali i", bg="White", font=("Helvetica", 10))
+        self.rugby_firstXI_organiser.pack(side=LEFT)
+        
+        self.rugby_firstXI_textbox = Frame(self.rugby_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.rugby_firstXI_textbox.pack_propagate(False)
+        self.rugby_firstXI_textbox.pack()
+        
+        self.rugby_firstXI_trainingLabel = Label(self.rugby_firstXI_textbox, text="Boys trainings on Monday / Wednesday after school", bg="White", font=("Helvetica", 11))
+        self.rugby_firstXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.rugby_firstXI_textbox_two = Frame(self.rugby_info_firstXI, bg="White", width=w_width - margin_length, height=55)
+        self.rugby_firstXI_textbox_two.pack_propagate(False)
+        self.rugby_firstXI_textbox_two.pack()
+        
+        self.rugby_firstXI_trainingLabel_two = Label(self.rugby_firstXI_textbox_two, text="Girls trainings on Wednesday / Thursday after school", bg="White", font=("Helvetica", 11))
+        self.rugby_firstXI_trainingLabel_two.pack(side=LEFT, padx=5)           
+                
+        # Second XI box
+        
+        self.rugby_info_secondXI = Frame(self.rugby_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.rugby_info_secondXI.pack_propagate(False)
+        self.rugby_info_secondXI.pack(pady=3)
+        
+        self.rugby_secondXI_top = Frame(self.rugby_info_secondXI, bg="White", width=w_width - margin_length, height=30)
+        self.rugby_secondXI_top.pack_propagate(False)
+        self.rugby_secondXI_top.pack(pady=3)
+        
+        self.rugby_secondXI_label = Label(self.rugby_secondXI_top, text="Second XI", bg="White", font=self.subheader_font)
+        self.rugby_secondXI_label.pack(side=LEFT, padx=5)
+        
+        self.rugby_secondXI_organiser = Label(self.rugby_secondXI_top, text="Teacher in charge: Ms Burns", bg="White", font=("Helvetica", 10))
+        self.rugby_secondXI_organiser.pack(side=LEFT)
+        
+        self.rugby_secondXI_textbox = Frame(self.rugby_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.rugby_secondXI_textbox.pack_propagate(False)
+        self.rugby_secondXI_textbox.pack()
+        
+        self.rugby_secondXI_trainingLabel = Label(self.rugby_secondXI_textbox, text="Boys trainings on Tuesday / Wednesday morning", bg="White", font=("Helvetica", 11))
+        self.rugby_secondXI_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.rugby_secondXI_textbox_two = Frame(self.rugby_info_secondXI, bg="White", width=w_width - margin_length, height=55)
+        self.rugby_secondXI_textbox_two.pack_propagate(False)
+        self.rugby_secondXI_textbox_two.pack()
+        
+        self.rugby_secondXI_trainingLabel_two = Label(self.rugby_secondXI_textbox_two, text="Girls trainings on Tuesday / Friday after school", bg="White", font=("Helvetica", 11))
+        self.rugby_secondXI_trainingLabel_two.pack(side=LEFT, padx=5)
+        
+        # Junior box
+        
+        self.rugby_info_Junior = Frame(self.rugby_info_page, bg="White", width=w_width - margin_length, height=150, relief=RIDGE, bd=3)
+        self.rugby_info_Junior.pack_propagate(False)
+        self.rugby_info_Junior.pack(pady=3)
+        
+        self.rugby_Junior_top = Frame(self.rugby_info_Junior, bg="White", width=w_width - margin_length, height=30)
+        self.rugby_Junior_top.pack_propagate(False)
+        self.rugby_Junior_top.pack(pady=3)
+        
+        self.rugby_Junior_label = Label(self.rugby_Junior_top, text="Junior", bg="White", font=self.subheader_font)
+        self.rugby_Junior_label.pack(side=LEFT, padx=5)
+        
+        self.rugby_Junior_organiser = Label(self.rugby_Junior_top, text="Teacher in charge: Ms Yang", bg="White", font=("Helvetica", 10))
+        self.rugby_Junior_organiser.pack(side=LEFT)
+        
+        self.rugby_Junior_textbox = Frame(self.rugby_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.rugby_Junior_textbox.pack_propagate(False)
+        self.rugby_Junior_textbox.pack()
+        
+        self.rugby_Junior_trainingLabel = Label(self.rugby_Junior_textbox, text="Boys trainings on Monday after school", bg="White", font=("Helvetica", 11))
+        self.rugby_Junior_trainingLabel.pack(side=LEFT, padx=5)
+        
+        self.rugby_Junior_textbox_two = Frame(self.rugby_info_Junior, bg="White", width=w_width - margin_length, height=55)
+        self.rugby_Junior_textbox_two.pack_propagate(False)
+        self.rugby_Junior_textbox_two.pack()
+        
+        self.rugby_Junior_trainingLabel_two = Label(self.rugby_Junior_textbox_two, text="Girls trainings on Tuesday after school", bg="White", font=("Helvetica", 11))
+        self.rugby_Junior_trainingLabel_two.pack(side=LEFT, padx=5)
         
         # Stat page frame / statistics is the sports analytics screen ---------------------------
         
@@ -957,14 +1499,6 @@ class App():
         self.sports_stat_label = Label(self.stat_page, bg="#EFECEC", text="Sport analytics", font=self.header_font)
         self.sports_stat_label.pack(pady=5)
         
-        # Leaderboard page frame ---------------------------
-        
-        self.lead_page = Frame(self.content_frame, background="#EFECEC", width=w_width, height=600)        
-        self.lead_page.grid_propagate(False)
-        self.lead_page.pack_propagate(False)
-
-        self.lead_main_label = Label(self.lead_page, bg="#EFECEC", text="Our top MRGS team", font=self.header_font)
-        self.lead_main_label.pack(pady=5)
         
         # Navigation bar frame ---------------------------
 
@@ -974,17 +1508,17 @@ class App():
 
         # Placing buttons on nav bar
         
+        self.nav_space = Frame(self.navigation_bar, bg="#FC6736", width=21, height=150)
+        self.nav_space.pack(side=LEFT)
+        
         self.home_button = Button(self.navigation_bar, text="Home", bg="White", width=7, height=10, command=self.go_to_home)
-        self.home_button.pack(side=LEFT, padx=20, pady=60)
+        self.home_button.pack(side=LEFT, padx=30, pady=60)
 
         self.info_button = Button(self.navigation_bar, text="Info", bg="White", width=7, height=10, command=self.go_to_info)
-        self.info_button.pack(side=LEFT, padx=20, pady=60)
-
-        self.lead_button = Button(self.navigation_bar, text="Lead", bg="White", width=7, height=10, command=self.go_to_lead)
-        self.lead_button.pack(side=RIGHT, padx=20, pady=60)
+        self.info_button.pack(side=LEFT, padx=30, pady=60)
 
         self.stat_button = Button(self.navigation_bar, text="Stat", bg="White", width=7, height=10, command=self.go_to_stat)
-        self.stat_button.pack(side=RIGHT, padx=20, pady=60)
+        self.stat_button.pack(side=LEFT, padx=30, pady=60)
         
         
 
@@ -1118,33 +1652,45 @@ class App():
         self.info_page_hub.pack_forget()
         self.football_info_page.pack()
         
+    def expand_basketball_info(self):
+        self.info_page_hub.pack_forget()
+        self.basketball_info_page.pack()
+        
+    def expand_hockey_info(self):
+        self.info_page_hub.pack_forget()
+        self.hockey_info_page.pack()
+        
+    def expand_cricket_info(self):
+        self.info_page_hub.pack_forget()
+        self.cricket_info_page.pack()
+        
+    def expand_rugby_info(self):
+        self.info_page_hub.pack_forget()
+        self.rugby_info_page.pack()
+        
     def return_to_info(self):
         self.football_info_page.pack_forget()
+        self.basketball_info_page.pack_forget()
+        self.hockey_info_page.pack_forget()
+        self.cricket_info_page.pack_forget()
+        self.rugby_info_page.pack_forget()
         self.info_page_hub.pack()
         
     def go_to_home(self):
         self.info_page.grid_remove()
         self.stat_page.grid_remove()
-        self.lead_page.grid_remove()
         self.home_page.grid(rowspan=TRUE, columnspan=TRUE)
         
     def go_to_info(self):
         self.stat_page.grid_remove()
-        self.lead_page.grid_remove()
         self.home_page.grid_remove()
         self.info_page.grid(rowspan=TRUE, columnspan=TRUE)
  
     def go_to_stat(self):
         self.info_page.grid_remove()
-        self.lead_page.grid_remove()
         self.home_page.grid_remove()
         self.stat_page.grid(rowspan=TRUE, columnspan=TRUE)       
         
-    def go_to_lead(self):
-        self.info_page.grid_remove()
-        self.stat_page.grid_remove()
-        self.home_page.grid_remove()
-        self.lead_page.grid(rowspan=TRUE, columnspan=TRUE)
            
     def change_resu_page(self):
         # Update visibility of each page
