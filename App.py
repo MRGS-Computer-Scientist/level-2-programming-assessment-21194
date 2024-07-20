@@ -1499,6 +1499,722 @@ class App():
         self.sports_stat_label = Label(self.stat_page, bg="#EFECEC", text="Sport analytics", font=self.header_font)
         self.sports_stat_label.pack(pady=5)
         
+        self.sports_stat_football_box = Frame(self.stat_page, bg="White", width=w_width - margin_length, height=100, relief=RIDGE, bd=3)
+        self.sports_stat_football_box.pack_propagate(False)
+        self.sports_stat_football_box.grid_propagate(False)
+        self.sports_stat_football_box.pack(pady=3)
+        
+        # First column of the box
+        
+        self.sports_stat_football_names = Frame(self.sports_stat_football_box, bg="White", width=100, height=100)
+        self.sports_stat_football_names.pack_propagate(False)
+        self.sports_stat_football_names.grid(row=0, column=0)
+        
+        self.sports_stat_football_name1 = Frame(self.sports_stat_football_names, bg="White", width=100, height=19)
+        self.sports_stat_football_name1.pack_propagate(False)
+        self.sports_stat_football_name1.pack()
+
+        self.sports_stat_football_namelabel = Label(self.sports_stat_football_name1, text="Football", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_football_namelabel.pack()
+        
+        self.sports_stat_football_name2 = Frame(self.sports_stat_football_names, bg="White", width=100, height=27)
+        self.sports_stat_football_name2.pack_propagate(False)
+        self.sports_stat_football_name2.pack()
+        
+        self.sports_stat_football_namelabel2 = Label(self.sports_stat_football_name2, text="First XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_namelabel2.pack()
+        
+        self.sports_stat_football_name3 = Frame(self.sports_stat_football_names, bg="White", width=100, height=27)
+        self.sports_stat_football_name3.pack_propagate(False)
+        self.sports_stat_football_name3.pack()
+        
+        self.sports_stat_football_namelabel3 = Label(self.sports_stat_football_name3, text="Second XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_namelabel3.pack()        
+        
+        self.sports_stat_football_name4 = Frame(self.sports_stat_football_names, bg="White", width=100, height=27)
+        self.sports_stat_football_name4.pack_propagate(False)
+        self.sports_stat_football_name4.pack()
+        
+        self.sports_stat_football_namelabel4 = Label(self.sports_stat_football_name4, text="Junior", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_namelabel4.pack()
+        
+        # Second column of the box
+        
+        self.sports_stat_football_wins = Frame(self.sports_stat_football_box, bg="White", width=90, height=100)
+        self.sports_stat_football_wins.pack_propagate(False)
+        self.sports_stat_football_wins.grid(row=0, column=1)
+        
+        self.sports_stat_football_win1 = Frame(self.sports_stat_football_wins, bg="White", width=100, height=19)
+        self.sports_stat_football_win1.pack_propagate(False)
+        self.sports_stat_football_win1.pack()
+
+        self.sports_stat_football_winlabel = Label(self.sports_stat_football_win1, text="Wins", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_football_winlabel.pack()
+        
+        self.sports_stat_football_win2 = Frame(self.sports_stat_football_wins, bg="White", width=100, height=27)
+        self.sports_stat_football_win2.pack_propagate(False)
+        self.sports_stat_football_win2.pack()
+        
+        self.sports_stat_football_winlabel2 = Label(self.sports_stat_football_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlabel2.pack()
+        
+        self.sports_stat_football_win3 = Frame(self.sports_stat_football_wins, bg="White", width=100, height=27)
+        self.sports_stat_football_win3.pack_propagate(False)
+        self.sports_stat_football_win3.pack()
+        
+        self.sports_stat_football_winlabel3 = Label(self.sports_stat_football_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlabel3.pack()        
+        
+        self.sports_stat_football_win4 = Frame(self.sports_stat_football_wins, bg="White", width=100, height=27)
+        self.sports_stat_football_win4.pack_propagate(False)
+        self.sports_stat_football_win4.pack()
+        
+        self.sports_stat_football_winlabel4 = Label(self.sports_stat_football_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlabel4.pack()
+
+        # Third column of the box
+
+        self.sports_stat_football_losses = Frame(self.sports_stat_football_box, bg="White", width=90, height=100)
+        self.sports_stat_football_losses.pack_propagate(False)
+        self.sports_stat_football_losses.grid(row=0, column=2)
+        
+        self.sports_stat_football_loss1 = Frame(self.sports_stat_football_losses, bg="White", width=100, height=19)
+        self.sports_stat_football_loss1.pack_propagate(False)
+        self.sports_stat_football_loss1.pack()
+
+        self.sports_stat_football_losslabel = Label(self.sports_stat_football_loss1, text="Losses", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_football_losslabel.pack()
+        
+        self.sports_stat_football_loss2 = Frame(self.sports_stat_football_losses, bg="White", width=100, height=27)
+        self.sports_stat_football_loss2.pack_propagate(False)
+        self.sports_stat_football_loss2.pack()
+        
+        self.sports_stat_football_losslabel2 = Label(self.sports_stat_football_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_losslabel2.pack()
+        
+        self.sports_stat_football_loss3 = Frame(self.sports_stat_football_losses, bg="White", width=100, height=27)
+        self.sports_stat_football_loss3.pack_propagate(False)
+        self.sports_stat_football_loss3.pack()
+        
+        self.sports_stat_football_losslabel3 = Label(self.sports_stat_football_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_losslabel3.pack()        
+        
+        self.sports_stat_football_loss4 = Frame(self.sports_stat_football_losses, bg="White", width=100, height=27)
+        self.sports_stat_football_loss4.pack_propagate(False)
+        self.sports_stat_football_loss4.pack()
+        
+        self.sports_stat_football_losslabel4 = Label(self.sports_stat_football_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_losslabel4.pack()
+        
+        # Fourth column of the box
+        
+        self.sports_stat_football_winlosses = Frame(self.sports_stat_football_box, bg="White", width=90, height=100)
+        self.sports_stat_football_winlosses.pack_propagate(False)
+        self.sports_stat_football_winlosses.grid(row=0, column=3)
+        
+        self.sports_stat_football_winloss1 = Frame(self.sports_stat_football_winlosses, bg="White", width=100, height=19)
+        self.sports_stat_football_winloss1.pack_propagate(False)
+        self.sports_stat_football_winloss1.pack()
+
+        self.sports_stat_football_winlosslabel = Label(self.sports_stat_football_winloss1, text="W/L", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_football_winlosslabel.pack()
+        
+        self.sports_stat_football_winloss2 = Frame(self.sports_stat_football_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_football_winloss2.pack_propagate(False)
+        self.sports_stat_football_winloss2.pack()
+        
+        self.sports_stat_football_winlosslabel2 = Label(self.sports_stat_football_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlosslabel2.pack()
+        
+        self.sports_stat_football_winloss3 = Frame(self.sports_stat_football_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_football_winloss3.pack_propagate(False)
+        self.sports_stat_football_winloss3.pack()
+        
+        self.sports_stat_football_winlosslabel3 = Label(self.sports_stat_football_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlosslabel3.pack()        
+        
+        self.sports_stat_football_winloss4 = Frame(self.sports_stat_football_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_football_winloss4.pack_propagate(False)
+        self.sports_stat_football_winloss4.pack()
+        
+        self.sports_stat_football_winlosslabel4 = Label(self.sports_stat_football_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlosslabel4.pack()
+        
+        # Basketball analytics box
+        
+        self.sports_stat_basketball_box = Frame(self.stat_page, bg="White", width=w_width - margin_length, height=100, relief=RIDGE, bd=3)
+        self.sports_stat_basketball_box.pack_propagate(False)
+        self.sports_stat_basketball_box.grid_propagate(False)
+        self.sports_stat_basketball_box.pack(pady=3)
+        
+        # First column of the box
+        
+        self.sports_stat_basketball_names = Frame(self.sports_stat_basketball_box, bg="White", width=100, height=100)
+        self.sports_stat_basketball_names.pack_propagate(False)
+        self.sports_stat_basketball_names.grid(row=0, column=0)
+        
+        self.sports_stat_basketball_name1 = Frame(self.sports_stat_basketball_names, bg="White", width=100, height=19)
+        self.sports_stat_basketball_name1.pack_propagate(False)
+        self.sports_stat_basketball_name1.pack()
+
+        self.sports_stat_basketball_namelabel = Label(self.sports_stat_basketball_name1, text="Basketball", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_basketball_namelabel.pack()
+        
+        self.sports_stat_basketball_name2 = Frame(self.sports_stat_basketball_names, bg="White", width=100, height=27)
+        self.sports_stat_basketball_name2.pack_propagate(False)
+        self.sports_stat_basketball_name2.pack()
+        
+        self.sports_stat_basketball_namelabel2 = Label(self.sports_stat_basketball_name2, text="Senior", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_namelabel2.pack()
+        
+        self.sports_stat_basketball_name3 = Frame(self.sports_stat_basketball_names, bg="White", width=100, height=27)
+        self.sports_stat_basketball_name3.pack_propagate(False)
+        self.sports_stat_basketball_name3.pack()
+        
+        self.sports_stat_basketball_namelabel3 = Label(self.sports_stat_basketball_name3, text="U17", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_namelabel3.pack()        
+        
+        self.sports_stat_basketball_name4 = Frame(self.sports_stat_basketball_names, bg="White", width=100, height=27)
+        self.sports_stat_basketball_name4.pack_propagate(False)
+        self.sports_stat_basketball_name4.pack()
+        
+        self.sports_stat_basketball_namelabel4 = Label(self.sports_stat_basketball_name4, text="Junior", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_namelabel4.pack()
+        
+        # Second column of the box
+        
+        self.sports_stat_basketball_wins = Frame(self.sports_stat_basketball_box, bg="White", width=90, height=100)
+        self.sports_stat_basketball_wins.pack_propagate(False)
+        self.sports_stat_basketball_wins.grid(row=0, column=1)
+        
+        self.sports_stat_basketball_win1 = Frame(self.sports_stat_basketball_wins, bg="White", width=100, height=19)
+        self.sports_stat_basketball_win1.pack_propagate(False)
+        self.sports_stat_basketball_win1.pack()
+
+        self.sports_stat_basketball_winlabel = Label(self.sports_stat_basketball_win1, text="Wins", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_basketball_winlabel.pack()
+        
+        self.sports_stat_basketball_win2 = Frame(self.sports_stat_basketball_wins, bg="White", width=100, height=27)
+        self.sports_stat_basketball_win2.pack_propagate(False)
+        self.sports_stat_basketball_win2.pack()
+        
+        self.sports_stat_basketball_winlabel2 = Label(self.sports_stat_basketball_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlabel2.pack()
+        
+        self.sports_stat_basketball_win3 = Frame(self.sports_stat_basketball_wins, bg="White", width=100, height=27)
+        self.sports_stat_basketball_win3.pack_propagate(False)
+        self.sports_stat_basketball_win3.pack()
+        
+        self.sports_stat_basketball_winlabel3 = Label(self.sports_stat_basketball_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlabel3.pack()        
+        
+        self.sports_stat_basketball_win4 = Frame(self.sports_stat_basketball_wins, bg="White", width=100, height=27)
+        self.sports_stat_basketball_win4.pack_propagate(False)
+        self.sports_stat_basketball_win4.pack()
+        
+        self.sports_stat_basketball_winlabel4 = Label(self.sports_stat_basketball_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlabel4.pack()
+
+        # Third column of the box
+
+        self.sports_stat_basketball_losses = Frame(self.sports_stat_basketball_box, bg="White", width=90, height=100)
+        self.sports_stat_basketball_losses.pack_propagate(False)
+        self.sports_stat_basketball_losses.grid(row=0, column=2)
+        
+        self.sports_stat_basketball_loss1 = Frame(self.sports_stat_basketball_losses, bg="White", width=100, height=19)
+        self.sports_stat_basketball_loss1.pack_propagate(False)
+        self.sports_stat_basketball_loss1.pack()
+
+        self.sports_stat_basketball_losslabel = Label(self.sports_stat_basketball_loss1, text="Losses", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_basketball_losslabel.pack()
+        
+        self.sports_stat_basketball_loss2 = Frame(self.sports_stat_basketball_losses, bg="White", width=100, height=27)
+        self.sports_stat_basketball_loss2.pack_propagate(False)
+        self.sports_stat_basketball_loss2.pack()
+        
+        self.sports_stat_basketball_losslabel2 = Label(self.sports_stat_basketball_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_losslabel2.pack()
+        
+        self.sports_stat_basketball_loss3 = Frame(self.sports_stat_basketball_losses, bg="White", width=100, height=27)
+        self.sports_stat_basketball_loss3.pack_propagate(False)
+        self.sports_stat_basketball_loss3.pack()
+        
+        self.sports_stat_basketball_losslabel3 = Label(self.sports_stat_basketball_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_losslabel3.pack()        
+        
+        self.sports_stat_basketball_loss4 = Frame(self.sports_stat_basketball_losses, bg="White", width=100, height=27)
+        self.sports_stat_basketball_loss4.pack_propagate(False)
+        self.sports_stat_basketball_loss4.pack()
+        
+        self.sports_stat_basketball_losslabel4 = Label(self.sports_stat_basketball_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_losslabel4.pack()
+        
+        # Fourth column of the box
+        
+        self.sports_stat_basketball_winlosses = Frame(self.sports_stat_basketball_box, bg="White", width=90, height=100)
+        self.sports_stat_basketball_winlosses.pack_propagate(False)
+        self.sports_stat_basketball_winlosses.grid(row=0, column=3)
+        
+        self.sports_stat_basketball_winloss1 = Frame(self.sports_stat_basketball_winlosses, bg="White", width=100, height=19)
+        self.sports_stat_basketball_winloss1.pack_propagate(False)
+        self.sports_stat_basketball_winloss1.pack()
+
+        self.sports_stat_basketball_winlosslabel = Label(self.sports_stat_basketball_winloss1, text="W/L", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_basketball_winlosslabel.pack()
+        
+        self.sports_stat_basketball_winloss2 = Frame(self.sports_stat_basketball_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_basketball_winloss2.pack_propagate(False)
+        self.sports_stat_basketball_winloss2.pack()
+        
+        self.sports_stat_basketball_winlosslabel2 = Label(self.sports_stat_basketball_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlosslabel2.pack()
+        
+        self.sports_stat_basketball_winloss3 = Frame(self.sports_stat_basketball_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_basketball_winloss3.pack_propagate(False)
+        self.sports_stat_basketball_winloss3.pack()
+        
+        self.sports_stat_basketball_winlosslabel3 = Label(self.sports_stat_basketball_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlosslabel3.pack()        
+        
+        self.sports_stat_basketball_winloss4 = Frame(self.sports_stat_basketball_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_basketball_winloss4.pack_propagate(False)
+        self.sports_stat_basketball_winloss4.pack()
+        
+        self.sports_stat_basketball_winlosslabel4 = Label(self.sports_stat_basketball_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlosslabel4.pack()
+                
+        # Hockey analytics box
+        
+        self.sports_stat_hockey_box = Frame(self.stat_page, bg="White", width=w_width - margin_length, height=100, relief=RIDGE, bd=3)
+        self.sports_stat_hockey_box.pack_propagate(False)
+        self.sports_stat_hockey_box.grid_propagate(False)
+        self.sports_stat_hockey_box.pack(pady=3)
+        
+        # First column of the box
+        
+        self.sports_stat_hockey_names = Frame(self.sports_stat_hockey_box, bg="White", width=100, height=100)
+        self.sports_stat_hockey_names.pack_propagate(False)
+        self.sports_stat_hockey_names.grid(row=0, column=0)
+        
+        self.sports_stat_hockey_name1 = Frame(self.sports_stat_hockey_names, bg="White", width=100, height=19)
+        self.sports_stat_hockey_name1.pack_propagate(False)
+        self.sports_stat_hockey_name1.pack()
+
+        self.sports_stat_hockey_namelabel = Label(self.sports_stat_hockey_name1, text="Hockey", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_hockey_namelabel.pack()
+        
+        self.sports_stat_hockey_name2 = Frame(self.sports_stat_hockey_names, bg="White", width=100, height=27)
+        self.sports_stat_hockey_name2.pack_propagate(False)
+        self.sports_stat_hockey_name2.pack()
+        
+        self.sports_stat_hockey_namelabel2 = Label(self.sports_stat_hockey_name2, text="First XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_namelabel2.pack()
+        
+        self.sports_stat_hockey_name3 = Frame(self.sports_stat_hockey_names, bg="White", width=100, height=27)
+        self.sports_stat_hockey_name3.pack_propagate(False)
+        self.sports_stat_hockey_name3.pack()
+        
+        self.sports_stat_hockey_namelabel3 = Label(self.sports_stat_hockey_name3, text="Second XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_namelabel3.pack()        
+        
+        self.sports_stat_hockey_name4 = Frame(self.sports_stat_hockey_names, bg="White", width=100, height=27)
+        self.sports_stat_hockey_name4.pack_propagate(False)
+        self.sports_stat_hockey_name4.pack()
+        
+        self.sports_stat_hockey_namelabel4 = Label(self.sports_stat_hockey_name4, text="Junior", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_namelabel4.pack()
+        
+        # Second column of the box
+        
+        self.sports_stat_hockey_wins = Frame(self.sports_stat_hockey_box, bg="White", width=90, height=100)
+        self.sports_stat_hockey_wins.pack_propagate(False)
+        self.sports_stat_hockey_wins.grid(row=0, column=1)
+        
+        self.sports_stat_hockey_win1 = Frame(self.sports_stat_hockey_wins, bg="White", width=100, height=19)
+        self.sports_stat_hockey_win1.pack_propagate(False)
+        self.sports_stat_hockey_win1.pack()
+
+        self.sports_stat_hockey_winlabel = Label(self.sports_stat_hockey_win1, text="Wins", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_hockey_winlabel.pack()
+        
+        self.sports_stat_hockey_win2 = Frame(self.sports_stat_hockey_wins, bg="White", width=100, height=27)
+        self.sports_stat_hockey_win2.pack_propagate(False)
+        self.sports_stat_hockey_win2.pack()
+        
+        self.sports_stat_hockey_winlabel2 = Label(self.sports_stat_hockey_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlabel2.pack()
+        
+        self.sports_stat_hockey_win3 = Frame(self.sports_stat_hockey_wins, bg="White", width=100, height=27)
+        self.sports_stat_hockey_win3.pack_propagate(False)
+        self.sports_stat_hockey_win3.pack()
+        
+        self.sports_stat_hockey_winlabel3 = Label(self.sports_stat_hockey_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlabel3.pack()        
+        
+        self.sports_stat_hockey_win4 = Frame(self.sports_stat_hockey_wins, bg="White", width=100, height=27)
+        self.sports_stat_hockey_win4.pack_propagate(False)
+        self.sports_stat_hockey_win4.pack()
+        
+        self.sports_stat_hockey_winlabel4 = Label(self.sports_stat_hockey_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlabel4.pack()
+
+        # Third column of the box
+
+        self.sports_stat_hockey_losses = Frame(self.sports_stat_hockey_box, bg="White", width=90, height=100)
+        self.sports_stat_hockey_losses.pack_propagate(False)
+        self.sports_stat_hockey_losses.grid(row=0, column=2)
+        
+        self.sports_stat_hockey_loss1 = Frame(self.sports_stat_hockey_losses, bg="White", width=100, height=19)
+        self.sports_stat_hockey_loss1.pack_propagate(False)
+        self.sports_stat_hockey_loss1.pack()
+
+        self.sports_stat_hockey_losslabel = Label(self.sports_stat_hockey_loss1, text="Losses", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_hockey_losslabel.pack()
+        
+        self.sports_stat_hockey_loss2 = Frame(self.sports_stat_hockey_losses, bg="White", width=100, height=27)
+        self.sports_stat_hockey_loss2.pack_propagate(False)
+        self.sports_stat_hockey_loss2.pack()
+        
+        self.sports_stat_hockey_losslabel2 = Label(self.sports_stat_hockey_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_losslabel2.pack()
+        
+        self.sports_stat_hockey_loss3 = Frame(self.sports_stat_hockey_losses, bg="White", width=100, height=27)
+        self.sports_stat_hockey_loss3.pack_propagate(False)
+        self.sports_stat_hockey_loss3.pack()
+        
+        self.sports_stat_hockey_losslabel3 = Label(self.sports_stat_hockey_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_losslabel3.pack()        
+        
+        self.sports_stat_hockey_loss4 = Frame(self.sports_stat_hockey_losses, bg="White", width=100, height=27)
+        self.sports_stat_hockey_loss4.pack_propagate(False)
+        self.sports_stat_hockey_loss4.pack()
+        
+        self.sports_stat_hockey_losslabel4 = Label(self.sports_stat_hockey_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_losslabel4.pack()
+        
+        # Fourth column of the box
+        
+        self.sports_stat_hockey_winlosses = Frame(self.sports_stat_hockey_box, bg="White", width=90, height=100)
+        self.sports_stat_hockey_winlosses.pack_propagate(False)
+        self.sports_stat_hockey_winlosses.grid(row=0, column=3)
+        
+        self.sports_stat_hockey_winloss1 = Frame(self.sports_stat_hockey_winlosses, bg="White", width=100, height=19)
+        self.sports_stat_hockey_winloss1.pack_propagate(False)
+        self.sports_stat_hockey_winloss1.pack()
+
+        self.sports_stat_hockey_winlosslabel = Label(self.sports_stat_hockey_winloss1, text="W/L", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_hockey_winlosslabel.pack()
+        
+        self.sports_stat_hockey_winloss2 = Frame(self.sports_stat_hockey_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_hockey_winloss2.pack_propagate(False)
+        self.sports_stat_hockey_winloss2.pack()
+        
+        self.sports_stat_hockey_winlosslabel2 = Label(self.sports_stat_hockey_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlosslabel2.pack()
+        
+        self.sports_stat_hockey_winloss3 = Frame(self.sports_stat_hockey_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_hockey_winloss3.pack_propagate(False)
+        self.sports_stat_hockey_winloss3.pack()
+        
+        self.sports_stat_hockey_winlosslabel3 = Label(self.sports_stat_hockey_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlosslabel3.pack()        
+        
+        self.sports_stat_hockey_winloss4 = Frame(self.sports_stat_hockey_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_hockey_winloss4.pack_propagate(False)
+        self.sports_stat_hockey_winloss4.pack()
+        
+        self.sports_stat_hockey_winlosslabel4 = Label(self.sports_stat_hockey_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlosslabel4.pack()
+                
+        # Cricket analytics box
+        
+        self.sports_stat_cricket_box = Frame(self.stat_page, bg="White", width=w_width - margin_length, height=100, relief=RIDGE, bd=3)
+        self.sports_stat_cricket_box.pack_propagate(False)
+        self.sports_stat_cricket_box.grid_propagate(False)
+        self.sports_stat_cricket_box.pack(pady=3)   
+                
+        # First column of the box
+        
+        self.sports_stat_cricket_names = Frame(self.sports_stat_cricket_box, bg="White", width=100, height=100)
+        self.sports_stat_cricket_names.pack_propagate(False)
+        self.sports_stat_cricket_names.grid(row=0, column=0)
+        
+        self.sports_stat_cricket_name1 = Frame(self.sports_stat_cricket_names, bg="White", width=100, height=19)
+        self.sports_stat_cricket_name1.pack_propagate(False)
+        self.sports_stat_cricket_name1.pack()
+
+        self.sports_stat_cricket_namelabel = Label(self.sports_stat_cricket_name1, text="Cricket", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_cricket_namelabel.pack()
+        
+        self.sports_stat_cricket_name2 = Frame(self.sports_stat_cricket_names, bg="White", width=100, height=27)
+        self.sports_stat_cricket_name2.pack_propagate(False)
+        self.sports_stat_cricket_name2.pack()
+        
+        self.sports_stat_cricket_namelabel2 = Label(self.sports_stat_cricket_name2, text="First XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_namelabel2.pack()
+        
+        self.sports_stat_cricket_name3 = Frame(self.sports_stat_cricket_names, bg="White", width=100, height=27)
+        self.sports_stat_cricket_name3.pack_propagate(False)
+        self.sports_stat_cricket_name3.pack()
+        
+        self.sports_stat_cricket_namelabel3 = Label(self.sports_stat_cricket_name3, text="Second XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_namelabel3.pack()        
+        
+        self.sports_stat_cricket_name4 = Frame(self.sports_stat_cricket_names, bg="White", width=100, height=27)
+        self.sports_stat_cricket_name4.pack_propagate(False)
+        self.sports_stat_cricket_name4.pack()
+        
+        self.sports_stat_cricket_namelabel4 = Label(self.sports_stat_cricket_name4, text="Junior", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_namelabel4.pack()
+        
+        # Second column of the box
+        
+        self.sports_stat_cricket_wins = Frame(self.sports_stat_cricket_box, bg="White", width=90, height=100)
+        self.sports_stat_cricket_wins.pack_propagate(False)
+        self.sports_stat_cricket_wins.grid(row=0, column=1)
+        
+        self.sports_stat_cricket_win1 = Frame(self.sports_stat_cricket_wins, bg="White", width=100, height=19)
+        self.sports_stat_cricket_win1.pack_propagate(False)
+        self.sports_stat_cricket_win1.pack()
+
+        self.sports_stat_cricket_winlabel = Label(self.sports_stat_cricket_win1, text="Wins", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_cricket_winlabel.pack()
+        
+        self.sports_stat_cricket_win2 = Frame(self.sports_stat_cricket_wins, bg="White", width=100, height=27)
+        self.sports_stat_cricket_win2.pack_propagate(False)
+        self.sports_stat_cricket_win2.pack()
+        
+        self.sports_stat_cricket_winlabel2 = Label(self.sports_stat_cricket_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_winlabel2.pack()
+        
+        self.sports_stat_cricket_win3 = Frame(self.sports_stat_cricket_wins, bg="White", width=100, height=27)
+        self.sports_stat_cricket_win3.pack_propagate(False)
+        self.sports_stat_cricket_win3.pack()
+        
+        self.sports_stat_cricket_winlabel3 = Label(self.sports_stat_cricket_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_winlabel3.pack()        
+        
+        self.sports_stat_cricket_win4 = Frame(self.sports_stat_cricket_wins, bg="White", width=100, height=27)
+        self.sports_stat_cricket_win4.pack_propagate(False)
+        self.sports_stat_cricket_win4.pack()
+        
+        self.sports_stat_cricket_winlabel4 = Label(self.sports_stat_cricket_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_winlabel4.pack()
+
+        # Third column of the box
+
+        self.sports_stat_cricket_losses = Frame(self.sports_stat_cricket_box, bg="White", width=90, height=100)
+        self.sports_stat_cricket_losses.pack_propagate(False)
+        self.sports_stat_cricket_losses.grid(row=0, column=2)
+        
+        self.sports_stat_cricket_loss1 = Frame(self.sports_stat_cricket_losses, bg="White", width=100, height=19)
+        self.sports_stat_cricket_loss1.pack_propagate(False)
+        self.sports_stat_cricket_loss1.pack()
+
+        self.sports_stat_cricket_losslabel = Label(self.sports_stat_cricket_loss1, text="Losses", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_cricket_losslabel.pack()
+        
+        self.sports_stat_cricket_loss2 = Frame(self.sports_stat_cricket_losses, bg="White", width=100, height=27)
+        self.sports_stat_cricket_loss2.pack_propagate(False)
+        self.sports_stat_cricket_loss2.pack()
+        
+        self.sports_stat_cricket_losslabel2 = Label(self.sports_stat_cricket_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_losslabel2.pack()
+        
+        self.sports_stat_cricket_loss3 = Frame(self.sports_stat_cricket_losses, bg="White", width=100, height=27)
+        self.sports_stat_cricket_loss3.pack_propagate(False)
+        self.sports_stat_cricket_loss3.pack()
+        
+        self.sports_stat_cricket_losslabel3 = Label(self.sports_stat_cricket_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_losslabel3.pack()        
+        
+        self.sports_stat_cricket_loss4 = Frame(self.sports_stat_cricket_losses, bg="White", width=100, height=27)
+        self.sports_stat_cricket_loss4.pack_propagate(False)
+        self.sports_stat_cricket_loss4.pack()
+        
+        self.sports_stat_cricket_losslabel4 = Label(self.sports_stat_cricket_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_losslabel4.pack()
+        
+        # Fourth column of the box
+        
+        self.sports_stat_cricket_winlosses = Frame(self.sports_stat_cricket_box, bg="White", width=90, height=100)
+        self.sports_stat_cricket_winlosses.pack_propagate(False)
+        self.sports_stat_cricket_winlosses.grid(row=0, column=3)
+        
+        self.sports_stat_cricket_winloss1 = Frame(self.sports_stat_cricket_winlosses, bg="White", width=100, height=19)
+        self.sports_stat_cricket_winloss1.pack_propagate(False)
+        self.sports_stat_cricket_winloss1.pack()
+
+        self.sports_stat_cricket_winlosslabel = Label(self.sports_stat_cricket_winloss1, text="W/L", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_cricket_winlosslabel.pack()
+        
+        self.sports_stat_cricket_winloss2 = Frame(self.sports_stat_cricket_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_cricket_winloss2.pack_propagate(False)
+        self.sports_stat_cricket_winloss2.pack()
+        
+        self.sports_stat_cricket_winlosslabel2 = Label(self.sports_stat_cricket_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_winlosslabel2.pack()
+        
+        self.sports_stat_cricket_winloss3 = Frame(self.sports_stat_cricket_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_cricket_winloss3.pack_propagate(False)
+        self.sports_stat_cricket_winloss3.pack()
+        
+        self.sports_stat_cricket_winlosslabel3 = Label(self.sports_stat_cricket_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_winlosslabel3.pack()        
+        
+        self.sports_stat_cricket_winloss4 = Frame(self.sports_stat_cricket_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_cricket_winloss4.pack_propagate(False)
+        self.sports_stat_cricket_winloss4.pack()
+        
+        self.sports_stat_cricket_winlosslabel4 = Label(self.sports_stat_cricket_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_cricket_winlosslabel4.pack()
+        
+        # Rugby analytics box
+        
+        self.sports_stat_rugby_box = Frame(self.stat_page, bg="White", width=w_width - margin_length, height=100, relief=RIDGE, bd=3)
+        self.sports_stat_rugby_box.pack_propagate(False)
+        self.sports_stat_rugby_box.grid_propagate(False)
+        self.sports_stat_rugby_box.pack(pady=3)
+        
+        # First column of the box
+        
+        self.sports_stat_rugby_names = Frame(self.sports_stat_rugby_box, bg="White", width=100, height=100)
+        self.sports_stat_rugby_names.pack_propagate(False)
+        self.sports_stat_rugby_names.grid(row=0, column=0)
+        
+        self.sports_stat_rugby_name1 = Frame(self.sports_stat_rugby_names, bg="White", width=100, height=19)
+        self.sports_stat_rugby_name1.pack_propagate(False)
+        self.sports_stat_rugby_name1.pack()
+
+        self.sports_stat_rugby_namelabel = Label(self.sports_stat_rugby_name1, text="Rugby", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_rugby_namelabel.pack()
+        
+        self.sports_stat_rugby_name2 = Frame(self.sports_stat_rugby_names, bg="White", width=100, height=27)
+        self.sports_stat_rugby_name2.pack_propagate(False)
+        self.sports_stat_rugby_name2.pack()
+        
+        self.sports_stat_rugby_namelabel2 = Label(self.sports_stat_rugby_name2, text="First XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_namelabel2.pack()
+        
+        self.sports_stat_rugby_name3 = Frame(self.sports_stat_rugby_names, bg="White", width=100, height=27)
+        self.sports_stat_rugby_name3.pack_propagate(False)
+        self.sports_stat_rugby_name3.pack()
+        
+        self.sports_stat_rugby_namelabel3 = Label(self.sports_stat_rugby_name3, text="Second XI", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_namelabel3.pack()        
+        
+        self.sports_stat_rugby_name4 = Frame(self.sports_stat_rugby_names, bg="White", width=100, height=27)
+        self.sports_stat_rugby_name4.pack_propagate(False)
+        self.sports_stat_rugby_name4.pack()
+        
+        self.sports_stat_rugby_namelabel4 = Label(self.sports_stat_rugby_name4, text="Junior", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_namelabel4.pack()
+        
+        # Second column of the box
+        
+        self.sports_stat_rugby_wins = Frame(self.sports_stat_rugby_box, bg="White", width=90, height=100)
+        self.sports_stat_rugby_wins.pack_propagate(False)
+        self.sports_stat_rugby_wins.grid(row=0, column=1)
+        
+        self.sports_stat_rugby_win1 = Frame(self.sports_stat_rugby_wins, bg="White", width=100, height=19)
+        self.sports_stat_rugby_win1.pack_propagate(False)
+        self.sports_stat_rugby_win1.pack()
+
+        self.sports_stat_rugby_winlabel = Label(self.sports_stat_rugby_win1, text="Wins", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_rugby_winlabel.pack()
+        
+        self.sports_stat_rugby_win2 = Frame(self.sports_stat_rugby_wins, bg="White", width=100, height=27)
+        self.sports_stat_rugby_win2.pack_propagate(False)
+        self.sports_stat_rugby_win2.pack()
+        
+        self.sports_stat_rugby_winlabel2 = Label(self.sports_stat_rugby_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlabel2.pack()
+        
+        self.sports_stat_rugby_win3 = Frame(self.sports_stat_rugby_wins, bg="White", width=100, height=27)
+        self.sports_stat_rugby_win3.pack_propagate(False)
+        self.sports_stat_rugby_win3.pack()
+        
+        self.sports_stat_rugby_winlabel3 = Label(self.sports_stat_rugby_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlabel3.pack()        
+        
+        self.sports_stat_rugby_win4 = Frame(self.sports_stat_rugby_wins, bg="White", width=100, height=27)
+        self.sports_stat_rugby_win4.pack_propagate(False)
+        self.sports_stat_rugby_win4.pack()
+        
+        self.sports_stat_rugby_winlabel4 = Label(self.sports_stat_rugby_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlabel4.pack()
+
+        # Third column of the box
+
+        self.sports_stat_rugby_losses = Frame(self.sports_stat_rugby_box, bg="White", width=90, height=100)
+        self.sports_stat_rugby_losses.pack_propagate(False)
+        self.sports_stat_rugby_losses.grid(row=0, column=2)
+        
+        self.sports_stat_rugby_loss1 = Frame(self.sports_stat_rugby_losses, bg="White", width=100, height=19)
+        self.sports_stat_rugby_loss1.pack_propagate(False)
+        self.sports_stat_rugby_loss1.pack()
+
+        self.sports_stat_rugby_losslabel = Label(self.sports_stat_rugby_loss1, text="Losses", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_rugby_losslabel.pack()
+        
+        self.sports_stat_rugby_loss2 = Frame(self.sports_stat_rugby_losses, bg="White", width=100, height=27)
+        self.sports_stat_rugby_loss2.pack_propagate(False)
+        self.sports_stat_rugby_loss2.pack()
+        
+        self.sports_stat_rugby_losslabel2 = Label(self.sports_stat_rugby_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_losslabel2.pack()
+        
+        self.sports_stat_rugby_loss3 = Frame(self.sports_stat_rugby_losses, bg="White", width=100, height=27)
+        self.sports_stat_rugby_loss3.pack_propagate(False)
+        self.sports_stat_rugby_loss3.pack()
+        
+        self.sports_stat_rugby_losslabel3 = Label(self.sports_stat_rugby_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_losslabel3.pack()        
+        
+        self.sports_stat_rugby_loss4 = Frame(self.sports_stat_rugby_losses, bg="White", width=100, height=27)
+        self.sports_stat_rugby_loss4.pack_propagate(False)
+        self.sports_stat_rugby_loss4.pack()
+        
+        self.sports_stat_rugby_losslabel4 = Label(self.sports_stat_rugby_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_losslabel4.pack()
+        
+        # Fourth column of the box
+        
+        self.sports_stat_rugby_winlosses = Frame(self.sports_stat_rugby_box, bg="White", width=90, height=100)
+        self.sports_stat_rugby_winlosses.pack_propagate(False)
+        self.sports_stat_rugby_winlosses.grid(row=0, column=3)
+        
+        self.sports_stat_rugby_winloss1 = Frame(self.sports_stat_rugby_winlosses, bg="White", width=100, height=19)
+        self.sports_stat_rugby_winloss1.pack_propagate(False)
+        self.sports_stat_rugby_winloss1.pack()
+
+        self.sports_stat_rugby_winlosslabel = Label(self.sports_stat_rugby_winloss1, text="W/L", bg="White", font=("Helvetica", 12), width=10, height=2)
+        self.sports_stat_rugby_winlosslabel.pack()
+        
+        self.sports_stat_rugby_winloss2 = Frame(self.sports_stat_rugby_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_rugby_winloss2.pack_propagate(False)
+        self.sports_stat_rugby_winloss2.pack()
+        
+        self.sports_stat_rugby_winlosslabel2 = Label(self.sports_stat_rugby_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlosslabel2.pack()
+        
+        self.sports_stat_rugby_winloss3 = Frame(self.sports_stat_rugby_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_rugby_winloss3.pack_propagate(False)
+        self.sports_stat_rugby_winloss3.pack()
+        
+        self.sports_stat_rugby_winlosslabel3 = Label(self.sports_stat_rugby_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlosslabel3.pack()        
+        
+        self.sports_stat_rugby_winloss4 = Frame(self.sports_stat_rugby_winlosses, bg="White", width=100, height=27)
+        self.sports_stat_rugby_winloss4.pack_propagate(False)
+        self.sports_stat_rugby_winloss4.pack()
+        
+        self.sports_stat_rugby_winlosslabel4 = Label(self.sports_stat_rugby_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlosslabel4.pack()        
+        
+        
+        
+        
         
         # Navigation bar frame ---------------------------
 
@@ -1508,17 +2224,26 @@ class App():
 
         # Placing buttons on nav bar
         
-        self.nav_space = Frame(self.navigation_bar, bg="#FC6736", width=21, height=150)
-        self.nav_space.pack(side=LEFT)
+        self.nav_space_one = Frame(self.navigation_bar, bg="#FC6736", width=133, height=150)
+        self.nav_space_one.pack_propagate(False)
+        self.nav_space_one.pack(side=LEFT)
         
-        self.home_button = Button(self.navigation_bar, text="Home", bg="White", width=7, height=10, command=self.go_to_home)
-        self.home_button.pack(side=LEFT, padx=30, pady=60)
+        self.nav_space_two = Frame(self.navigation_bar, bg="#FC6736", width=134, height=150)
+        self.nav_space_two.pack_propagate(False)
+        self.nav_space_two.pack(side=LEFT)
+       
+        self.nav_space_three = Frame(self.navigation_bar, bg="#FC6736", width=133, height=150)
+        self.nav_space_three.pack_propagate(False)
+        self.nav_space_three.pack(side=LEFT)
+        
+        self.home_button = Button(self.nav_space_one, text="Home", bg="White", width=6, height=3, command=self.go_to_home)
+        self.home_button.pack(pady=40)
 
-        self.info_button = Button(self.navigation_bar, text="Info", bg="White", width=7, height=10, command=self.go_to_info)
-        self.info_button.pack(side=LEFT, padx=30, pady=60)
+        self.info_button = Button(self.nav_space_two, text="Info", bg="White", width=6, height=3, command=self.go_to_info)
+        self.info_button.pack(pady=40)
 
-        self.stat_button = Button(self.navigation_bar, text="Stat", bg="White", width=7, height=10, command=self.go_to_stat)
-        self.stat_button.pack(side=LEFT, padx=30, pady=60)
+        self.stat_button = Button(self.nav_space_three, text="Stat", bg="White", width=6, height=3, command=self.go_to_stat)
+        self.stat_button.pack(pady=40)
         
         
 
