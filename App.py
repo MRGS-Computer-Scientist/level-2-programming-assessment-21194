@@ -36,6 +36,26 @@ class App():
         self.upcoming_weekday = StringVar()
         self.upcoming_time = StringVar()
         
+        self.opposing_firstxi_team = StringVar()
+        self.opposing_secondxi_team = StringVar()
+        self.opposing_junior_team = StringVar()
+        
+        self.our_firstxi_score = IntVar()
+        self.our_secondxi_score = IntVar()
+        self.our_junior_score = IntVar()
+        
+        self.their_firstxi_score = IntVar()
+        self.their_secondxi_score = IntVar()
+        self.their_junior_score = IntVar()
+        
+        self.firstxi_wins = IntVar()
+        self.secondxi_wins = IntVar()
+        self.junior_wins = IntVar()
+        
+        self.firstxi_losses = IntVar()
+        self.secondxi_losses = IntVar()
+        self.junior_losses = IntVar()
+        
         self.sports = ['Football', 'Basketball', 'Hockey', 'Rugby']
         self.teams = ['First XI Boys', 'First XI Girls', 'Second XI Boys', 'Second XI Girls', 'Junior Boys', 'Junior Girls']
         self.weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -126,69 +146,61 @@ class App():
         self.upcoming_sched_top.pack_propagate(False)
         self.upcoming_sched_top.pack()
   
-        self.upcoming_sched_title = Label(self.upcoming_sched_top, text="Schedule a match for next week", font=("Helvetica", 18, "bold"))
+        self.upcoming_sched_title = Label(self.upcoming_sched_top, bg="White", text="Schedule a match for next week", font=("Helvetica", 18, "bold"))
         self.upcoming_sched_title.pack()
         
-        self.upcoming_sched_disclaimer = Label(self.upcoming_sched_top, text="You may only schedule one match per sport", font=("Helvetica", 14))
+        self.upcoming_sched_disclaimer = Label(self.upcoming_sched_top, bg="White", text="You may only schedule one match per sport", font=("Helvetica", 14))
         self.upcoming_sched_disclaimer.pack()
         
-        self.upcoming_sport_label = Label(self.upcoming_sched_top, text="Sport")
+        self.upcoming_sched_holder = Frame(self.upcoming_sched_top, bg="White", width=360, height=500, relief=RIDGE, bd=3)
+        self.upcoming_sched_holder.pack_propagate(False)
+        self.upcoming_sched_holder.pack(pady=15)
+                
+        self.upcoming_sport_label = Label(self.upcoming_sched_holder, bg="White",  text="Sport", font=("Helvetica", 11))
         self.upcoming_sport_label.pack(pady=5)
         
-        self.upcoming_sport_entry = ttk.Combobox(self.upcoming_sched_top, values=self.sports)
+        self.upcoming_sport_entry = ttk.Combobox(self.upcoming_sched_holder, values=self.sports)
         self.upcoming_sport_entry.pack()
         
-        self.upcoming_team_label = Label(self.upcoming_sched_top, text="Team")
+        self.upcoming_team_label = Label(self.upcoming_sched_holder, bg="White",  text="Team", font=("Helvetica", 11))
         self.upcoming_team_label.pack(pady=5)
         
-        self.upcoming_team_entry = ttk.Combobox(self.upcoming_sched_top, values=self.teams)
+        self.upcoming_team_entry = ttk.Combobox(self.upcoming_sched_holder, values=self.teams)
         self.upcoming_team_entry.pack()    
         
-        self.upcoming_weekday_label = Label(self.upcoming_sched_top, text="What day next week will the game be? (e.g. Monday)")
+        self.upcoming_weekday_label = Label(self.upcoming_sched_holder, bg="White",  text="What day next week will the game be? (e.g. Monday)", font=("Helvetica", 11))
         self.upcoming_weekday_label.pack(pady=5)
         
-        self.upcoming_weekday_entry = ttk.Combobox(self.upcoming_sched_top, values=self.weekdays)
+        self.upcoming_weekday_entry = ttk.Combobox(self.upcoming_sched_holder, values=self.weekdays)
         self.upcoming_weekday_entry.pack()
         
-        self.upcoming_time_label = Label(self.upcoming_sched_top, text="What time on this day will the game be?")
+        self.upcoming_time_label = Label(self.upcoming_sched_holder, bg="White",  text="What time on this day will the game be?", font=("Helvetica", 11))
         self.upcoming_time_label.pack(pady=5)
         
-        self.upcoming_time_label2 = Label(self.upcoming_sched_top, text="Hour of the day")
+        self.upcoming_time_label2 = Label(self.upcoming_sched_holder, bg="White",  text="Hour of the day", font=("Helvetica", 11))
         self.upcoming_time_label2.pack()
         
-        self.upcoming_time_hours = ttk.Combobox(self.upcoming_sched_top, values=self.hours)
+        self.upcoming_time_hours = ttk.Combobox(self.upcoming_sched_holder, values=self.hours)
         self.upcoming_time_hours.pack()
         
-        self.upcoming_time_label3 = Label(self.upcoming_sched_top, text="Minute of the hour")
+        self.upcoming_time_label3 = Label(self.upcoming_sched_holder, bg="White",  text="Minute of the hour", font=("Helvetica", 11))
         self.upcoming_time_label3.pack()
         
-        self.upcoming_time_minutes = ttk.Combobox(self.upcoming_sched_top, values=self.minutes)
+        self.upcoming_time_minutes = ttk.Combobox(self.upcoming_sched_holder, values=self.minutes)
         self.upcoming_time_minutes.pack()
         
-        
-                               
-        self.sport_label = Label(self.upcoming_sched_top, text="", font=("Helvetica", 14), bg="#FC6736")
-        self.sport_label.pack(side=LEFT, padx=5)
-        
-        self.day_label = Label(self.upcoming_sched_top, text="", font=("Helvetica", 14), bg="#FC6736")
-        self.day_label.pack(side=LEFT, padx=5)
-        
-        self.time_label = Label(self.upcoming_sched_top, text="", font=("Helvetica", 14), bg="#FC6736")
-        self.time_label.pack(side=LEFT, padx=5)
-        
-
-        
-        # Display the entries
+        self.upcoming_sched_disclaimer2 = Label(self.upcoming_sched_holder, bg="White", text="Re-enter data into boxes if a mistake is made", font=("Helvetica", 12))
+        self.upcoming_sched_disclaimer2.pack(pady=60)
         
         self.upcoming_sched_bottom = Frame(self.upcoming_sched_page, background="#FC6736", width=w_width, height=200)
         self.upcoming_sched_bottom.pack_propagate(False)
         self.upcoming_sched_bottom.pack()
         
-        self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", bg="White", font=self.button_font, command=self.change_upcoming_labels)
-        self.upcoming_data_confirm.pack(side=RIGHT, padx=5)
+        self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", width=6, bg="White", font=self.button_font, command=self.change_upcoming_labels)
+        self.upcoming_data_confirm.pack(side=RIGHT, padx=45)
         
-        self.upcoming_data_cancel = Button(self.upcoming_sched_bottom, text="Cancel", bg="White", font=self.button_font, command=self.cancel_sched)
-        self.upcoming_data_cancel.pack(side=LEFT, padx=5)
+        self.upcoming_data_cancel = Button(self.upcoming_sched_bottom, text="Cancel", width=6, bg="White", font=self.button_font, command=self.cancel_sched)
+        self.upcoming_data_cancel.pack(side=LEFT, padx=45)
         
         # Result entering page
         
@@ -199,17 +211,212 @@ class App():
         self.result_enter_top.pack_propagate(False)
         self.result_enter_top.pack()
         
-        self.result_enter_test = Label(self.result_enter_top, text="Hello this is results cuzzie")
-        self.result_enter_test.pack()
-    
-    
+        self.result_enter_title = Label(self.result_enter_top, bg="White", text="Enter the latest results", font=("Helvetica", 18, "bold"))
+        self.result_enter_title.pack()
         
+        self.result_enter_disclaimer = Label(self.result_enter_top, bg="White", text="You may only enter one result per team", font=("Helvetica", 14))
+        self.result_enter_disclaimer.pack()
+        
+        self.result_enter_holder = Frame(self.result_enter_top, bg="White", width=360, height=500, relief=RIDGE, bd=3)
+        self.result_enter_holder.pack_propagate(False)
+        self.result_enter_holder.pack(pady=15)
+        
+        # Sport chooser
+                        
+        self.result_sport_label = Label(self.result_enter_holder, bg="White",  text="Sport", font=("Helvetica", 11))
+        self.result_sport_label.pack(pady=5)
+        
+        self.result_sport_entry = ttk.Combobox(self.result_enter_holder, values=self.sports)
+        self.result_sport_entry.pack()  
+        
+        # Opposing team layout
+        
+        self.result_opposing_label = Label(self.result_enter_holder, bg="White",  text="What team did MRGS play against? (e.g. MAGS)", font=("Helvetica", 11))
+        self.result_opposing_label.pack(pady=5)
+        
+        self.result_space_holder = Frame(self.result_enter_holder, bg="White", width=360, height=60)
+        self.result_space_holder.pack_propagate(False)
+        self.result_space_holder.pack()
+        
+        self.result_enter_firstxi_holder = Frame(self.result_space_holder, bg="White", width=120, height=60)
+        self.result_enter_firstxi_holder.pack_propagate(False)
+        self.result_enter_firstxi_holder.pack(side=LEFT)
+        
+        self.result_enter_secondxi_holder = Frame(self.result_space_holder, bg="White", width=120, height=60)
+        self.result_enter_secondxi_holder.pack_propagate(False)
+        self.result_enter_secondxi_holder.pack(side=LEFT)
+        
+        self.result_enter_junior_holder = Frame(self.result_space_holder, bg="White", width=120, height=60)
+        self.result_enter_junior_holder.pack_propagate(False)
+        self.result_enter_junior_holder.pack(side=LEFT)
+        
+        self.result_firstxi_label = Label(self.result_enter_firstxi_holder, bg="White",  text="First XI", font=("Helvetica", 11))
+        self.result_firstxi_label.pack()
+        
+        self.result_secondxi_label = Label(self.result_enter_secondxi_holder, bg="White",  text="Second XI", font=("Helvetica", 11))
+        self.result_secondxi_label.pack()
+        
+        self.result_junior_label = Label(self.result_enter_junior_holder, bg="White",  text="Junior", font=("Helvetica", 11))
+        self.result_junior_label.pack()        
+        
+        # Opposing team entries
+        
+        self.result_opposing_entry = Entry(self.result_enter_firstxi_holder, textvariable=self.opposing_firstxi_team)
+        self.result_opposing_entry.pack()
+        
+        self.result_opposing_entry2 = Entry(self.result_enter_secondxi_holder, textvariable=self.opposing_secondxi_team)
+        self.result_opposing_entry2.pack()
+        
+        self.result_opposing_entry3 = Entry(self.result_enter_junior_holder, textvariable=self.opposing_junior_team)
+        self.result_opposing_entry3.pack()
+           
+        # MRGS score
+        
+        self.result_score_label = Label(self.result_enter_holder, bg="White",  text="What was the match score?", font=("Helvetica", 11))
+        self.result_score_label.pack(pady=15)
+
+        self.result_score_label2 = Label(self.result_enter_holder, bg="White",  text="MRGS Score", font=("Helvetica", 11))
+        self.result_score_label2.pack()
+        
+        self.result_space_holder2 = Frame(self.result_enter_holder, bg="White", width=360, height=30)
+        self.result_space_holder2.pack_propagate(False)
+        self.result_space_holder2.pack()
+        
+        self.result_enter_firstxi_holder2 = Frame(self.result_space_holder2, bg="White", width=120, height=30)
+        self.result_enter_firstxi_holder2.pack_propagate(False)
+        self.result_enter_firstxi_holder2.pack(side=LEFT)
+        
+        self.result_enter_secondxi_holder2 = Frame(self.result_space_holder2, bg="White", width=120, height=30)
+        self.result_enter_secondxi_holder2.pack_propagate(False)
+        self.result_enter_secondxi_holder2.pack(side=LEFT)
+        
+        self.result_enter_junior_holder2 = Frame(self.result_space_holder2, bg="White", width=120, height=30)
+        self.result_enter_junior_holder2.pack_propagate(False)
+        self.result_enter_junior_holder2.pack(side=LEFT)
+        
+        # MRGS score entries
+        
+        self.result_mrgs_score = Entry(self.result_enter_firstxi_holder2, textvariable=self.our_firstxi_score)
+        self.result_mrgs_score.pack()
+        
+        self.result_mrgs_score2 = Entry(self.result_enter_secondxi_holder2, textvariable=self.our_secondxi_score)
+        self.result_mrgs_score2.pack()
+        
+        self.result_mrgs_score3 = Entry(self.result_enter_junior_holder2, textvariable=self.our_junior_score)
+        self.result_mrgs_score3.pack()
+        
+        # Opposing score
+        
+        self.result_score_label3 = Label(self.result_enter_holder, bg="White",  text="Opposing score", font=("Helvetica", 11))
+        self.result_score_label3.pack()
+        
+        self.result_space_holder3 = Frame(self.result_enter_holder, bg="White", width=360, height=30)
+        self.result_space_holder3.pack_propagate(False)
+        self.result_space_holder3.pack()
+        
+        self.result_enter_firstxi_holder3 = Frame(self.result_space_holder3, bg="White", width=120, height=30)
+        self.result_enter_firstxi_holder3.pack_propagate(False)
+        self.result_enter_firstxi_holder3.pack(side=LEFT)
+        
+        self.result_enter_secondxi_holder3 = Frame(self.result_space_holder3, bg="White", width=120, height=30)
+        self.result_enter_secondxi_holder3.pack_propagate(False)
+        self.result_enter_secondxi_holder3.pack(side=LEFT)
+        
+        self.result_enter_junior_holder3 = Frame(self.result_space_holder3, bg="White", width=120, height=30)
+        self.result_enter_junior_holder3.pack_propagate(False)
+        self.result_enter_junior_holder3.pack(side=LEFT)
+        
+        # Opposing score entries
+        
+        self.result_opposing_score = Entry(self.result_enter_firstxi_holder3, textvariable=self.their_firstxi_score)
+        self.result_opposing_score.pack()
+        
+        self.result_opposing_score2 = Entry(self.result_enter_secondxi_holder3, textvariable=self.their_secondxi_score)
+        self.result_opposing_score2.pack()
+        
+        self.result_opposing_score3 = Entry(self.result_enter_junior_holder3, textvariable=self.their_junior_score)
+        self.result_opposing_score3.pack()
+        
+        # Win loss record
+        
+        self.result_score_label4 = Label(self.result_enter_holder, bg="White",  text="Total Wins this season", font=("Helvetica", 11))
+        self.result_score_label4.pack()
+        
+        self.result_space_holder4 = Frame(self.result_enter_holder, bg="White", width=360, height=30)
+        self.result_space_holder4.pack_propagate(False)
+        self.result_space_holder4.pack()
+        
+        self.result_enter_firstxi_holder4 = Frame(self.result_space_holder4, bg="White", width=120, height=30)
+        self.result_enter_firstxi_holder4.pack_propagate(False)
+        self.result_enter_firstxi_holder4.pack(side=LEFT)
+        
+        self.result_enter_secondxi_holder4 = Frame(self.result_space_holder4, bg="White", width=120, height=30)
+        self.result_enter_secondxi_holder4.pack_propagate(False)
+        self.result_enter_secondxi_holder4.pack(side=LEFT)
+        
+        self.result_enter_junior_holder4 = Frame(self.result_space_holder4, bg="White", width=120, height=30)
+        self.result_enter_junior_holder4.pack_propagate(False)
+        self.result_enter_junior_holder4.pack(side=LEFT)
+        
+        # Wins entries
+        
+        self.result_wins = Entry(self.result_enter_firstxi_holder4, textvariable=self.firstxi_wins)
+        self.result_wins.pack()
+        
+        self.result_wins2 = Entry(self.result_enter_secondxi_holder4, textvariable=self.secondxi_wins)
+        self.result_wins2.pack()
+        
+        self.result_wins3 = Entry(self.result_enter_junior_holder4, textvariable=self.junior_wins)
+        self.result_wins3.pack()
+        
+        # Losses entries
+        
+        self.result_score_label5 = Label(self.result_enter_holder, bg="White",  text="Total Losses this season", font=("Helvetica", 11))
+        self.result_score_label5.pack()
+        
+        self.result_space_holder5 = Frame(self.result_enter_holder, bg="White", width=360, height=30)
+        self.result_space_holder5.pack_propagate(False)
+        self.result_space_holder5.pack()
+        
+        self.result_enter_firstxi_holder5 = Frame(self.result_space_holder5, bg="White", width=120, height=30)
+        self.result_enter_firstxi_holder5.pack_propagate(False)
+        self.result_enter_firstxi_holder5.pack(side=LEFT)
+        
+        self.result_enter_secondxi_holder5 = Frame(self.result_space_holder5, bg="White", width=120, height=30)
+        self.result_enter_secondxi_holder5.pack_propagate(False)
+        self.result_enter_secondxi_holder5.pack(side=LEFT)
+        
+        self.result_enter_junior_holder5 = Frame(self.result_space_holder5, bg="White", width=120, height=30)
+        self.result_enter_junior_holder5.pack_propagate(False)
+        self.result_enter_junior_holder5.pack(side=LEFT)
+        
+        # Wins entries
+        
+        self.result_losses = Entry(self.result_enter_firstxi_holder5, textvariable=self.firstxi_losses)
+        self.result_losses.pack()
+        
+        self.result_losses2 = Entry(self.result_enter_secondxi_holder5, textvariable=self.secondxi_losses)
+        self.result_losses2.pack()
+        
+        self.result_losses3 = Entry(self.result_enter_junior_holder5, textvariable=self.junior_losses)
+        self.result_losses3.pack()
+        
+        
+        
+        self.result_enter_disclaimer2 = Label(self.result_enter_holder, bg="White", text="Re-enter data for sport if a mistake is made", font=("Helvetica", 12))
+        self.result_enter_disclaimer2.pack(pady=20)
+    
+        # Bottom of the page
+    
         self.result_enter_bottom = Frame(self.result_enter_page, background="#FC6736", width=w_width, height=200)
         self.result_enter_bottom.pack_propagate(False)
         self.result_enter_bottom.pack()
         
-        self.result_data_cancel = Button(self.result_enter_bottom, text="Cancel", bg="White", font=self.button_font, command=self.cancel_sched)
-        self.result_data_cancel.pack(side=LEFT, padx=5)
+        self.result_data_confirm = Button(self.result_enter_bottom, text="Done", width=6, bg="White", font=self.button_font, command=self.change_result_labels)
+        self.result_data_confirm.pack(side=RIGHT, padx=45)
+        
+        self.result_data_cancel = Button(self.result_enter_bottom, text="Cancel", width=6, bg="White", font=self.button_font, command=self.cancel_sched)
+        self.result_data_cancel.pack(side=LEFT, padx=45)
         
         
         # ---------------------- STUDENT PAGES BELOW ----------------------
@@ -441,7 +648,7 @@ class App():
         self.homeresu_pageOne_L1S2.pack_propagate(False)
         self.homeresu_pageOne_L1S2.pack(side=LEFT)
         
-        self.homeresu_pageOne_L1Score1 = Label(self.homeresu_pageOne_L1S2, text="160", bg="White")
+        self.homeresu_pageOne_L1Score1 = Label(self.homeresu_pageOne_L1S2, text="0", bg="White")
         self.homeresu_pageOne_L1Score1.pack(pady=12)
         
         
@@ -449,7 +656,7 @@ class App():
         self.homeresu_pageOne_L1S4.pack_propagate(False)
         self.homeresu_pageOne_L1S4.pack(side=RIGHT)        
         
-        self.homeresu_pageOne_L1Team2 = Label(self.homeresu_pageOne_L1S4, text="First XI", bg="White")
+        self.homeresu_pageOne_L1Team2 = Label(self.homeresu_pageOne_L1S4, text="N/A", bg="White")
         self.homeresu_pageOne_L1Team2.pack(pady=12)
         
         
@@ -457,7 +664,7 @@ class App():
         self.homeresu_pageOne_L1S3.pack_propagate(False)
         self.homeresu_pageOne_L1S3.pack(side=RIGHT)
         
-        self.homeresu_pageOne_L1Score2 = Label(self.homeresu_pageOne_L1S3, text="70", bg="White")
+        self.homeresu_pageOne_L1Score2 = Label(self.homeresu_pageOne_L1S3, text="0", bg="White")
         self.homeresu_pageOne_L1Score2.pack(pady=12)
     
         # Line 2 of the latest results
@@ -480,7 +687,7 @@ class App():
         self.homeresu_pageOne_L2S2.pack_propagate(False)
         self.homeresu_pageOne_L2S2.pack(side=LEFT)
         
-        self.homeresu_pageOne_L2Score1 = Label(self.homeresu_pageOne_L2S2, text="40", bg="White")
+        self.homeresu_pageOne_L2Score1 = Label(self.homeresu_pageOne_L2S2, text="0", bg="White")
         self.homeresu_pageOne_L2Score1.pack(pady=12)
         
         
@@ -488,7 +695,7 @@ class App():
         self.homeresu_pageOne_L2S4.pack_propagate(False)
         self.homeresu_pageOne_L2S4.pack(side=RIGHT)        
         
-        self.homeresu_pageOne_L2Team2 = Label(self.homeresu_pageOne_L2S4, text="Second XI", bg="White")
+        self.homeresu_pageOne_L2Team2 = Label(self.homeresu_pageOne_L2S4, text="N/A", bg="White")
         self.homeresu_pageOne_L2Team2.pack(pady=12)
         
         
@@ -496,7 +703,7 @@ class App():
         self.homeresu_pageOne_L2S3.pack_propagate(False)
         self.homeresu_pageOne_L2S3.pack(side=RIGHT)
         
-        self.homeresu_pageOne_L2Score2 = Label(self.homeresu_pageOne_L2S3, text="2", bg="White")
+        self.homeresu_pageOne_L2Score2 = Label(self.homeresu_pageOne_L2S3, text="0", bg="White")
         self.homeresu_pageOne_L2Score2.pack(pady=12)
         
         # Line 3 of the latest results
@@ -519,7 +726,7 @@ class App():
         self.homeresu_pageOne_L3S2.pack_propagate(False)
         self.homeresu_pageOne_L3S2.pack(side=LEFT)
         
-        self.homeresu_pageOne_L3Score1 = Label(self.homeresu_pageOne_L3S2, text="23", bg="White")
+        self.homeresu_pageOne_L3Score1 = Label(self.homeresu_pageOne_L3S2, text="0", bg="White")
         self.homeresu_pageOne_L3Score1.pack(pady=12)
         
         
@@ -527,7 +734,7 @@ class App():
         self.homeresu_pageOne_L3S4.pack_propagate(False)
         self.homeresu_pageOne_L3S4.pack(side=RIGHT)        
         
-        self.homeresu_pageOne_L3Team2 = Label(self.homeresu_pageOne_L3S4, text="Junior", bg="White")
+        self.homeresu_pageOne_L3Team2 = Label(self.homeresu_pageOne_L3S4, text="N/A", bg="White")
         self.homeresu_pageOne_L3Team2.pack(pady=12)
         
         
@@ -535,7 +742,7 @@ class App():
         self.homeresu_pageOne_L3S3.pack_propagate(False)
         self.homeresu_pageOne_L3S3.pack(side=RIGHT)
         
-        self.homeresu_pageOne_L3Score2 = Label(self.homeresu_pageOne_L3S3, text="203", bg="White")
+        self.homeresu_pageOne_L3Score2 = Label(self.homeresu_pageOne_L3S3, text="0", bg="White")
         self.homeresu_pageOne_L3Score2.pack(pady=12)
         
         # Second resu page (page_number = 2), exactly the same as the first page but the numbers must change
@@ -564,7 +771,7 @@ class App():
         self.homeresu_pageTwo_L1S2.pack_propagate(False)
         self.homeresu_pageTwo_L1S2.pack(side=LEFT)
         
-        self.homeresu_pageTwo_L1Score1 = Label(self.homeresu_pageTwo_L1S2, text="472", bg="White")
+        self.homeresu_pageTwo_L1Score1 = Label(self.homeresu_pageTwo_L1S2, text="0", bg="White")
         self.homeresu_pageTwo_L1Score1.pack(pady=12)
         
         
@@ -572,7 +779,7 @@ class App():
         self.homeresu_pageTwo_L1S4.pack_propagate(False)
         self.homeresu_pageTwo_L1S4.pack(side=RIGHT)        
         
-        self.homeresu_pageTwo_L1Team2 = Label(self.homeresu_pageTwo_L1S4, text="First XI", bg="White")
+        self.homeresu_pageTwo_L1Team2 = Label(self.homeresu_pageTwo_L1S4, text="N/A", bg="White")
         self.homeresu_pageTwo_L1Team2.pack(pady=12)
         
         
@@ -580,7 +787,7 @@ class App():
         self.homeresu_pageTwo_L1S3.pack_propagate(False)
         self.homeresu_pageTwo_L1S3.pack(side=RIGHT)
         
-        self.homeresu_pageTwo_L1Score2 = Label(self.homeresu_pageTwo_L1S3, text="143", bg="White")
+        self.homeresu_pageTwo_L1Score2 = Label(self.homeresu_pageTwo_L1S3, text="0", bg="White")
         self.homeresu_pageTwo_L1Score2.pack(pady=12)
     
         # Line 2 of the latest results
@@ -603,7 +810,7 @@ class App():
         self.homeresu_pageTwo_L2S2.pack_propagate(False)
         self.homeresu_pageTwo_L2S2.pack(side=LEFT)
         
-        self.homeresu_pageTwo_L2Score1 = Label(self.homeresu_pageTwo_L2S2, text="52", bg="White")
+        self.homeresu_pageTwo_L2Score1 = Label(self.homeresu_pageTwo_L2S2, text="0", bg="White")
         self.homeresu_pageTwo_L2Score1.pack(pady=12)
         
         
@@ -611,7 +818,7 @@ class App():
         self.homeresu_pageTwo_L2S4.pack_propagate(False)
         self.homeresu_pageTwo_L2S4.pack(side=RIGHT)        
         
-        self.homeresu_pageTwo_L2Team2 = Label(self.homeresu_pageTwo_L2S4, text="U17", bg="White")
+        self.homeresu_pageTwo_L2Team2 = Label(self.homeresu_pageTwo_L2S4, text="N/A", bg="White")
         self.homeresu_pageTwo_L2Team2.pack(pady=12)
         
         
@@ -619,7 +826,7 @@ class App():
         self.homeresu_pageTwo_L2S3.pack_propagate(False)
         self.homeresu_pageTwo_L2S3.pack(side=RIGHT)
         
-        self.homeresu_pageTwo_L2Score2 = Label(self.homeresu_pageTwo_L2S3, text="214", bg="White")
+        self.homeresu_pageTwo_L2Score2 = Label(self.homeresu_pageTwo_L2S3, text="0", bg="White")
         self.homeresu_pageTwo_L2Score2.pack(pady=12)
         
         # Line 3 of the latest results
@@ -642,7 +849,7 @@ class App():
         self.homeresu_pageTwo_L3S2.pack_propagate(False)
         self.homeresu_pageTwo_L3S2.pack(side=LEFT)
         
-        self.homeresu_pageTwo_L3Score1 = Label(self.homeresu_pageTwo_L3S2, text="35", bg="White")
+        self.homeresu_pageTwo_L3Score1 = Label(self.homeresu_pageTwo_L3S2, text="0", bg="White")
         self.homeresu_pageTwo_L3Score1.pack(pady=12)
         
         
@@ -650,7 +857,7 @@ class App():
         self.homeresu_pageTwo_L3S4.pack_propagate(False)
         self.homeresu_pageTwo_L3S4.pack(side=RIGHT)        
         
-        self.homeresu_pageTwo_L3Team2 = Label(self.homeresu_pageTwo_L3S4, text="Junior", bg="White")
+        self.homeresu_pageTwo_L3Team2 = Label(self.homeresu_pageTwo_L3S4, text="N/A", bg="White")
         self.homeresu_pageTwo_L3Team2.pack(pady=12)
         
         
@@ -658,7 +865,7 @@ class App():
         self.homeresu_pageTwo_L3S3.pack_propagate(False)
         self.homeresu_pageTwo_L3S3.pack(side=RIGHT)
         
-        self.homeresu_pageTwo_L3Score2 = Label(self.homeresu_pageTwo_L3S3, text="17", bg="White")
+        self.homeresu_pageTwo_L3Score2 = Label(self.homeresu_pageTwo_L3S3, text="0", bg="White")
         self.homeresu_pageTwo_L3Score2.pack(pady=12)
         
         # Third resu page (page_number = 3)
@@ -687,7 +894,7 @@ class App():
         self.homeresu_pageThree_L1S2.pack_propagate(False)
         self.homeresu_pageThree_L1S2.pack(side=LEFT)
         
-        self.homeresu_pageThree_L1Score1 = Label(self.homeresu_pageThree_L1S2, text="12", bg="White")
+        self.homeresu_pageThree_L1Score1 = Label(self.homeresu_pageThree_L1S2, text="0", bg="White")
         self.homeresu_pageThree_L1Score1.pack(pady=12)
         
         
@@ -695,7 +902,7 @@ class App():
         self.homeresu_pageThree_L1S4.pack_propagate(False)
         self.homeresu_pageThree_L1S4.pack(side=RIGHT)        
         
-        self.homeresu_pageThree_L1Team2 = Label(self.homeresu_pageThree_L1S4, text="First XI", bg="White")
+        self.homeresu_pageThree_L1Team2 = Label(self.homeresu_pageThree_L1S4, text="N/A", bg="White")
         self.homeresu_pageThree_L1Team2.pack(pady=12)
         
         
@@ -703,7 +910,7 @@ class App():
         self.homeresu_pageThree_L1S3.pack_propagate(False)
         self.homeresu_pageThree_L1S3.pack(side=RIGHT)
         
-        self.homeresu_pageThree_L1Score2 = Label(self.homeresu_pageThree_L1S3, text="63", bg="White")
+        self.homeresu_pageThree_L1Score2 = Label(self.homeresu_pageThree_L1S3, text="0", bg="White")
         self.homeresu_pageThree_L1Score2.pack(pady=12)
     
         # Line 2 of the latest results
@@ -726,7 +933,7 @@ class App():
         self.homeresu_pageThree_L2S2.pack_propagate(False)
         self.homeresu_pageThree_L2S2.pack(side=LEFT)
         
-        self.homeresu_pageThree_L2Score1 = Label(self.homeresu_pageThree_L2S2, text="2645", bg="White")
+        self.homeresu_pageThree_L2Score1 = Label(self.homeresu_pageThree_L2S2, text="0", bg="White")
         self.homeresu_pageThree_L2Score1.pack(pady=12)
         
         
@@ -734,7 +941,7 @@ class App():
         self.homeresu_pageThree_L2S4.pack_propagate(False)
         self.homeresu_pageThree_L2S4.pack(side=RIGHT)        
         
-        self.homeresu_pageThree_L2Team2 = Label(self.homeresu_pageThree_L2S4, text="Second XI", bg="White")
+        self.homeresu_pageThree_L2Team2 = Label(self.homeresu_pageThree_L2S4, text="N/A", bg="White")
         self.homeresu_pageThree_L2Team2.pack(pady=12)
         
         
@@ -742,7 +949,7 @@ class App():
         self.homeresu_pageThree_L2S3.pack_propagate(False)
         self.homeresu_pageThree_L2S3.pack(side=RIGHT)
         
-        self.homeresu_pageThree_L2Score2 = Label(self.homeresu_pageThree_L2S3, text="1", bg="White")
+        self.homeresu_pageThree_L2Score2 = Label(self.homeresu_pageThree_L2S3, text="0", bg="White")
         self.homeresu_pageThree_L2Score2.pack(pady=12)
         
         # Line 3 of the latest results
@@ -765,7 +972,7 @@ class App():
         self.homeresu_pageThree_L3S2.pack_propagate(False)
         self.homeresu_pageThree_L3S2.pack(side=LEFT)
         
-        self.homeresu_pageThree_L3Score1 = Label(self.homeresu_pageThree_L3S2, text="753", bg="White")
+        self.homeresu_pageThree_L3Score1 = Label(self.homeresu_pageThree_L3S2, text="0", bg="White")
         self.homeresu_pageThree_L3Score1.pack(pady=12)
         
         
@@ -773,7 +980,7 @@ class App():
         self.homeresu_pageThree_L3S4.pack_propagate(False)
         self.homeresu_pageThree_L3S4.pack(side=RIGHT)        
         
-        self.homeresu_pageThree_L3Team2 = Label(self.homeresu_pageThree_L3S4, text="Junior", bg="White")
+        self.homeresu_pageThree_L3Team2 = Label(self.homeresu_pageThree_L3S4, text="N/A", bg="White")
         self.homeresu_pageThree_L3Team2.pack(pady=12)
         
         
@@ -781,7 +988,7 @@ class App():
         self.homeresu_pageThree_L3S3.pack_propagate(False)
         self.homeresu_pageThree_L3S3.pack(side=RIGHT)
         
-        self.homeresu_pageThree_L3Score2 = Label(self.homeresu_pageThree_L3S3, text="4", bg="White")
+        self.homeresu_pageThree_L3Score2 = Label(self.homeresu_pageThree_L3S3, text="0", bg="White")
         self.homeresu_pageThree_L3Score2.pack(pady=12)
         
         # Fourth resu page (page_number = 4)
@@ -810,7 +1017,7 @@ class App():
         self.homeresu_pageFour_L1S2.pack_propagate(False)
         self.homeresu_pageFour_L1S2.pack(side=LEFT)
         
-        self.homeresu_pageFour_L1Score1 = Label(self.homeresu_pageFour_L1S2, text="3", bg="White")
+        self.homeresu_pageFour_L1Score1 = Label(self.homeresu_pageFour_L1S2, text="0", bg="White")
         self.homeresu_pageFour_L1Score1.pack(pady=12)
         
         
@@ -818,7 +1025,7 @@ class App():
         self.homeresu_pageFour_L1S4.pack_propagate(False)
         self.homeresu_pageFour_L1S4.pack(side=RIGHT)        
         
-        self.homeresu_pageFour_L1Team2 = Label(self.homeresu_pageFour_L1S4, text="First XI", bg="White")
+        self.homeresu_pageFour_L1Team2 = Label(self.homeresu_pageFour_L1S4, text="N/A", bg="White")
         self.homeresu_pageFour_L1Team2.pack(pady=12)
         
         
@@ -826,7 +1033,7 @@ class App():
         self.homeresu_pageFour_L1S3.pack_propagate(False)
         self.homeresu_pageFour_L1S3.pack(side=RIGHT)
         
-        self.homeresu_pageFour_L1Score2 = Label(self.homeresu_pageFour_L1S3, text="5", bg="White")
+        self.homeresu_pageFour_L1Score2 = Label(self.homeresu_pageFour_L1S3, text="0", bg="White")
         self.homeresu_pageFour_L1Score2.pack(pady=12)
     
         # Line 2 of the latest results
@@ -849,7 +1056,7 @@ class App():
         self.homeresu_pageFour_L2S2.pack_propagate(False)
         self.homeresu_pageFour_L2S2.pack(side=LEFT)
         
-        self.homeresu_pageFour_L2Score1 = Label(self.homeresu_pageFour_L2S2, text="193", bg="White")
+        self.homeresu_pageFour_L2Score1 = Label(self.homeresu_pageFour_L2S2, text="0", bg="White")
         self.homeresu_pageFour_L2Score1.pack(pady=12)
         
         
@@ -857,7 +1064,7 @@ class App():
         self.homeresu_pageFour_L2S4.pack_propagate(False)
         self.homeresu_pageFour_L2S4.pack(side=RIGHT)        
         
-        self.homeresu_pageFour_L2Team2 = Label(self.homeresu_pageFour_L2S4, text="Second XI", bg="White")
+        self.homeresu_pageFour_L2Team2 = Label(self.homeresu_pageFour_L2S4, text="N/A", bg="White")
         self.homeresu_pageFour_L2Team2.pack(pady=12)
         
         
@@ -865,7 +1072,7 @@ class App():
         self.homeresu_pageFour_L2S3.pack_propagate(False)
         self.homeresu_pageFour_L2S3.pack(side=RIGHT)
         
-        self.homeresu_pageFour_L2Score2 = Label(self.homeresu_pageFour_L2S3, text="645", bg="White")
+        self.homeresu_pageFour_L2Score2 = Label(self.homeresu_pageFour_L2S3, text="0", bg="White")
         self.homeresu_pageFour_L2Score2.pack(pady=12)
         
         # Line 3 of the latest results
@@ -888,7 +1095,7 @@ class App():
         self.homeresu_pageFour_L3S2.pack_propagate(False)
         self.homeresu_pageFour_L3S2.pack(side=LEFT)
         
-        self.homeresu_pageFour_L3Score1 = Label(self.homeresu_pageFour_L3S2, text="2", bg="White")
+        self.homeresu_pageFour_L3Score1 = Label(self.homeresu_pageFour_L3S2, text="0", bg="White")
         self.homeresu_pageFour_L3Score1.pack(pady=12)
         
         
@@ -896,7 +1103,7 @@ class App():
         self.homeresu_pageFour_L3S4.pack_propagate(False)
         self.homeresu_pageFour_L3S4.pack(side=RIGHT)        
         
-        self.homeresu_pageFour_L3Team2 = Label(self.homeresu_pageFour_L3S4, text="Junior", bg="White")
+        self.homeresu_pageFour_L3Team2 = Label(self.homeresu_pageFour_L3S4, text="N/A", bg="White")
         self.homeresu_pageFour_L3Team2.pack(pady=12)
         
         
@@ -904,7 +1111,7 @@ class App():
         self.homeresu_pageFour_L3S3.pack_propagate(False)
         self.homeresu_pageFour_L3S3.pack(side=RIGHT)
         
-        self.homeresu_pageFour_L3Score2 = Label(self.homeresu_pageFour_L3S3, text="26", bg="White")
+        self.homeresu_pageFour_L3Score2 = Label(self.homeresu_pageFour_L3S3, text="0", bg="White")
         self.homeresu_pageFour_L3Score2.pack(pady=12)
         
         # Home resu page indicator
@@ -1572,21 +1779,21 @@ class App():
         self.sports_stat_football_win2.pack_propagate(False)
         self.sports_stat_football_win2.pack()
         
-        self.sports_stat_football_winlabel2 = Label(self.sports_stat_football_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlabel2 = Label(self.sports_stat_football_win2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_winlabel2.pack()
         
         self.sports_stat_football_win3 = Frame(self.sports_stat_football_wins, bg="White", width=100, height=27)
         self.sports_stat_football_win3.pack_propagate(False)
         self.sports_stat_football_win3.pack()
         
-        self.sports_stat_football_winlabel3 = Label(self.sports_stat_football_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlabel3 = Label(self.sports_stat_football_win3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_winlabel3.pack()        
         
         self.sports_stat_football_win4 = Frame(self.sports_stat_football_wins, bg="White", width=100, height=27)
         self.sports_stat_football_win4.pack_propagate(False)
         self.sports_stat_football_win4.pack()
         
-        self.sports_stat_football_winlabel4 = Label(self.sports_stat_football_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlabel4 = Label(self.sports_stat_football_win4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_winlabel4.pack()
 
         # Third column of the box
@@ -1606,21 +1813,21 @@ class App():
         self.sports_stat_football_loss2.pack_propagate(False)
         self.sports_stat_football_loss2.pack()
         
-        self.sports_stat_football_losslabel2 = Label(self.sports_stat_football_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_losslabel2 = Label(self.sports_stat_football_loss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_losslabel2.pack()
         
         self.sports_stat_football_loss3 = Frame(self.sports_stat_football_losses, bg="White", width=100, height=27)
         self.sports_stat_football_loss3.pack_propagate(False)
         self.sports_stat_football_loss3.pack()
         
-        self.sports_stat_football_losslabel3 = Label(self.sports_stat_football_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_losslabel3 = Label(self.sports_stat_football_loss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_losslabel3.pack()        
         
         self.sports_stat_football_loss4 = Frame(self.sports_stat_football_losses, bg="White", width=100, height=27)
         self.sports_stat_football_loss4.pack_propagate(False)
         self.sports_stat_football_loss4.pack()
         
-        self.sports_stat_football_losslabel4 = Label(self.sports_stat_football_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_losslabel4 = Label(self.sports_stat_football_loss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_losslabel4.pack()
         
         # Fourth column of the box
@@ -1640,21 +1847,21 @@ class App():
         self.sports_stat_football_winloss2.pack_propagate(False)
         self.sports_stat_football_winloss2.pack()
         
-        self.sports_stat_football_winlosslabel2 = Label(self.sports_stat_football_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlosslabel2 = Label(self.sports_stat_football_winloss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_winlosslabel2.pack()
         
         self.sports_stat_football_winloss3 = Frame(self.sports_stat_football_winlosses, bg="White", width=100, height=27)
         self.sports_stat_football_winloss3.pack_propagate(False)
         self.sports_stat_football_winloss3.pack()
         
-        self.sports_stat_football_winlosslabel3 = Label(self.sports_stat_football_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlosslabel3 = Label(self.sports_stat_football_winloss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_winlosslabel3.pack()        
         
         self.sports_stat_football_winloss4 = Frame(self.sports_stat_football_winlosses, bg="White", width=100, height=27)
         self.sports_stat_football_winloss4.pack_propagate(False)
         self.sports_stat_football_winloss4.pack()
         
-        self.sports_stat_football_winlosslabel4 = Label(self.sports_stat_football_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_football_winlosslabel4 = Label(self.sports_stat_football_winloss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_football_winlosslabel4.pack()
         
         # Basketball analytics box
@@ -1715,21 +1922,21 @@ class App():
         self.sports_stat_basketball_win2.pack_propagate(False)
         self.sports_stat_basketball_win2.pack()
         
-        self.sports_stat_basketball_winlabel2 = Label(self.sports_stat_basketball_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlabel2 = Label(self.sports_stat_basketball_win2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_winlabel2.pack()
         
         self.sports_stat_basketball_win3 = Frame(self.sports_stat_basketball_wins, bg="White", width=100, height=27)
         self.sports_stat_basketball_win3.pack_propagate(False)
         self.sports_stat_basketball_win3.pack()
         
-        self.sports_stat_basketball_winlabel3 = Label(self.sports_stat_basketball_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlabel3 = Label(self.sports_stat_basketball_win3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_winlabel3.pack()        
         
         self.sports_stat_basketball_win4 = Frame(self.sports_stat_basketball_wins, bg="White", width=100, height=27)
         self.sports_stat_basketball_win4.pack_propagate(False)
         self.sports_stat_basketball_win4.pack()
         
-        self.sports_stat_basketball_winlabel4 = Label(self.sports_stat_basketball_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlabel4 = Label(self.sports_stat_basketball_win4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_winlabel4.pack()
 
         # Third column of the box
@@ -1749,21 +1956,21 @@ class App():
         self.sports_stat_basketball_loss2.pack_propagate(False)
         self.sports_stat_basketball_loss2.pack()
         
-        self.sports_stat_basketball_losslabel2 = Label(self.sports_stat_basketball_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_losslabel2 = Label(self.sports_stat_basketball_loss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_losslabel2.pack()
         
         self.sports_stat_basketball_loss3 = Frame(self.sports_stat_basketball_losses, bg="White", width=100, height=27)
         self.sports_stat_basketball_loss3.pack_propagate(False)
         self.sports_stat_basketball_loss3.pack()
         
-        self.sports_stat_basketball_losslabel3 = Label(self.sports_stat_basketball_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_losslabel3 = Label(self.sports_stat_basketball_loss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_losslabel3.pack()        
         
         self.sports_stat_basketball_loss4 = Frame(self.sports_stat_basketball_losses, bg="White", width=100, height=27)
         self.sports_stat_basketball_loss4.pack_propagate(False)
         self.sports_stat_basketball_loss4.pack()
         
-        self.sports_stat_basketball_losslabel4 = Label(self.sports_stat_basketball_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_losslabel4 = Label(self.sports_stat_basketball_loss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_losslabel4.pack()
         
         # Fourth column of the box
@@ -1783,21 +1990,21 @@ class App():
         self.sports_stat_basketball_winloss2.pack_propagate(False)
         self.sports_stat_basketball_winloss2.pack()
         
-        self.sports_stat_basketball_winlosslabel2 = Label(self.sports_stat_basketball_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlosslabel2 = Label(self.sports_stat_basketball_winloss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_winlosslabel2.pack()
         
         self.sports_stat_basketball_winloss3 = Frame(self.sports_stat_basketball_winlosses, bg="White", width=100, height=27)
         self.sports_stat_basketball_winloss3.pack_propagate(False)
         self.sports_stat_basketball_winloss3.pack()
         
-        self.sports_stat_basketball_winlosslabel3 = Label(self.sports_stat_basketball_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlosslabel3 = Label(self.sports_stat_basketball_winloss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_winlosslabel3.pack()        
         
         self.sports_stat_basketball_winloss4 = Frame(self.sports_stat_basketball_winlosses, bg="White", width=100, height=27)
         self.sports_stat_basketball_winloss4.pack_propagate(False)
         self.sports_stat_basketball_winloss4.pack()
         
-        self.sports_stat_basketball_winlosslabel4 = Label(self.sports_stat_basketball_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_basketball_winlosslabel4 = Label(self.sports_stat_basketball_winloss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_basketball_winlosslabel4.pack()
                 
         # Hockey analytics box
@@ -1858,21 +2065,21 @@ class App():
         self.sports_stat_hockey_win2.pack_propagate(False)
         self.sports_stat_hockey_win2.pack()
         
-        self.sports_stat_hockey_winlabel2 = Label(self.sports_stat_hockey_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlabel2 = Label(self.sports_stat_hockey_win2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_winlabel2.pack()
         
         self.sports_stat_hockey_win3 = Frame(self.sports_stat_hockey_wins, bg="White", width=100, height=27)
         self.sports_stat_hockey_win3.pack_propagate(False)
         self.sports_stat_hockey_win3.pack()
         
-        self.sports_stat_hockey_winlabel3 = Label(self.sports_stat_hockey_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlabel3 = Label(self.sports_stat_hockey_win3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_winlabel3.pack()        
         
         self.sports_stat_hockey_win4 = Frame(self.sports_stat_hockey_wins, bg="White", width=100, height=27)
         self.sports_stat_hockey_win4.pack_propagate(False)
         self.sports_stat_hockey_win4.pack()
         
-        self.sports_stat_hockey_winlabel4 = Label(self.sports_stat_hockey_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlabel4 = Label(self.sports_stat_hockey_win4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_winlabel4.pack()
 
         # Third column of the box
@@ -1892,21 +2099,21 @@ class App():
         self.sports_stat_hockey_loss2.pack_propagate(False)
         self.sports_stat_hockey_loss2.pack()
         
-        self.sports_stat_hockey_losslabel2 = Label(self.sports_stat_hockey_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_losslabel2 = Label(self.sports_stat_hockey_loss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_losslabel2.pack()
         
         self.sports_stat_hockey_loss3 = Frame(self.sports_stat_hockey_losses, bg="White", width=100, height=27)
         self.sports_stat_hockey_loss3.pack_propagate(False)
         self.sports_stat_hockey_loss3.pack()
         
-        self.sports_stat_hockey_losslabel3 = Label(self.sports_stat_hockey_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_losslabel3 = Label(self.sports_stat_hockey_loss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_losslabel3.pack()        
         
         self.sports_stat_hockey_loss4 = Frame(self.sports_stat_hockey_losses, bg="White", width=100, height=27)
         self.sports_stat_hockey_loss4.pack_propagate(False)
         self.sports_stat_hockey_loss4.pack()
         
-        self.sports_stat_hockey_losslabel4 = Label(self.sports_stat_hockey_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_losslabel4 = Label(self.sports_stat_hockey_loss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_losslabel4.pack()
         
         # Fourth column of the box
@@ -1926,21 +2133,21 @@ class App():
         self.sports_stat_hockey_winloss2.pack_propagate(False)
         self.sports_stat_hockey_winloss2.pack()
         
-        self.sports_stat_hockey_winlosslabel2 = Label(self.sports_stat_hockey_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlosslabel2 = Label(self.sports_stat_hockey_winloss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_winlosslabel2.pack()
         
         self.sports_stat_hockey_winloss3 = Frame(self.sports_stat_hockey_winlosses, bg="White", width=100, height=27)
         self.sports_stat_hockey_winloss3.pack_propagate(False)
         self.sports_stat_hockey_winloss3.pack()
         
-        self.sports_stat_hockey_winlosslabel3 = Label(self.sports_stat_hockey_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlosslabel3 = Label(self.sports_stat_hockey_winloss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_winlosslabel3.pack()        
         
         self.sports_stat_hockey_winloss4 = Frame(self.sports_stat_hockey_winlosses, bg="White", width=100, height=27)
         self.sports_stat_hockey_winloss4.pack_propagate(False)
         self.sports_stat_hockey_winloss4.pack()
         
-        self.sports_stat_hockey_winlosslabel4 = Label(self.sports_stat_hockey_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_hockey_winlosslabel4 = Label(self.sports_stat_hockey_winloss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_hockey_winlosslabel4.pack()
                 
         # Cricket analytics box
@@ -2144,21 +2351,21 @@ class App():
         self.sports_stat_rugby_win2.pack_propagate(False)
         self.sports_stat_rugby_win2.pack()
         
-        self.sports_stat_rugby_winlabel2 = Label(self.sports_stat_rugby_win2, text="12", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlabel2 = Label(self.sports_stat_rugby_win2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_winlabel2.pack()
         
         self.sports_stat_rugby_win3 = Frame(self.sports_stat_rugby_wins, bg="White", width=100, height=27)
         self.sports_stat_rugby_win3.pack_propagate(False)
         self.sports_stat_rugby_win3.pack()
         
-        self.sports_stat_rugby_winlabel3 = Label(self.sports_stat_rugby_win3, text="6", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlabel3 = Label(self.sports_stat_rugby_win3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_winlabel3.pack()        
         
         self.sports_stat_rugby_win4 = Frame(self.sports_stat_rugby_wins, bg="White", width=100, height=27)
         self.sports_stat_rugby_win4.pack_propagate(False)
         self.sports_stat_rugby_win4.pack()
         
-        self.sports_stat_rugby_winlabel4 = Label(self.sports_stat_rugby_win4, text="3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlabel4 = Label(self.sports_stat_rugby_win4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_winlabel4.pack()
 
         # Third column of the box
@@ -2178,21 +2385,21 @@ class App():
         self.sports_stat_rugby_loss2.pack_propagate(False)
         self.sports_stat_rugby_loss2.pack()
         
-        self.sports_stat_rugby_losslabel2 = Label(self.sports_stat_rugby_loss2, text="2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_losslabel2 = Label(self.sports_stat_rugby_loss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_losslabel2.pack()
         
         self.sports_stat_rugby_loss3 = Frame(self.sports_stat_rugby_losses, bg="White", width=100, height=27)
         self.sports_stat_rugby_loss3.pack_propagate(False)
         self.sports_stat_rugby_loss3.pack()
         
-        self.sports_stat_rugby_losslabel3 = Label(self.sports_stat_rugby_loss3, text="7", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_losslabel3 = Label(self.sports_stat_rugby_loss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_losslabel3.pack()        
         
         self.sports_stat_rugby_loss4 = Frame(self.sports_stat_rugby_losses, bg="White", width=100, height=27)
         self.sports_stat_rugby_loss4.pack_propagate(False)
         self.sports_stat_rugby_loss4.pack()
         
-        self.sports_stat_rugby_losslabel4 = Label(self.sports_stat_rugby_loss4, text="13", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_losslabel4 = Label(self.sports_stat_rugby_loss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_losslabel4.pack()
         
         # Fourth column of the box
@@ -2212,21 +2419,21 @@ class App():
         self.sports_stat_rugby_winloss2.pack_propagate(False)
         self.sports_stat_rugby_winloss2.pack()
         
-        self.sports_stat_rugby_winlosslabel2 = Label(self.sports_stat_rugby_winloss2, text="0.4", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlosslabel2 = Label(self.sports_stat_rugby_winloss2, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_winlosslabel2.pack()
         
         self.sports_stat_rugby_winloss3 = Frame(self.sports_stat_rugby_winlosses, bg="White", width=100, height=27)
         self.sports_stat_rugby_winloss3.pack_propagate(False)
         self.sports_stat_rugby_winloss3.pack()
         
-        self.sports_stat_rugby_winlosslabel3 = Label(self.sports_stat_rugby_winloss3, text="1.2", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlosslabel3 = Label(self.sports_stat_rugby_winloss3, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_winlosslabel3.pack()        
         
         self.sports_stat_rugby_winloss4 = Frame(self.sports_stat_rugby_winlosses, bg="White", width=100, height=27)
         self.sports_stat_rugby_winloss4.pack_propagate(False)
         self.sports_stat_rugby_winloss4.pack()
         
-        self.sports_stat_rugby_winlosslabel4 = Label(self.sports_stat_rugby_winloss4, text="1.3", bg="White", font=("Helvetica", 11), width=10, height=2)
+        self.sports_stat_rugby_winlosslabel4 = Label(self.sports_stat_rugby_winloss4, text="0", bg="White", font=("Helvetica", 11), width=10, height=2)
         self.sports_stat_rugby_winlosslabel4.pack()        
         
         
@@ -2300,7 +2507,12 @@ class App():
         self.content_frame.grid_remove()
         self.navigation_bar.grid_remove()
         self.login_page.pack()
-    
+        
+        self.tcode_input_entry.delete(0, 'end')
+        self.create_upcoming_button.pack_forget()
+        self.create_result_button.pack_forget()
+        self.tlogin_logo.pack_forget() 
+           
     def show_upcoming_creator(self):
         self.teacher_login_page.pack_forget()
         self.upcoming_sched_page.pack()
@@ -2314,49 +2526,45 @@ class App():
         self.result_enter_page.pack_forget()
         self.teacher_login_page.pack()
         
+        self.upcoming_sport_entry.delete(0, 'end')
+        self.upcoming_team_entry.delete(0, 'end')
+        self.upcoming_weekday_entry.delete(0, 'end')
+        self.upcoming_time_hours.delete(0, 'end')
+        self.upcoming_time_minutes.delete(0, 'end')
+        
         
         
     def change_upcoming_labels(self):
-        sport_name = self.upcoming_sport_entry.get()
+        upcoming_sport_name = self.upcoming_sport_entry.get()
         team_name = self.upcoming_team_entry.get()
         week_day = self.upcoming_weekday_entry.get()
         time_hours = self.upcoming_time_hours.get()
         time_minutes = self.upcoming_time_minutes.get()
         
-
-        
-        if sport_name in self.sports:
+        if upcoming_sport_name in self.sports:
             if team_name in self.teams:
                 if week_day in self.weekdays:
                     if time_hours in self.hours:
                         if time_minutes in self.minutes:
-                            if sport_name == "Football":
-                                self.change_football_upcoming_labels(team_name, week_day, time_hours, time_minutes)
-                        
-                            elif sport_name == "Basketball":
-                                self.change_basketball_upcoming_labels(team_name, week_day, time_hours, time_minutes)
-                    
-                            elif sport_name == "Hockey":
-                                self.change_hockey_upcoming_labels(team_name, week_day, time_hours, time_minutes)
-                            
-                            elif sport_name == "Rugby":
+                            if upcoming_sport_name == "Football":
+                                self.change_football_upcoming_labels(team_name, week_day, time_hours, time_minutes)                       
+                            elif upcoming_sport_name == "Basketball":
+                                self.change_basketball_upcoming_labels(team_name, week_day, time_hours, time_minutes)                   
+                            elif upcoming_sport_name == "Hockey":
+                                self.change_hockey_upcoming_labels(team_name, week_day, time_hours, time_minutes)                           
+                            elif upcoming_sport_name == "Rugby":
                                 self.change_rugby_upcoming_labels(team_name, week_day, time_hours, time_minutes)
                         else:
-                            messagebox.showerror("Invalid time entered", "Please enter a valid time from the dropdown box (minutes error)")
-                            
+                            messagebox.showerror("Invalid time entered", "Please enter a valid time from the dropdown box (minutes error)")                            
                     else:
-                        messagebox.showerror("Invalid time entered", "Please enter a valid time from the dropdown box (hours error)")
-                        
+                        messagebox.showerror("Invalid time entered", "Please enter a valid time from the dropdown box (hours error)")                        
                 else:
-                    messagebox.showerror("Invalid week day", "Please choose a day from the dropdown box")
-                        
+                    messagebox.showerror("Invalid week day", "Please choose a day from the dropdown box")                        
             else:
-                messagebox.showerror("Invalid team name", "Please choose a team from the dropdown box")
-        
+                messagebox.showerror("Invalid team name", "Please choose a team from the dropdown box")        
         else: 
             messagebox.showerror("Invalid sport name", "Please choose a sport from the dropdown box")
             
-        
                 
     def change_football_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
         self.upcoming_team_one.config(text=team_name)
@@ -2365,12 +2573,14 @@ class App():
         
         messagebox.showinfo("Match schedule updated", "Football match scheduled!")
         
+        
     def change_basketball_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
         self.upcoming_team_two.config(text=team_name)
         self.upcoming_day_two.config(text=week_day)
         self.upcoming_time_two.config(text=time_hours + ":" + time_minutes)
         
         messagebox.showinfo("Match schedule updated", "Basketball match scheduled!")
+        
         
     def change_hockey_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
         self.upcoming_team_three.config(text=team_name)
@@ -2379,13 +2589,165 @@ class App():
         
         messagebox.showinfo("Match schedule updated", "Hockey match scheduled!")
         
+        
     def change_rugby_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
         self.upcoming_team_four.config(text=team_name)
         self.upcoming_day_four.config(text=week_day)
         self.upcoming_time_four.config(text=time_hours + ":" + time_minutes)
         
         messagebox.showinfo("Match schedule updated", "Rugby match scheduled!")
-            
+        
+    
+    def change_result_labels(self):
+        result_sport_name = self.result_sport_entry.get()
+
+        other_first_team = self.opposing_firstxi_team.get()
+        other_second_team = self.opposing_secondxi_team.get()
+        other_third_team = self.opposing_junior_team.get()
+        
+        our_first_score = self.our_firstxi_score.get()
+        our_second_score = self.our_secondxi_score.get()
+        our_third_score = self.our_junior_score.get()
+        
+        their_first_score = self.their_firstxi_score.get()
+        their_second_score = self.their_secondxi_score.get()
+        their_third_score = self.their_junior_score.get()
+        
+        first_wins = self.firstxi_wins.get()
+        second_wins = self.secondxi_wins.get()
+        third_wins = self.junior_wins.get()
+        
+        first_losses = self.firstxi_losses.get()
+        second_losses = self.secondxi_losses.get()
+        third_losses = self.junior_losses.get()
+        
+        first_winlosses = first_wins // first_losses
+
+        
+        if result_sport_name in self.sports:
+            if result_sport_name == "Football":
+                self.change_football_result_labels(other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses, first_winlosses)                       
+            elif result_sport_name == "Basketball":
+                self.change_basketball_result_labels(other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses, first_winlosses)                   
+            elif result_sport_name == "Hockey":
+                self.change_hockey_result_labels(other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses, first_winlosses)                           
+            elif result_sport_name == "Rugby":
+                self.change_rugby_result_labels(other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses, first_winlosses)                                                      
+        else: 
+            messagebox.showerror("Invalid sport name", "Please choose a sport from the dropdown box")
+        
+    def change_football_result_labels(self, other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses, first_winlosses):
+        self.homeresu_pageOne_L1Score1.config(text=our_first_score)
+        self.homeresu_pageOne_L1Score2.config(text=their_first_score)
+        self.homeresu_pageOne_L1Team2.config(text=other_first_team)
+        
+        self.homeresu_pageOne_L2Score1.config(text=our_second_score)
+        self.homeresu_pageOne_L2Score2.config(text=their_second_score)
+        self.homeresu_pageOne_L2Team2.config(text=other_second_team)
+        
+        self.homeresu_pageOne_L3Score1.config(text=our_third_score)
+        self.homeresu_pageOne_L3Score2.config(text=their_third_score)
+        self.homeresu_pageOne_L3Team2.config(text=other_third_team)
+        
+        self.sports_stat_football_winlabel2.config(text=str(first_wins))
+        self.sports_stat_football_losslabel2.config(text=str(first_losses))
+        self.sports_stat_football_winlosslabel2.config(text=str(first_winlosses))
+        
+        self.sports_stat_football_winlabel3.config(text=str(second_wins))
+        self.sports_stat_football_losslabel3.config(text=str(second_losses))
+        self.sports_stat_football_winlosslabel3.config(text=str(second_wins // second_losses))
+        
+        self.sports_stat_football_winlabel4.config(text=str(third_wins))
+        self.sports_stat_football_losslabel4.config(text=str(third_losses))
+        self.sports_stat_football_winlosslabel4.config(text=str(third_wins // third_losses))
+        
+        messagebox.showinfo("Match results updated", "Football results updated!")
+    
+    
+    def change_basketball_result_labels(self, other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses):
+        self.homeresu_pageTwo_L1Score1.config(text=our_first_score)
+        self.homeresu_pageTwo_L1Score2.config(text=their_first_score)
+        self.homeresu_pageTwo_L1Team2.config(text=other_first_team)
+        
+        self.homeresu_pageTwo_L2Score1.config(text=our_second_score)
+        self.homeresu_pageTwo_L2Score2.config(text=their_second_score)
+        self.homeresu_pageTwo_L2Team2.config(text=other_second_team)
+        
+        self.homeresu_pageTwo_L3Score1.config(text=our_third_score)
+        self.homeresu_pageTwo_L3Score2.config(text=their_third_score)
+        self.homeresu_pageTwo_L3Team2.config(text=other_third_team)
+        
+        self.sports_stat_basketball_winlabel2.config(text=str(first_wins))
+        self.sports_stat_basketball_losslabel2.config(text=str(first_losses))
+        self.sports_stat_basketball_winlosslabel2.config(text=str(first_wins // first_losses))
+        
+        self.sports_stat_basketball_winlabel3.config(text=str(second_wins))
+        self.sports_stat_basketball_losslabel3.config(text=str(second_losses))
+        self.sports_stat_basketball_winlosslabel3.config(text=str(second_wins // second_losses))
+        
+        self.sports_stat_basketball_winlabel4.config(text=str(third_wins))
+        self.sports_stat_basketball_losslabel4.config(text=str(third_losses))
+        self.sports_stat_basketball_winlosslabel4.config(text=str(third_wins // third_losses))
+                
+        messagebox.showinfo("Match results updated", "Basketball results updated!")
+        
+        
+    def change_hockey_result_labels(self, other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses):
+        self.homeresu_pageThree_L1Score1.config(text=our_first_score)
+        self.homeresu_pageThree_L1Score2.config(text=their_first_score)
+        self.homeresu_pageThree_L1Team2.config(text=other_first_team)
+        
+        self.homeresu_pageThree_L2Score1.config(text=our_second_score)
+        self.homeresu_pageThree_L2Score2.config(text=their_second_score)
+        self.homeresu_pageThree_L2Team2.config(text=other_second_team)
+        
+        self.homeresu_pageThree_L3Score1.config(text=our_third_score)
+        self.homeresu_pageThree_L3Score2.config(text=their_third_score)
+        self.homeresu_pageThree_L3Team2.config(text=other_third_team)
+        
+        self.sports_stat_hockey_winlabel2.config(text=str(first_wins))
+        self.sports_stat_hockey_losslabel2.config(text=str(first_losses))
+        self.sports_stat_hockey_winlosslabel2.config(text=str(first_wins // first_losses))
+        
+        self.sports_stat_hockey_winlabel3.config(text=str(second_wins))
+        self.sports_stat_hockey_losslabel3.config(text=str(second_losses))
+        self.sports_stat_hockey_winlosslabel3.config(text=str(second_wins // second_losses))
+        
+        self.sports_stat_hockey_winlabel4.config(text=str(third_wins))
+        self.sports_stat_hockey_losslabel4.config(text=str(third_losses))
+        self.sports_stat_hockey_winlosslabel4.config(text=str(third_wins // third_losses))
+                
+        messagebox.showinfo("Match results updated", "Hockey results updated!")
+        
+        
+    def change_rugby_result_labels(self, other_first_team, other_second_team, other_third_team, our_first_score, our_second_score, our_third_score, their_first_score, their_second_score, their_third_score, first_wins, second_wins, third_wins, first_losses, second_losses, third_losses):
+        self.homeresu_pageFour_L1Score1.config(text=our_first_score)
+        self.homeresu_pageFour_L1Score2.config(text=their_first_score)
+        self.homeresu_pageFour_L1Team2.config(text=other_first_team)
+        
+        self.homeresu_pageFour_L2Score1.config(text=our_second_score)
+        self.homeresu_pageFour_L2Score2.config(text=their_second_score)
+        self.homeresu_pageFour_L2Team2.config(text=other_second_team)
+        
+        self.homeresu_pageFour_L3Score1.config(text=our_third_score)
+        self.homeresu_pageFour_L3Score2.config(text=their_third_score)
+        self.homeresu_pageFour_L3Team2.config(text=other_third_team)
+        
+        self.sports_stat_rugby_winlabel2.config(text=str(first_wins))
+        self.sports_stat_rugby_losslabel2.config(text=str(first_losses))
+        self.sports_stat_rugby_winlosslabel2.config(text=str(first_wins // first_losses))
+        
+        self.sports_stat_rugby_winlabel3.config(text=str(second_wins))
+        self.sports_stat_rugby_losslabel3.config(text=str(second_losses))
+        self.sports_stat_rugby_winlosslabel3.config(text=str(second_wins // second_losses))
+        
+        self.sports_stat_rugby_winlabel4.config(text=str(third_wins))
+        self.sports_stat_rugby_losslabel4.config(text=str(third_losses))
+        self.sports_stat_rugby_winlosslabel4.config(text=str(third_wins // third_losses))
+                
+        messagebox.showinfo("Match results updated", "Rugby results updated!")
+        
+    
     def go_to_next_page(self, direction):
         if direction == "left":
             if self.page_number > 1:
