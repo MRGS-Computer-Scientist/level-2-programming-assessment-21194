@@ -35,9 +35,12 @@ class App():
         
         self.upcoming_weekday = StringVar()
         self.upcoming_time = StringVar()
-        self.sports = ['Football', 'Basketball', 'Hockey', 'Cricket', 'Rugby']
-        self.teams = ['First XI', 'Second XI / U17', 'Junior']
         
+        self.sports = ['Football', 'Basketball', 'Hockey', 'Rugby']
+        self.teams = ['First XI Boys', 'First XI Girls', 'Second XI Boys', 'Second XI Girls', 'Junior Boys', 'Junior Girls']
+        self.weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        self.hours = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+        self.minutes = ['00','05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
 
         
         
@@ -123,8 +126,11 @@ class App():
         self.upcoming_sched_top.pack_propagate(False)
         self.upcoming_sched_top.pack()
   
-        self.upcoming_sched_test = Label(self.upcoming_sched_top, text="Schedule a match for next week", font=("Helvetica", 18))
-        self.upcoming_sched_test.pack()
+        self.upcoming_sched_title = Label(self.upcoming_sched_top, text="Schedule a match for next week", font=("Helvetica", 18, "bold"))
+        self.upcoming_sched_title.pack()
+        
+        self.upcoming_sched_disclaimer = Label(self.upcoming_sched_top, text="You may only schedule one match per sport", font=("Helvetica", 14))
+        self.upcoming_sched_disclaimer.pack()
         
         self.upcoming_sport_label = Label(self.upcoming_sched_top, text="Sport")
         self.upcoming_sport_label.pack(pady=5)
@@ -141,30 +147,26 @@ class App():
         self.upcoming_weekday_label = Label(self.upcoming_sched_top, text="What day next week will the game be? (e.g. Monday)")
         self.upcoming_weekday_label.pack(pady=5)
         
-        self.upcoming_weekday_entry = Entry(self.upcoming_sched_top, textvariable=self.upcoming_weekday)
+        self.upcoming_weekday_entry = ttk.Combobox(self.upcoming_sched_top, values=self.weekdays)
         self.upcoming_weekday_entry.pack()
         
-        self.upcoming_time_label = Label(self.upcoming_sched_top, text="What time on this day will the game be? (e.g. 15:30)")
+        self.upcoming_time_label = Label(self.upcoming_sched_top, text="What time on this day will the game be?")
         self.upcoming_time_label.pack(pady=5)
         
-        self.upcoming_time_entry = Entry(self.upcoming_sched_top, textvariable=self.upcoming_time)
-        self.upcoming_time_entry.pack()
+        self.upcoming_time_label2 = Label(self.upcoming_sched_top, text="Hour of the day")
+        self.upcoming_time_label2.pack()
+        
+        self.upcoming_time_hours = ttk.Combobox(self.upcoming_sched_top, values=self.hours)
+        self.upcoming_time_hours.pack()
+        
+        self.upcoming_time_label3 = Label(self.upcoming_sched_top, text="Minute of the hour")
+        self.upcoming_time_label3.pack()
+        
+        self.upcoming_time_minutes = ttk.Combobox(self.upcoming_sched_top, values=self.minutes)
+        self.upcoming_time_minutes.pack()
         
         
-        self.trv = ttk.Treeview(self.upcoming_sched_top, columns=(1,2,3,4), show="headings", height="16")
-        self.trv.pack(pady=15)
-        
-
-        self.trv.heading(1, text="Sport")
-        self.trv.heading(2, text="Team")
-        self.trv.heading(3, text="Day")
-        self.trv.heading(4, text="Time")
-        
-        self.trv.column("1",width=60,stretch=FALSE)
-        self.trv.column("2",width=60,stretch=FALSE)
-        self.trv.column("3",width=60,stretch=FALSE)
-        self.trv.column("4",width=60,stretch=FALSE)
-                        
+                               
         self.sport_label = Label(self.upcoming_sched_top, text="", font=("Helvetica", 14), bg="#FC6736")
         self.sport_label.pack(side=LEFT, padx=5)
         
@@ -182,7 +184,7 @@ class App():
         self.upcoming_sched_bottom.pack_propagate(False)
         self.upcoming_sched_bottom.pack()
         
-        self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", bg="White", font=self.button_font, command=self.enter_upcoming_game)
+        self.upcoming_data_confirm = Button(self.upcoming_sched_bottom, text="Done", bg="White", font=self.button_font, command=self.change_upcoming_labels)
         self.upcoming_data_confirm.pack(side=RIGHT, padx=5)
         
         self.upcoming_data_cancel = Button(self.upcoming_sched_bottom, text="Cancel", bg="White", font=self.button_font, command=self.cancel_sched)
@@ -255,17 +257,20 @@ class App():
         self.upcoming_box_game.pack_propagate(False)
         self.upcoming_box_game.pack(side=LEFT, padx=4.5, pady=3)
         
-        self.upcoming_game_one = Label(self.upcoming_box_game, text="", bg="White")
-        self.upcoming_game_one.pack(padx=5,pady=5)
+        self.upcoming_game_one = Label(self.upcoming_box_game, text="Football Game", bg="White")
+        self.upcoming_game_one.pack()
+        
+        self.upcoming_team_one = Label(self.upcoming_box_game, text="N/A", bg="White")
+        self.upcoming_team_one.pack()
 
         self.upcoming_box_time = Frame(self.upcoming_row_one, bg="White", width=100, height=50, bd=3, relief=RIDGE)
         self.upcoming_box_time.pack_propagate(False)
         self.upcoming_box_time.pack(side=RIGHT, padx=4.5, pady=3)        
         
-        self.upcoming_day_one = Label(self.upcoming_box_time, text="", bg="White")
+        self.upcoming_day_one = Label(self.upcoming_box_time, text="N/A", bg="White")
         self.upcoming_day_one.pack()
         
-        self.upcoming_time_one = Label(self.upcoming_box_time, text="", bg="White")
+        self.upcoming_time_one = Label(self.upcoming_box_time, text="N/A", bg="White")
         self.upcoming_time_one.pack()
         
         # Second upcoming display
@@ -278,16 +283,19 @@ class App():
         self.upcoming_box_game2.pack(side=LEFT, padx=4.5, pady=3)
         
         self.upcoming_game_two = Label(self.upcoming_box_game2, text="Basketball Game", bg="White")
-        self.upcoming_game_two.pack(padx=5,pady=5)
+        self.upcoming_game_two.pack()
+        
+        self.upcoming_team_two = Label(self.upcoming_box_game2, text="N/A", bg="White")
+        self.upcoming_team_two.pack()
 
         self.upcoming_box_time2 = Frame(self.upcoming_row_two, bg="White", width=100, height=50, bd=3, relief=RIDGE)
         self.upcoming_box_time2.pack_propagate(False)
         self.upcoming_box_time2.pack(side=RIGHT, padx=4.5, pady=3)      
 
-        self.upcoming_day_two = Label(self.upcoming_box_time2, text="Tuesday", bg="White")
+        self.upcoming_day_two = Label(self.upcoming_box_time2, text="N/A", bg="White")
         self.upcoming_day_two.pack()
         
-        self.upcoming_time_two = Label(self.upcoming_box_time2, text="11:56", bg="White")
+        self.upcoming_time_two = Label(self.upcoming_box_time2, text="N/A", bg="White")
         self.upcoming_time_two.pack()
                 
         # Third upcoming display
@@ -300,16 +308,19 @@ class App():
         self.upcoming_box_game3.pack(side=LEFT, padx=4.5, pady=3)
         
         self.upcoming_game_three = Label(self.upcoming_box_game3, text="Hockey Game", bg="White")
-        self.upcoming_game_three.pack(padx=5,pady=5)
+        self.upcoming_game_three.pack()
+
+        self.upcoming_team_three = Label(self.upcoming_box_game3, text="N/A", bg="White")
+        self.upcoming_team_three.pack()
 
         self.upcoming_box_time3 = Frame(self.upcoming_row_three, bg="White", width=100, height=50, bd=3, relief=RIDGE)
         self.upcoming_box_time3.pack_propagate(False)
         self.upcoming_box_time3.pack(side=RIGHT, padx=4.5, pady=3)
 
-        self.upcoming_day_three = Label(self.upcoming_box_time3, text="Monday", bg="White")
+        self.upcoming_day_three = Label(self.upcoming_box_time3, text="N/A", bg="White")
         self.upcoming_day_three.pack()
         
-        self.upcoming_time_three = Label(self.upcoming_box_time3, text="8:17", bg="White")
+        self.upcoming_time_three = Label(self.upcoming_box_time3, text="N/A", bg="White")
         self.upcoming_time_three.pack()
                 
         # Fourth upcoming display
@@ -321,17 +332,20 @@ class App():
         self.upcoming_box_game4.pack_propagate(False)
         self.upcoming_box_game4.pack(side=LEFT, padx=4.5, pady=3)
         
-        self.upcoming_game_four = Label(self.upcoming_box_game4, text="Cricket Game", bg="White")
-        self.upcoming_game_four.pack(padx=5,pady=5)
+        self.upcoming_game_four = Label(self.upcoming_box_game4, text="Rugby Game", bg="White")
+        self.upcoming_game_four.pack()
 
+        self.upcoming_team_four = Label(self.upcoming_box_game4, text="N/A", bg="White")
+        self.upcoming_team_four.pack()
+        
         self.upcoming_box_time4 = Frame(self.upcoming_row_four, bg="White", width=100, height=50, bd=3, relief=RIDGE)
         self.upcoming_box_time4.pack_propagate(False)
         self.upcoming_box_time4.pack(side=RIGHT, padx=4.5, pady=3)
 
-        self.upcoming_day_four = Label(self.upcoming_box_time4, text="Friday", bg="White")
+        self.upcoming_day_four = Label(self.upcoming_box_time4, text="N/A", bg="White")
         self.upcoming_day_four.pack()
         
-        self.upcoming_time_four = Label(self.upcoming_box_time4, text="19:20", bg="White")
+        self.upcoming_time_four = Label(self.upcoming_box_time4, text="N/A", bg="White")
         self.upcoming_time_four.pack()
                 
         # Fifth upcoming display
@@ -343,17 +357,20 @@ class App():
         self.upcoming_box_game5.pack_propagate(False)
         self.upcoming_box_game5.pack(side=LEFT, padx=4.5, pady=3)
         
-        self.upcoming_game_five = Label(self.upcoming_box_game5, text="Rugby Game", bg="White")
-        self.upcoming_game_five.pack(padx=5,pady=5)
+        self.upcoming_game_five = Label(self.upcoming_box_game5, text="Cricket Game", bg="White")
+        self.upcoming_game_five.pack()
+        
+        self.upcoming_team_five = Label(self.upcoming_box_game5, text="Unavailable", bg="White")
+        self.upcoming_team_five.pack()
 
         self.upcoming_box_time5 = Frame(self.upcoming_row_five, bg="White", width=100, height=50, bd=3, relief=RIDGE)
         self.upcoming_box_time5.pack_propagate(False)
         self.upcoming_box_time5.pack(side=RIGHT, padx=4.5, pady=3)
 
-        self.upcoming_day_five = Label(self.upcoming_box_time5, text="Thursday", bg="White")
+        self.upcoming_day_five = Label(self.upcoming_box_time5, text="September", bg="White")
         self.upcoming_day_five.pack()
         
-        self.upcoming_time_five = Label(self.upcoming_box_time5, text="14:15", bg="White")
+        self.upcoming_time_five = Label(self.upcoming_box_time5, text="Summer sport", bg="White")
         self.upcoming_time_five.pack()
                                             
         # End of upcoming/Start of res-this-week
@@ -578,7 +595,7 @@ class App():
         self.homeresu_pageTwo_L2S1.pack_propagate(False)
         self.homeresu_pageTwo_L2S1.pack(side=LEFT)
         
-        self.homeresu_pageTwo_L2Team1 = Label(self.homeresu_pageTwo_L2S1, text="Second XI", bg="White")
+        self.homeresu_pageTwo_L2Team1 = Label(self.homeresu_pageTwo_L2S1, text="U17", bg="White")
         self.homeresu_pageTwo_L2Team1.pack(pady=12)
         
         
@@ -594,7 +611,7 @@ class App():
         self.homeresu_pageTwo_L2S4.pack_propagate(False)
         self.homeresu_pageTwo_L2S4.pack(side=RIGHT)        
         
-        self.homeresu_pageTwo_L2Team2 = Label(self.homeresu_pageTwo_L2S4, text="Second XI", bg="White")
+        self.homeresu_pageTwo_L2Team2 = Label(self.homeresu_pageTwo_L2S4, text="U17", bg="White")
         self.homeresu_pageTwo_L2Team2.pack(pady=12)
         
         
@@ -2261,17 +2278,17 @@ class App():
         
     def tcode_confirm(self):
         entered_code = self.teacher_input.get() # Retrieve the entered code from the entry box
-        if entered_code == self.teacher_code: # Compare the two
+        if entered_code == self.teacher_code: # Compare the user inputted code to the required / set code 'KMR'
             self.create_upcoming_button.pack(pady=50)
             self.create_result_button.pack()
             self.tlogin_logo.pack(pady=70)
-        elif entered_code == "":
-            messagebox.showerror("Box left empty ", "No code entered, please enter your teacher code.") # If the box is left empty, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
+        elif entered_code == "": # If the box is left empty, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
+            messagebox.showerror("Box left empty ", "No code entered, please enter your teacher code.") 
             self.create_upcoming_button.pack_forget()
             self.create_result_button.pack_forget()
             self.tlogin_logo.pack_forget()
-        else:
-            messagebox.showerror("Invalid Code", "Invalid teacher code. Please try again.") # If they enter the wrong code or something random, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
+        else: # If they enter the wrong code or something random, the user is shown an error, and told to enter a code, the buttons will also be removed if this is done after the correct teacher code is entered as a precaution
+            messagebox.showerror("Invalid Code", "Invalid teacher code. Please try again.") 
             self.create_upcoming_button.pack_forget()
             self.create_result_button.pack_forget()
             self.tlogin_logo.pack_forget()        
@@ -2297,66 +2314,78 @@ class App():
         self.result_enter_page.pack_forget()
         self.teacher_login_page.pack()
         
-    def enter_upcoming_game(self):
-        sport = self.upcoming_sport_entry.get()
-        team = self.upcoming_team_entry.get()
-        day = self.upcoming_weekday.get()
-        time = self.upcoming_time.get()
         
-        if sport and team and day and time:
-            new_game = {
-                "sport": sport,
-                "team": team,
-                "day": day,
-                "time": time
-            }
-            
-            # Load existing data
-            try:
-                with open("schedule.json", "r") as file:
-                    schedule_data = json.load(file)
-            except FileNotFoundError:
-                schedule_data = []
-            
-            # Add new data
-            schedule_data.append(new_game)
-            
-            # Save updated data
-            with open("schedule.json", "w") as file:
-                json.dump(schedule_data, file, indent=4)
-            
-            self.update_treeview(schedule_data)
-            self.update_labels(new_game)
+        
+    def change_upcoming_labels(self):
+        sport_name = self.upcoming_sport_entry.get()
+        team_name = self.upcoming_team_entry.get()
+        week_day = self.upcoming_weekday_entry.get()
+        time_hours = self.upcoming_time_hours.get()
+        time_minutes = self.upcoming_time_minutes.get()
+        
 
-    def load_schedule_data(self):
-        try:
-            with open("schedule.json", "r") as file:
-                schedule_data = json.load(file)
-                self.update_treeview(schedule_data)
-        except FileNotFoundError:
-            pass
         
-    def update_treeview(self, schedule_data):
-        for row in self.trv.get_children():
-            self.trv.delete(row)
+        if sport_name in self.sports:
+            if team_name in self.teams:
+                if week_day in self.weekdays:
+                    if time_hours in self.hours:
+                        if time_minutes in self.minutes:
+                            if sport_name == "Football":
+                                self.change_football_upcoming_labels(team_name, week_day, time_hours, time_minutes)
+                        
+                            elif sport_name == "Basketball":
+                                self.change_basketball_upcoming_labels(team_name, week_day, time_hours, time_minutes)
+                    
+                            elif sport_name == "Hockey":
+                                self.change_hockey_upcoming_labels(team_name, week_day, time_hours, time_minutes)
+                            
+                            elif sport_name == "Rugby":
+                                self.change_rugby_upcoming_labels(team_name, week_day, time_hours, time_minutes)
+                        else:
+                            messagebox.showerror("Invalid time entered", "Please enter a valid time from the dropdown box (minutes error)")
+                            
+                    else:
+                        messagebox.showerror("Invalid time entered", "Please enter a valid time from the dropdown box (hours error)")
+                        
+                else:
+                    messagebox.showerror("Invalid week day", "Please choose a day from the dropdown box")
+                        
+            else:
+                messagebox.showerror("Invalid team name", "Please choose a team from the dropdown box")
         
-        for game in schedule_data:
-            self.trv.insert("", "end", values=(game["sport"], game["team"], game["day"], game["time"]))
+        else: 
+            messagebox.showerror("Invalid sport name", "Please choose a sport from the dropdown box")
             
-    def update_labels(self, latest_game):
-        # Assuming you have labels to display the latest entry data
-        self.latest_sport_label = Label(self.upcoming_sched_bottom, text=f"Sport: {latest_game['sport']}")
-        self.latest_sport_label.pack()
         
-        self.latest_team_label = Label(self.upcoming_sched_bottom, text=f"Team: {latest_game['team']}")
-        self.latest_team_label.pack()
+                
+    def change_football_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
+        self.upcoming_team_one.config(text=team_name)
+        self.upcoming_day_one.config(text=week_day)
+        self.upcoming_time_one.config(text=time_hours + ":" + time_minutes)
         
-        self.latest_day_label = Label(self.upcoming_sched_bottom, text=f"Day: {latest_game['day']}")
-        self.latest_day_label.pack()
+        messagebox.showinfo("Match schedule updated", "Football match scheduled!")
         
-        self.latest_time_label = Label(self.upcoming_sched_bottom, text=f"Time: {latest_game['time']}")
-        self.latest_time_label.pack()  
-     
+    def change_basketball_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
+        self.upcoming_team_two.config(text=team_name)
+        self.upcoming_day_two.config(text=week_day)
+        self.upcoming_time_two.config(text=time_hours + ":" + time_minutes)
+        
+        messagebox.showinfo("Match schedule updated", "Basketball match scheduled!")
+        
+    def change_hockey_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
+        self.upcoming_team_three.config(text=team_name)
+        self.upcoming_day_three.config(text=week_day)
+        self.upcoming_time_three.config(text=time_hours + ":" + time_minutes)
+        
+        messagebox.showinfo("Match schedule updated", "Hockey match scheduled!")
+        
+    def change_rugby_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
+        self.upcoming_team_four.config(text=team_name)
+        self.upcoming_day_four.config(text=week_day)
+        self.upcoming_time_four.config(text=time_hours + ":" + time_minutes)
+        
+        messagebox.showinfo("Match schedule updated", "Rugby match scheduled!")
+            
     def go_to_next_page(self, direction):
         if direction == "left":
             if self.page_number > 1:
@@ -2435,4 +2464,4 @@ class App():
             self.homeresu_sportname.config(text="Hockey")
         elif self.page_number == 4:
             self.homeresu_pageFour.grid(row=1, columnspan=TRUE)
-            self.homeresu_sportname.config(text="Cricket")
+            self.homeresu_sportname.config(text="Rugby")
