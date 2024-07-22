@@ -141,10 +141,10 @@ class App():
         self.upcoming_sched_top.pack_propagate(False)
         self.upcoming_sched_top.pack()
   
-        self.upcoming_sched_title = Label(self.upcoming_sched_top, bg="White", text="Schedule a match for next week", font=("Helvetica", 18, "bold"))
+        self.upcoming_sched_title = Label(self.upcoming_sched_top, bg="#EFECEC", text="Schedule a match for next week", font=("Helvetica", 18, "bold"))
         self.upcoming_sched_title.pack()
         
-        self.upcoming_sched_disclaimer = Label(self.upcoming_sched_top, bg="White", text="You may only schedule one match per sport", font=("Helvetica", 14))
+        self.upcoming_sched_disclaimer = Label(self.upcoming_sched_top, bg="#EFECEC", text="You may only schedule one match per sport", font=("Helvetica", 14))
         self.upcoming_sched_disclaimer.pack()
         
         self.upcoming_sched_holder = Frame(self.upcoming_sched_top, bg="White", width=360, height=500, relief=RIDGE, bd=3)
@@ -206,10 +206,10 @@ class App():
         self.result_enter_top.pack_propagate(False)
         self.result_enter_top.pack()
         
-        self.result_enter_title = Label(self.result_enter_top, bg="White", text="Enter the latest results", font=("Helvetica", 18, "bold"))
+        self.result_enter_title = Label(self.result_enter_top, bg="#EFECEC", text="Enter the latest results", font=("Helvetica", 18, "bold"))
         self.result_enter_title.pack()
         
-        self.result_enter_disclaimer = Label(self.result_enter_top, bg="White", text="You may only enter one result per team", font=("Helvetica", 14))
+        self.result_enter_disclaimer = Label(self.result_enter_top, bg="#EFECEC", text="You may only enter one result per team", font=("Helvetica", 14))
         self.result_enter_disclaimer.pack()
         
         self.result_enter_holder = Frame(self.result_enter_top, bg="White", width=360, height=500, relief=RIDGE, bd=3)
