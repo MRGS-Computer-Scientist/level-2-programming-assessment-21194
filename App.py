@@ -2,16 +2,11 @@ from tkinter import *
 from tkinter import messagebox, ttk, font
 from app_settings import *
 from os import *
-import uuid
-import json
+
 
 w_width = 400
 w_height = 850 
 margin_length = 30
-
-
-
-#leftarrow = PhotoImage(file = "C:\Users\21194\Downloads\683398_arrows_512x512.png")
 
 class App():
     
@@ -455,7 +450,7 @@ class App():
         self.home_header_one = Label(self.upcoming_main, text="UPCOMING", bg="#EFECEC", font=self.header_font)
         self.home_header_one.pack(padx=20, pady=5)
         
-        # First upcoming display, it is split up into 5 rows called one, two, three, four, and five which show the most relevant and most imminent sport matches for the school (the dictionary created for upcoming matches will be here and separate to results used below this)
+        # First upcoming display, it is split up into 5 rows called one, two, three, four, and five which show the most relevant and most imminent sport matches for the school
         
         self.upcoming_row_one = Frame(self.upcoming_main, bg="#EFECEC", width=w_width - margin_length, height=70)
         self.upcoming_row_one.pack()
@@ -632,9 +627,8 @@ class App():
         self.homeresu_pageOne_L1.pack_propagate(False)
         self.homeresu_pageOne_L1.pack()
         
-        # Sub the First XI for first_team and second which is a string variable decided by the user input on teacher page
-        
-        # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM
+        # Divide the lines into 4 sections, 1 = MRGS TEAM, 2 = MRGS SCORE, 3 = OTHER SCORE, 4 = OTHER TEAM, Labels are configured when data is updated
+        # L1 = Line 1, S1 = Section 1
         
         self.homeresu_pageOne_L1S1 = Frame(self.homeresu_pageOne_L1, width=100, height=45, bg="White", relief=SUNKEN, bd=0.5)
         self.homeresu_pageOne_L1S1.pack_propagate(False)
@@ -1115,7 +1109,7 @@ class App():
         self.homeresu_pageFour_L3Score2.pack(pady=12)
         
         # Home resu page indicator
-            # which page is shown, to be replaced by a different indicator like 4 circles total, and the greyed out circle is the current page
+            # which page is shown
         
         self.homeresu_bottom = Frame(self.homeresu_box, width=305, height=26, bg="White", relief=SUNKEN, bd=0.5)  
         self.homeresu_bottom.pack_propagate(False)
@@ -1123,8 +1117,6 @@ class App():
         
         self.page_indicator = Label(self.homeresu_bottom, text=self.page_number, relief=RIDGE, bg="White", width=5, height=1)
         self.page_indicator.pack(pady=2)
-
-        #If MRGS Score is greater than other score then config it to green font colour and the other to red font colour
 
         # School-sport info page frame ---------------------------
         
@@ -2541,6 +2533,9 @@ class App():
         time_hours = self.upcoming_time_hours.get()
         time_minutes = self.upcoming_time_minutes.get()
         
+        # Takes the teacher user input from the entry boxes in the upcoming match scheduler and assigns them to a variable which is then compared to the list of values used for the dropdown box
+        # Simply if one of the options are not entered into the box, then an error pops up on screen alerting the user of the issue
+        
         if upcoming_sport_name in self.sports:
             if team_name in self.teams:
                 if week_day in self.weekdays:
@@ -2564,7 +2559,9 @@ class App():
                 messagebox.showerror("Invalid team name", "Please choose a team from the dropdown box")        
         else: 
             messagebox.showerror("Invalid sport name", "Please choose a sport from the dropdown box")
-            
+    
+    # If all required conditions are met for the user input, the label-changing functions are called which edit specific label widgets that were made to display the data put into a certain entrybox 
+    # e.g. upcoming_team_one was a label made to display the name of the team for the upcoming box on the home page so the function configures this label to display the string text of the assigned variable (of the corresponding entrybox)
                 
     def change_football_upcoming_labels(self, team_name, week_day, time_hours, time_minutes):
         self.upcoming_team_one.config(text=team_name)
