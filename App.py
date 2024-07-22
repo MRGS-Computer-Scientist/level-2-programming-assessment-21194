@@ -38,21 +38,21 @@ class App:
         self.opposing_secondxi_team = StringVar()
         self.opposing_junior_team = StringVar()
 
-        self.our_firstxi_score = IntVar()
-        self.our_secondxi_score = IntVar()
-        self.our_junior_score = IntVar()
+        self.our_firstxi_score = StringVar()
+        self.our_secondxi_score = StringVar()
+        self.our_junior_score = StringVar()
 
-        self.their_firstxi_score = IntVar()
-        self.their_secondxi_score = IntVar()
-        self.their_junior_score = IntVar()
+        self.their_firstxi_score = StringVar()
+        self.their_secondxi_score = StringVar()
+        self.their_junior_score = StringVar()
 
-        self.firstxi_wins = IntVar()
-        self.secondxi_wins = IntVar()
-        self.junior_wins = IntVar()
+        self.firstxi_wins = StringVar()
+        self.secondxi_wins = StringVar()
+        self.junior_wins = StringVar()
 
-        self.firstxi_losses = IntVar()
-        self.secondxi_losses = IntVar()
-        self.junior_losses = IntVar()
+        self.firstxi_losses = StringVar()
+        self.secondxi_losses = StringVar()
+        self.junior_losses = StringVar()
 
         self.sports = ['Football', 'Basketball', 'Hockey', 'Rugby']
         self.teams = [
@@ -4726,99 +4726,130 @@ class App:
         second_losses = self.secondxi_losses.get()
         third_losses = self.junior_losses.get()
 
-        first_winlosses = first_wins // first_losses
-        second_winlosses = second_wins // second_losses
-        third_winlosses = third_wins // third_losses
+        if not result_sport_name:
+            messagebox.showerror('Invalid sport name', 'Please choose a sport from the dropdown box')
+            return
 
-        if result_sport_name in self.sports:
-            if result_sport_name == 'Football':
-                self.change_football_result_labels(
-                    other_first_team,
-                    other_second_team,
-                    other_third_team,
-                    our_first_score,
-                    our_second_score,
-                    our_third_score,
-                    their_first_score,
-                    their_second_score,
-                    their_third_score,
-                    first_wins,
-                    second_wins,
-                    third_wins,
-                    first_losses,
-                    second_losses,
-                    third_losses,
-                    first_winlosses,
-                    second_winlosses,
-                    third_winlosses
-                    )
-            elif result_sport_name == 'Basketball':
-                self.change_basketball_result_labels(
-                    other_first_team,
-                    other_second_team,
-                    other_third_team,
-                    our_first_score,
-                    our_second_score,
-                    our_third_score,
-                    their_first_score,
-                    their_second_score,
-                    their_third_score,
-                    first_wins,
-                    second_wins,
-                    third_wins,
-                    first_losses,
-                    second_losses,
-                    third_losses,
-                    first_winlosses,
-                    second_winlosses,
-                    third_winlosses
-                    )
-            elif result_sport_name == 'Hockey':
-                self.change_hockey_result_labels(
-                    other_first_team,
-                    other_second_team,
-                    other_third_team,
-                    our_first_score,
-                    our_second_score,
-                    our_third_score,
-                    their_first_score,
-                    their_second_score,
-                    their_third_score,
-                    first_wins,
-                    second_wins,
-                    third_wins,
-                    first_losses,
-                    second_losses,
-                    third_losses,
-                    first_winlosses,
-                    second_winlosses,
-                    third_winlosses
-                    )
-            elif result_sport_name == 'Rugby':
-                self.change_rugby_result_labels(
-                    other_first_team,
-                    other_second_team,
-                    other_third_team,
-                    our_first_score,
-                    our_second_score,
-                    our_third_score,
-                    their_first_score,
-                    their_second_score,
-                    their_third_score,
-                    first_wins,
-                    second_wins,
-                    third_wins,
-                    first_losses,
-                    second_losses,
-                    third_losses,
-                    first_winlosses,
-                    second_winlosses,
-                    third_winlosses
-                    )
+        if not (other_first_team or other_second_team or other_third_team):
+            messagebox.showerror('Invalid team entry', 'Please enter the opposing team(s)')
+            return
+
+        try:
+            our_first_score = int(our_first_score)
+            our_second_score = int(our_second_score)
+            our_third_score = int(our_third_score)
+            their_first_score = int(their_first_score)
+            their_second_score = int(their_second_score)
+            their_third_score = int(their_third_score)
+            first_wins = int(first_wins)
+            second_wins = int(second_wins)
+            third_wins = int(third_wins)
+            first_losses = int(first_losses)
+            second_losses = int(second_losses)
+            third_losses = int(third_losses)
+        except ValueError:
+            messagebox.showerror('Invalid score/record entry', 'Please ensure the scores/records entered are correct numbers')
+            return
+
+        if first_losses == 0:
+            first_winlosses = '+'
         else:
-            messagebox.showerror('Invalid sport name',
-                                 'Please choose a sport from the dropdown box'
-                                 )
+            first_winlosses = first_wins // first_losses
+
+        if second_losses == 0:
+            second_winlosses = '+'
+        else:
+            second_winlosses = second_wins // second_losses
+
+        if third_losses == 0:
+            third_winlosses = '+'
+        else:
+            third_winlosses = third_wins // third_losses
+
+        if result_sport_name == 'Football':
+            self.change_football_result_labels(
+                other_first_team,
+                other_second_team,
+                other_third_team,
+                our_first_score,
+                our_second_score,
+                our_third_score,
+                their_first_score,
+                their_second_score,
+                their_third_score,
+                first_wins,
+                second_wins,
+                third_wins,
+                first_losses,
+                second_losses,
+                third_losses,
+                first_winlosses,
+                second_winlosses,
+                third_winlosses
+            )
+        elif result_sport_name == 'Basketball':
+            self.change_basketball_result_labels(
+                other_first_team,
+                other_second_team,
+                other_third_team,
+                our_first_score,
+                our_second_score,
+                our_third_score,
+                their_first_score,
+                their_second_score,
+                their_third_score,
+                first_wins,
+                second_wins,
+                third_wins,
+                first_losses,
+                second_losses,
+                third_losses,
+                first_winlosses,
+                second_winlosses,
+                third_winlosses
+            )
+        elif result_sport_name == 'Hockey':
+            self.change_hockey_result_labels(
+                other_first_team,
+                other_second_team,
+                other_third_team,
+                our_first_score,
+                our_second_score,
+                our_third_score,
+                their_first_score,
+                their_second_score,
+                their_third_score,
+                first_wins,
+                second_wins,
+                third_wins,
+                first_losses,
+                second_losses,
+                third_losses,
+                first_winlosses,
+                second_winlosses,
+                third_winlosses
+            )
+        elif result_sport_name == 'Rugby':
+            self.change_rugby_result_labels(
+                other_first_team,
+                other_second_team,
+                other_third_team,
+                our_first_score,
+                our_second_score,
+                our_third_score,
+                their_first_score,
+                their_second_score,
+                their_third_score,
+                first_wins,
+                second_wins,
+                third_wins,
+                first_losses,
+                second_losses,
+                third_losses,
+                first_winlosses,
+                second_winlosses,
+                third_winlosses
+            )
 
     def change_football_result_labels(
         self,
