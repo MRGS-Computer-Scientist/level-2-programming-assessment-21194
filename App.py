@@ -1,9 +1,6 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 from tkinter import *
 from tkinter import messagebox, ttk, font
 from app_settings import *
-from os import *
 
 w_width = 400
 w_height = 850
